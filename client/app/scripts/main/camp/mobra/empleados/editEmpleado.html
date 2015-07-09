@@ -1,0 +1,64 @@
+<div class="button-bar">
+  <a class="button button-positive button-outline icon-left ion-ios7-close-outline" ng-click="back()"> Cancelar</a>
+  <a class="button button-positive button-outline icon-right ion-ios7-cloud-upload-outline" ng-click="save(empleado)">Guardar </a>
+</div>
+
+<div class="card" id="empleadoCard">
+  <form name="editEmpleado" role="form">
+
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Nombre: <span class="assertive">*</span></span>
+          <input type="text" ng-model="empleado.name" required placeholder="Introduzca nombre del Empleado... ">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Apellidos: <span class="assertive">*</span></span>
+          <input type="text" ng-model="empleado.apellidos" placeholder="Introduzca apellidos del Empleado... ">
+        </label>
+
+        <ion-toggle ng-model="empleado.active" toggle-class="toggle-balanced">Activo (de Alta)</ion-toggle>
+
+        <label class="item item-input">
+          <span class="input-label">Telefono:</span>
+          <input type="text" ng-model="empleado.tel" placeholder="Introduzca telefono de contacto del Empleado... ">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Direccion:</span>
+          <input type="text" ng-model="empleado.direccion" placeholder="Introduzca direccion de contacto del Empleado... ">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Poblacion:</span>
+          <input type="text" ng-model="empleado.poblacion" placeholder="Introduzca poblacion del Empleado... ">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">E-mail:</span>
+          <input type="text" ng-model="empleado.email" placeholder="Introduzca e-mail del Empleado... ">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">N.I.F.: <span class="assertive">*</span></span>
+          <input type="text" ng-model="empleado.nif" placeholder="Introduzca N.I.F. del Empleado... ">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Nº Seg. Social:</span>
+          <input type="text" ng-model="empleado.nss" placeholder="Introduzca Nº Seguridad Social del Empleado... ">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Cat. Profesional:</span>
+          <input type="number" ng-model="empleado.catprof" placeholder="Introduzca categoria profesional del Empleado... ">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Coste Jornal:</span>
+          <input type="text" ng-model="empleado.costjornal" placeholder="Introduzca coste del jornal del Empleado... ">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Coste Hora Extra:</span>
+          <input type="text" ng-model="empleado.costhextra" placeholder="Introduzca coste hora extra del Empleado... ">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Coste Porte:</span>
+          <input type="text" ng-model="empleado.costportes" placeholder="Introduzca coste porte del Empleado... ">
+        </label>
+      </div>
+
+  </form>
+</div>

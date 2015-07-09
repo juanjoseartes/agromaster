@@ -1,0 +1,67 @@
+<div class="card">
+<div class="button-bar" style="margin-top:-1px">
+
+  <a ui-sref="main.camp.mobra.empleados" ng-class="{active: $state.is('main.camp.mobra.empleados')}" class="button button-outline button-positive icon-left ion-grid">
+    <small>Listado</small>
+  </a>
+  <a disabled href="#" ng-class="{active: $state.is('main.camp.mobra')}" class="button button-outline button-positive icon-left ion-shuffle">
+    <small>Altas / Bajas</small>
+  </a>
+</div>
+
+<div class="table-responsive" st-table="empleados">
+  <div class="bar bar-header item item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios7-search placeholder-icon"></i>
+      <input st-search placeholder="Buscar..." type="search"/>
+    </label>
+    <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.mobra.empleados.add">
+      Añadir
+    </a>
+  </div>
+
+      <!-- <div class="item item-toggle">
+           Solo Activos
+           <label class="toggle toggle-balanced">
+             <input type="checkbox" st-search="active">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </div> -->
+
+  <div ui-view></div>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr class="stable-bg">
+        <th st-sort="apellidos">Nombre</th>
+        <th st-sort="tel">Contacto</th>
+        <th st-sort="direccion">Direccion</th>
+        <th st-sort="poblacion">Poblacion</th>
+        <th>Costes</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="empleado in empleados">
+        <td>
+          <span ng-class="{'balanced icon ion-checkmark': empleado.active, 'assertive icon ion-ios-pause':  !empleado.active}"></span>
+
+          <!-- <i class="icon ion-checkmark" ng-if="empleado.active"></i>
+          <i class="icon ion-ios-pause" ng-if="!empleado.active"></i> -->
+
+          {{empleado.apellidos}}, {{empleado.name}}<br/>
+          DNI: {{empleado.nif}}</td>
+        <td>{{empleado.tel}}<br/>{{empleado.email}}</td>
+        <td>{{empleado.direccion}}</td>
+        <td>{{empleado.poblacion}}</td>
+        <td><small>J: {{empleado.costjornal | currency}}<br/>P: {{empleado.costportes | currency}}<br/>H.E: {{empleado.costhextra | currency}}</small></td>
+        <td class="center">
+          <a class="button button-icon icon ion-ios7-compose-outline positive" ui-sref="main.camp.mobra.empleados.edit({emplId: empleado.id})"></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

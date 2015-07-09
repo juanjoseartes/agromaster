@@ -1,0 +1,43 @@
+<div class="tabs-striped tabs-top tabs-background-stable tabs-color-positive tabs-icon-left">
+  <div class="tabs" style="height:54px;" ng-if="navbarItems">
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.tprog.riego')}"  ui-sref="main.camp.tprog.riego" style="font-size:14px">
+      <i class="icon ion-waterdrop"></i>
+      Riego
+    </a>
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.tprog.abonado')}"  ui-sref="main.camp.tprog.abonado" style="font-size:14px">
+      <i class="icon ion-beaker"></i>
+      Abonado
+    </a>
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.tprog.tratam')}"  ui-sref="main.camp.tprog.tratam" style="font-size:14px">
+      <i class="icon ion-bug"></i>
+      Tratamiento
+    </a>
+  </div>
+</div>
+<ion-content>
+  <div class="list card" style="margin-top:64px">
+
+    <div ui-view></div>
+  </div>
+</ion-content>
+
+<!-- <div class="list card" id="inicLecturas">
+  <div class="item item-icon-left item-divider">
+    <i class="icon ion-ios7-calendar-outline"></i>
+    <h2>{{title}}</h2>
+    <p>{{fincaName}}</p>
+  </div>
+
+  <div class="list">
+
+    <div class="button-bar">
+      <a ui-sref="main.camp.tprog.riego" ng-class="{active: $state.includes('main.camp.tprog.riego')}" class="button button-outline button-positive icon-left ion-waterdrop">Riego</a>
+      <a ui-sref="main.camp.tprog.abonado" ng-class="{active: $state.includes('main.camp.tprog.abonado')}" class="button button-outline button-positive icon-left ion-beaker">Abonado</a>
+      <a ui-sref="main.camp.tprog.tratam" ng-class="{active: $state.includes('main.camp.tprog.tratam')}" class="button button-outline button-positive icon-left ion-bug">Tratamientos</a>
+    </div>
+
+    <div ui-view></div>
+
+  </div>
+
+</div> -->

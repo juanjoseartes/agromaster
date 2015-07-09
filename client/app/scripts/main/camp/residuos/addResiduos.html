@@ -1,0 +1,39 @@
+<div class="list card">
+  <div class="item item-avatar item-divider">
+    <i class="icon balanced ion-ios7-plus"></i>
+    <h2>{{title}}</h2>
+    <p>&nbsp;</p>
+  </div>
+  <div class="button-bar">
+    <a class="button button-outline button-positive icon-left ion-ios7-arrow-left" ng-click="back()"> Volver</a>
+    <a class="button button-outline button-positive icon-right ion-ios7-cloud-upload-outline" ng-click="save()"> Guardar</a>
+  </div>
+  <label class="item item-input">
+    <span class="input-label">Gestor Residuo:</span>
+    {{gestSel.name}}
+    <button class="button button-clear button-positive icon-right ion-ios7-search" ui-sref="main.camp.residuos.add.gest"></button>
+  </label>
+
+  <div ng-if="$state.includes('main.camp.residuos.add.gest')" ui-view></div>
+
+  <label class="item item-input">
+    <span class="input-label">Fecha:</span>
+    {{fchSel | amDateFormat:'DD/MM/YYYY'}}
+    <button class="button button-clear button-positive icon-right ion-ios7-search" ui-sref="main.camp.residuos.add.fecha"></button>
+  </label>
+
+  <div ng-if="$state.includes('main.camp.residuos.add.fecha')" ui-view></div>
+
+  <label class="item item-input">
+    <span class="input-label">Nº Albaran:</span>
+    <input type="text" ng-model="res.nalbaran" placeholder="Introduzca nº albaran de la retirada...">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Tipo Residuo:</span>
+    <input type="text" ng-model="res.tipo" placeholder="Introduzca tipo de residuo a retirar...">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Observaciones:</span>
+    <textarea ng-model="res.obs" placeholder="Observaciones...">{{res.obs}}</textarea>
+  </label>
+</div>

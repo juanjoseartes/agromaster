@@ -1,0 +1,50 @@
+<a class="button icon-left ion-ios7-arrow-left button-clear button-positive" ng-click="backProveed()"> Volver</a>
+
+<div class="card" id="maquinariaCard">
+  <form name="addMaquinaria" role="form">
+  <div class="item item-avatar item-divider">
+    <i class="icon ion-ios7-plus-outline"></i>
+    <h2>{{maquinaria.marca}} {{maquinaria.modelo}}&nbsp;</h2>
+    <p>{{title}}</p>
+  </div>
+  <div class="item">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Proveedor:</span>
+        <span class="input-label">{{proveedor.name}}</span>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Marca:</span>
+        <input type="text" ng-model="maquinaria.marca" required placeholder="Introduzca marca de la maquinaria/equipo... ">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Modelo:</span>
+        <input type="text" ng-model="maquinaria.modelo" placeholder="Introduzca modelo de la maquinaria/equipo... ">
+      </label>
+      <label class="item item-input item-select">
+        <span class="input-label">Tipo Maquinaria/Equipo:</span>
+        <select ng-model="maquinaria.tipomaq" ng-options="maquina.name group by maquina.grupo.name for maquina in tipomaquinas | orderBy: 'grupo.name'">
+          <option value="">-- Seleccione una opcion --</option>
+        </select>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Matricula/Nº Serie:</span>
+        <input type="text" ng-model="maquinaria.matricula" placeholder="Introduzca matricula/nº de serie de la maquinaria/equipo... ">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Potencia c.v.:</span>
+        <input type="text" ng-model="maquinaria.potencia" placeholder="Introduzca potencia de la maquinaria/equipo... ">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Observaciones:</span>
+        <textarea ng-model="maquinaria.notas" placeholder="Introduzca potencia de la maquinaria/equipo... "></textarea>
+      </label>
+    </div>
+  </div>
+
+  <div class="button-bar">
+  <a class="button button-positive button-clear icon-left ion-ios7-arrow-left" ng-click="backProveed()"> Volver</a>
+  <a class="button button-positive icon-right ion-ios7-cloud-upload-outline" ng-click="save()">Guardar </a>
+</div>
+</form>
+</div>

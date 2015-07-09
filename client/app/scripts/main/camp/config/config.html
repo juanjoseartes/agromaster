@@ -1,0 +1,262 @@
+<ion-content padding="true" overflow-scroll="true">
+<div class="row responsive-lg">
+  <div class="col">
+
+    <div class="card">
+      <ion-list>
+      <ion-item
+      class="item item-icon-left item-divider"
+      ng-click="toggleGroup(1)"
+      ng-class="{active: isGroupShown(1)}">
+      <i class="icon positive" ng-class="isGroupShown(1) ? 'ion-ios7-gear' : 'ion-ios7-gear-outline'"></i>
+        <h2>Datos Basicos</h2>
+        <p>{{finca.name}}: {{title}}</p>
+      </ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(1)">
+        <label class="item item-input">
+          <span class="input-label">Nombre: </span>
+          <input ng-model="finca.name" type="text" value="{{finca.name}}">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Localidad: </span>
+          <input ng-model="finca.localidad" type="text" value="{{finca.localidad}}">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Provincia: </span>
+          <input ng-model="finca.provincia" type="text" value="{{finca.provincia}}">
+        </label>
+      </ion-item>
+    </ion-list>
+    </div>
+
+    <div class="card">
+      <ion-list>
+        <ion-item
+          class="item item-icon-left item-divider"
+          ng-click="toggleGroup(2); isGroupShown(2) ? $state.go('main.camp.config.home.parc') : $state.go('^')"
+          ng-class="{active: isGroupShown(2)}">
+            <i class="icon positive" ng-class="isGroupShown(2) ? 'ion-ios7-gear' : 'ion-ios7-gear-outline'"></i>
+            <h2>Parcelas <span class="badge badge-calm">{{parcelas.length}}</span></h2>
+            <p>{{finca.name}}: {{title}}</p>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown(2)">
+            <div ui-view></div>
+          </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="card">
+      <ion-list>
+        <ion-item
+        class="item item-icon-left item-divider"
+        ng-click="toggleGroup(9); isGroupShown(9) ? $state.go('main.camp.config.home.confecc') : $state.go('^')"
+        ng-class="{active: isGroupShown(9)}">
+          <i class="icon positive" ng-class="isGroupShown(9) ? 'ion-ios7-gear' : 'ion-ios7-gear-outline'"></i>
+          <h2>Confecciones</h2>
+          <p>{{finca.name}}: {{title}}</p>
+        </ion-item>
+        <ion-item class="item-accordion" ng-show="isGroupShown(9)">
+          <div ui-view></div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+  <div class="col">
+
+    <div class="card">
+      <div class="item item-icon-left item-divider"
+        ng-click="toggleGroup(4); isGroupShown(4) ? $state.go('main.camp.config.home.ejerc') : $state.go('^')"
+        ng-class="{active: isGroupShown(4)}">
+        <i class="icon positive" ng-class="isGroupShown(4) ? 'ion-ios7-gear' : 'ion-ios7-gear-outline'"></i>
+        <h2>Ejercicios</h2>
+        <p>{{finca.name}}: {{title}}</p>
+      </div>
+      <div ui-view ng-if="isGroupShown(4)"></div>
+    </div>
+
+    <div class="card">
+      <ion-list>
+      <ion-item class="item item-icon-left item-divider"
+        ng-click="toggleGroup(5)"
+        ng-class="{active: isGroupShown(5)}">
+        <i class="icon positive" ng-class="isGroupShown(5) ? 'ion-ios7-gear' : 'ion-ios7-gear-outline'"></i>
+        <h2>Usuarios <span class="badge badge-calm">{{finca.usuarios.length}}</span></h2>
+        <p>{{finca.name}}: {{title}}</p>
+      </ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(5)">
+      <div class="table-responsive">
+        <table class="table table-bordered table-condensed table-striped">
+          <thead>
+            <tr>
+              <th>Usuarios</th>
+              <th>e-mail</th>
+              <th class="center">Gerente</th>
+              <th class="center">Admin</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td colspan="4"><a class="button button-block button-outline button-positive icon icon-left ion-ios7-plus-outline" ui-sref="main.camp.config.useradd">Usuario</a></td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr ng-repeat="user in finca.usuarios">
+              <td>
+                <a ng-if="user.active" href="#/inicio/{{ejercId}}/user/{{user.id}}" class="button button-block button-small button-clear button-positive">{{user.username}}</a>
+                <a ng-if="!user.active" href="#/inicio/{{ejercId}}/user/{{user.id}}" class="button button-block button-small button-clear button-stable">{{user.username}}</a>
+              </td>
+              <td>{{user.email}}<br/>{{user.telefono}}</td>
+              <td class="center">
+                <i class="icon ion-checkmark positive" ng-if="user.gerente"></i>
+                <i class="icon ion-close stable" ng-if="!user.gerente"></i>
+              </td>
+              <td class="center">
+                <i class="icon ion-checkmark positive" ng-if="user.admin"></i>
+                <i class="icon ion-close stable" ng-if="!user.admin"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-item>
+  </ion-list>
+    </div>
+
+    <div class="card">
+      <ion-list>
+        <ion-item class="item item-icon-left item-divider"
+        ng-click="toggleGroup(8)"
+        ng-class="{active: isGroupShown(8)}">
+        <i class="icon positive" ng-class="isGroupShown(8) ? 'ion-ios7-gear' : 'ion-ios7-gear-outline'"></i>
+        <h2>Procesos</h2>
+        <p>{{finca.name}}: {{title}}</p>
+      </ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(8)">
+
+          <a href="#" ng-click="recalCostCult()" class="item item-icon-left">
+            <i class="icon ion-ios7-calculator"></i>
+            Costes Cultivo
+          </a>
+
+          <a href="#" class="item item-icon-left">
+            <i class="icon ion-ios7-calculator"></i>
+            Enter phone number
+          </a>
+
+          <a href="#" class="item item-icon-left">
+            <i class="icon ion-ios7-calculator"></i>
+            Enter wireless password
+          </a>
+
+          <a href="#" class="item item-icon-left">
+            <i class="icon ion-ios7-calculator"></i>
+            Enter card information
+          </a>
+
+      </ion-item>
+    </ion-list>
+  </div>
+
+  </div>
+</div>
+</ion-content>
+<!-- <div class="card">
+<ion-list>
+<ion-item class="item item-icon-left item-divider"
+ng-click="toggleGroup(3)"
+ng-class="{active: isGroupShown(3)}">
+<i class="icon positive" ng-class="isGroupShown(3) ? 'ion-ios7-gear' : 'ion-ios7-gear-outline'"></i>
+<h2>Diarios de Cultivo (excl. Recoleccion) <span class="badge badge-calm">{{finca.tipodiarios.length}}</span></h2>
+<p>{{finca.name}}: {{title}}</p>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(3)">
+<div class="table-responsive">
+<table class="table table-bordered table-condensed table-striped">
+<thead>
+<tr>
+<th>Diarios</th>
+<th>Nº Orden</th>
+<th>Almacen</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="3"><a class="button button-block button-outline button-positive icon icon-left ion-ios7-plus-outline" ui-sref="main.camp.config.adddia.new">Diario</a></td>
+</tr>
+</tfoot>
+<tbody>
+<tr ng-repeat="dia in tiposdiario | orderBy: 'orden'">
+<td>
+<a ng-if="dia.active" class="button button-block button-small button-clear button-positive" href="#/inicio/{{ejercId}}/diario/{{dia.id}}">{{dia.name}}</a>
+<a ng-if="!dia.active" class="button button-block button-small button-clear button-stable" href="#/inicio/{{ejercId}}/diario/{{dia.id}}">{{dia.name}}</a>
+</td>
+<td class="center">{{dia.orden}}</td>
+<td class="center"><i ng-if="dia.almacen" class="icon ion-home positive"></i></td>
+</tr>
+</tbody>
+</table>
+</div>
+</ion-item>
+</ion-list>
+</div> -->
+<!-- <div class="card">
+<ion-list>
+<ion-item
+class="item item-icon-left item-divider"
+ng-click="toggleGroup(7)"
+ng-class="{active: isGroupShown(7)}">
+<i class="icon positive" ng-class="isGroupShown(7) ? 'ion-ios7-gear' : 'ion-ios7-gear-outline'"></i>
+<h2>Tipos de Maquinaria</h2>
+<p>{{finca.name}}: {{title}}</p>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(7)">
+<div ng-repeat="(key, value) in maquinaria | groupBy: 'grupo.name' | orderBy: 'grupo.name'">
+<div class="item item-divider" >
+{{key}}
+</div>
+<a ng-repeat="maquina in value track by $index | orderBy: 'maquina.name'" class="item item-input" >
+{{maquina.name}}
+</a>
+</div>
+</ion-item>
+</ion-list>
+</div> -->
+
+<!-- <div class="card">
+<ion-list>
+<ion-item class="item item-icon-left item-divider"
+ng-click="toggleGroup(6)"
+ng-class="{active: isGroupShown(6)}">
+<i class="icon positive" ng-class="isGroupShown(6) ? 'ion-ios7-gear' : 'ion-ios7-gear-outline'"></i>
+<h2>Unidades Medida</h2>
+<p>{{finca.name}}: {{title}}</p>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(6)">
+<div class="table-responsive">
+<table class="table table-bordered table-condensed table-striped">
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Tipo</th>
+<th class="center">Conversion</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="3"><a class="button button-block button-outline button-positive icon icon-left ion-ios7-plus-outline" ui-sref="main.camp.config.udadd">Unidad</a></td>
+</tr>
+</tfoot>
+<tbody>
+<tr ng-repeat="ud in unidades">
+<td>
+<a ui-sref="main.camp.config.udedit({udId: ud.id})" class="button button-block button-small button-clear button-positive">{{ud.name}}</a>
+</td>
+<td>{{ud.tipo}}</td>
+<td class="center">{{ud.coefconvert}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</ion-item>
+</ion-list>
+</div> -->

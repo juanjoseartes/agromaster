@@ -1,0 +1,30 @@
+<div class="table-responsive">
+  <table st-table="detcompra" class="table table-bordered table-condensed table-striped">
+    <thead>
+      <tr>
+        <th colspan="5">
+          <a class="button button-clear button-positive" ui-sref="main.camp.compras.edit.alb.search.fito">
+            <i class="icon ion-ios7-plus-outline"></i>
+            Fitosanitario
+          </a>
+        </th>
+      </tr>
+      <tr>
+        <th>Fitosanitario</th>
+        <th st-sort="name">Compra</th>
+        <th>Total</th>
+        <th>Coste Unit.</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="linea in detcompra track by linea.id">
+        <td><a class="button button-small button-clear button-positive" ui-sref="main.camp.compras.edit.alb.det.fito({ detId: linea.id })">{{linea.articulo.name}}  <small>({{linea.capenvase}}{{linea.udenvase.name}})</small></a></td>
+        <td class="center"><a class="button button-small button-clear button-positive" ui-sref="main.camp.compras.edit.alb.det.fito({ detId: linea.id })">{{linea.cant}}u<br/>{{linea.precunit | currency}}/u</a></td>
+        <td class="center"><a class="button button-small button-clear button-positive" ui-sref="main.camp.compras.edit.alb.det.fito({ detId: linea.id })">{{linea.cant*linea.precunit | currency}}<br/>{{linea.cant*linea.capenvase}} {{linea.udenvase.name}}</a></td>
+        <td class="center"><a class="button button-small button-clear button-positive" ui-sref="main.camp.compras.edit.alb.det.fito({ detId: linea.id })">{{(linea.cant*linea.precunit)/(linea.cant*linea.capenvase) | currency}}/{{linea.udenvase.name}}<br/>{{linea.udsstock}}</a></td>
+        <td class="center"><a class="button button-small button-clear button-assertive icon ion-ios7-close-outline" ng-click="delete(linea)"> Eliminar</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

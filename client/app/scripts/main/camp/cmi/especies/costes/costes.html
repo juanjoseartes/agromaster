@@ -1,0 +1,90 @@
+<div class="list">
+  <div class="item item-divider item-energized">
+    COSTES <span class="badge badge-light" style="margin-top:-2px"><h2><span class="energized">1.343.123,31€</span></h2></span>
+  </div>
+  <ion-list>
+
+    <a class="item item-stable"
+      ng-repeat="dia in diarios"
+      ng-click="vDiario(dia.id)"
+      ui-sref="main.camp.cmi.espec.total.costes({tipoId: dia.id})"
+      ng-class="{active: $stateParams.tipoId == dia.id}">
+        <i class="icon" ng-class="($stateParams.tipoId == dia.id) ? 'ion-minus' : 'ion-plus'"></i>
+        &nbsp;
+        {{dia.name}} <span class="badge badge-energized">3.123,31€</span>
+    </a>
+    <div ui-view ng-if="$stateParams.tipoId == dia.id"></div>
+      <!-- <ion-item class="item-accordion" ng-show="isGroupShown(dia.name)">Mano de Obra</ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(dia.name)">Materiales</ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(dia.name)">Maquinaria</ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(dia.name)">Otros</ion-item> -->
+
+    <!-- <ion-item class="item-stable"
+      ng-click="toggleGroup(2)"
+      ng-class="{active: isGroupShown(2)}">
+        <i class="icon" ng-class="isGroupShown(2) ? 'ion-minus' : 'ion-plus'"></i>
+        &nbsp;
+        Materiales <span class="badge badge-energized">13.123,31€</span>
+    </ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(2)">Abonado</ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(2)">Limpieza</ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(2)">Mantenimiento</ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(2)">Plantacion</ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(2)">Poda</ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(2)">Riego</ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(2)">Suelo</ion-item>
+      <ion-item class="item-accordion" ng-show="isGroupShown(2)">Tratamientos</ion-item> -->
+
+<!-- <ion-item class="item-stable"
+ng-click="toggleGroup(3)"
+ng-class="{active: isGroupShown(3)}">
+<i class="icon" ng-class="isGroupShown(3) ? 'ion-minus' : 'ion-plus'"></i>
+&nbsp;
+Maquinaria <span class="badge badge-energized">123.123,31€</span>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(3)">Abonado</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(3)">Limpieza</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(3)">Mantenimiento</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(3)">Plantacion</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(3)">Poda</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(3)">Riego</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(3)">Suelo</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(3)">Tratamientos</ion-item> -->
+
+<!-- <ion-item class="item-stable"
+ng-click="toggleGroup(4)"
+ng-class="{active: isGroupShown(4)}">
+<i class="icon" ng-class="isGroupShown(4) ? 'ion-minus' : 'ion-plus'"></i>
+&nbsp;
+Otros <span class="badge badge-energized">3.123,31€</span>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(4)">Abonado</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(4)">Limpieza</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(4)">Mantenimiento</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(4)">Plantacion</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(4)">Poda</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(4)">Riego</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(4)">Suelo</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(4)">Tratamientos</ion-item> -->
+
+<ion-item class="item-stable"
+ng-click="toggleGroup(5)"
+ng-class="{active: isGroupShown(5)}">
+<i class="icon" ng-class="isGroupShown(5) ? 'ion-minus' : 'ion-plus'"></i>
+&nbsp;
+Recoleccion <span class="badge badge-energized">453.123,31€</span>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(5)">Mano de Obra</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(5)">Materiales</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(5)">Maquinaria</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(5)">Otros</ion-item>
+
+<ion-item class="item-stable"
+ng-click="toggleGroup(6)"
+ng-class="{active: isGroupShown(6)}">
+<i class="icon" ng-class="isGroupShown(6) ? 'ion-minus' : 'ion-plus'"></i>
+&nbsp;
+Amortizaciones <span class="badge badge-energized">53.123,31€</span>
+</ion-item>
+</ion-list>
+</div>

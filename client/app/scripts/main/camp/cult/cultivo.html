@@ -1,0 +1,94 @@
+<div class="tabs-striped tabs-top tabs-background-stable tabs-color-positive tabs-icon-left">
+  <div class="tabs" style="height:54px;" ng-if="navbarItems">
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.cult.home.hoy')}"  ui-sref="main.camp.cult.home.hoy.inic" style="font-size:14px">
+      <i class="icon ion-edit"></i>
+      Hoy
+    </a>
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.cult.home.ejerc')}"  ui-sref="main.camp.cult.home.ejerc.inic" style="font-size:14px">
+      <i class="icon ion-calendar"></i>
+      Campaña
+    </a>
+  </div>
+</div>
+
+<div ui-view></div>
+
+<!-- <ion-content>
+  <div class="card" style="margin-top:64px">
+    <ion-scroll zooming="true" direction="x" style="height: 50px">
+    <div class="button-bar" style="margin-top:0px">
+      <a ui-sref="main.camp.cult.home.hoy.inic({nameDia: tipo.pathname})"
+      ng-class="{active: $state.is('main.camp.cult.home.hoy.inic')}"
+      class="button button-positive button-outline" style="min-width:128px">
+      <small>Total: {{date}}</small></a>
+      <a style="min-width:128px" ng-repeat="dia in diarios" ui-sref="main.camp.cult.home.hoy.diario.parcela({nameDia: dia.name})"
+      ng-class="{active: $state.includes( 'main.camp.cult.home.hoy.diario', {nameDia: dia.name} )}" class="button button-positive button-outline">
+      <i class="icon ion-ios-bookmarks-outline"></i>  <small> {{dia.name}}</small>
+      </a>
+    </div>
+  </ion-scroll> -->
+
+
+<!-- </div>
+</ion-content> -->
+
+
+<!-- <div class="list card" id="cultHoy">
+  <div class="item item-image"> -->
+    <!-- <i class="icon ion-ios7-bookmarks-outline"></i> -->
+    <!-- <div class="button-bar">
+      <button style="max-width:20%" class="button button-outline icon-left ion-ios7-close-outline button-assertive" ng-click="modal.show()"><small> Eliminar</small></button>
+    <button ng-click="popover.show($event)" class="button button-outline button-positive icon-right ion-ios7-plus-outline"> <small>Diario</small></button>
+  </div> -->
+    <!-- <h2>{{title}}</h2>
+    <p>{{fincaName}}: {{date}}</p> -->
+
+  <!-- </div>
+
+  <div class="list"> -->
+    <!-- <div class="button-bar">
+      <a
+      ui-sref="main.camp.cult.home.hoy.inic"
+      ng-class="{active: $state.includes('main.camp.cult.home.hoy')}"
+      class="button button-outline button-positive"><i class="icon left ion-stats-bars"></i> Hoy</a>
+      <a ui-sref="main.camp.cult.home.ejerc"
+      ng-class="{active: $state.includes('main.camp.cult.home.ejerc')}"
+      class="button button-outline button-positive"><i class="icon left ion-stats-bars"></i> Campaña</a>
+    </div> -->
+    <!-- <div ui-view></div>
+  </div>
+</div>
+
+<script id="templates/popover-diarios.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar class="item item-divider">
+      <h1 class="title">Diario a Crear: </h1>
+    </ion-header-bar>
+
+    <ion-content>
+      <div class="list">
+        <a ng-repeat="dia in diarios" ng-click="createDiario(dia.id); closePopover()" class="item item-icon-right">
+          <i class="icon ion-ios7-arrow-forward"></i>
+            {{dia.name}}
+        </a>
+      </div>
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-assertive">
+      <h1 class="title">Eliminar Diario</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancelar</button>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list" style="margin-top: 30px">
+        <a ng-click="deleteDia(parte); closeModal()" ng-repeat="parte in partes" class="button button-full" ng-class="{'disabled': parte.nlineas > 0}" style="margin-top:-12px;margin-bottom:11px">
+          <i class="icon right ion-ios7-close assertive"></i>
+            {{parte.name}} -> Total Diario {{parte.total|currency}}
+        </a>
+      </div>
+    </ion-content>
+  </ion-modal-view>
+</script> -->

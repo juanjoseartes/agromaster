@@ -1,0 +1,55 @@
+<div ng-show="$state.includes('main.camp.compras.home.alb')">
+  <div class="item item-divider item-button-right" style="margin-top:1px">
+    Detalle Albaranes: {{searchText}}
+  </div>
+  <div class="item item-input-inset">
+    <div class="row responsive-md">
+      <div class="col">
+        <div class="row" style="margin-top:-12px;margin-bottom:-12px">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios7-search placeholder-icon"></i>
+          <input type="search" placeholder="Search" ng-model="searchText">
+        </label>
+        <button class="button button-clear" ng-click="clearText()">
+          <i class="icon ion-ios7-close-outline"></i> Cancel
+        </button>
+      </div>
+      </div>
+      <div class="col col-50">
+        <div class="button-bar">
+          <a class="button button-small" ui-sref="main.camp.compras.home.alb.hoy" ui-sref-active="active">Hoy</a>
+          <a class="button button-small" ui-sref="main.camp.compras.home.alb.semana" ui-sref-active="active">Semana</a>
+          <a class="button button-small" ui-sref="main.camp.compras.home.alb.mes" ui-sref-active="active">Mes</a>
+          <a class="button button-small" ui-sref="main.camp.compras.home.alb.trim" ui-sref-active="active">Trimestre</a>
+          <a class="button button-small" ui-sref="main.camp.compras.home.alb.all" ui-sref-active="active">Ejercicio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ui-view></div>
+  <!-- <div class="row responsive-md">
+    <div class="col col-50">
+      <div class="card" ng-repeat="alb in albaranes | filter:searchText | filter:dateRange" ng-show="$even">
+        <div class="item item-divider">
+          {{alb.provName}} <span class="right"><small>Nº Alb.: {{alb.nalb}}</small></span>
+        </div>
+        <a ui-sref="main.camp.compras.home.alb.edit({ albId: alb.id })" class="item item-icon-right">
+          <i class="icon ion-ios7-compose-outline positive"></i>
+          Fecha {{alb.fch | amDateFormat:'DD/MM/YY'}}
+        </a>
+      </div>
+    </div>
+    <div class="col col-50">
+      <div class="card" ng-repeat="alb in albaranes | filter:searchText | filter:dateRange" ng-show="$odd">
+        <div class="item item-divider">
+          {{alb.provName}} <span class="right"><small>Nº Alb.: {{alb.nalb}}</small></span>
+        </div>
+        <a ui-sref="main.camp.compras.home.alb.edit({ albId: alb.id })" class="item item-icon-right">
+          <i class="icon ion-ios7-compose-outline positive"></i>
+          Fecha {{alb.fch | amDateFormat:'DD/MM/YY'}}
+        </a>
+      </div>
+    </div>
+  </div> -->
+<!-- </div> -->
+<!-- <div ui-view></div> -->

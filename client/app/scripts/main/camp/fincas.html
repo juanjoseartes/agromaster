@@ -1,0 +1,56 @@
+<ion pane class="padding">
+<div class="row responsive-md">
+  <div class="col">
+    <div class="list card">
+      <div class="item item-divider">
+        Seleccione una Finca:
+      </div>
+      <div class="item">
+        <p>
+          <div class="list card">
+            <a ui-sref="main.finca.ejerc({fincaId: finca.id})" class="item item-icon-right" ng-class="finca.id === $stateParams.fincaId ? 'active' : ''" ng-repeat="finca in user.fincas">
+              <i class="icon ion-ios7-arrow-right"></i>
+              {{finca.name}}
+            </a>
+          </div>
+        </p>
+      </div>
+      <div class="item">
+        <button class="button button-small button-clear button-positive pull-right" name="button" ng-click="modal.show()"><i class="icon ion-ios-plus-outline"></i> Nueva Finca</button>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div ui-view></div>
+  </div>
+</div>
+</ion pane>
+
+<script id="templates/modal.html" type="text/ng-template">
+<ion-modal-view>
+<ion-header-bar class="bar bar-header bar-positive">
+<button class="button button-clear button-primary" ng-click="modal.hide()"><i class="icon ion-ios-close-outline"></i> Cancelar</button>
+<h1 class="title">Nueva Finca</h1>
+
+</ion-header-bar>
+<ion-content class="padding">
+<div class="list">
+<label class="item item-input">
+<span class="input-label">Nombre de la Finca: </span>
+<input ng-model="newFinca.name" type="text">
+</label>
+<label class="item item-input">
+<span class="input-label">Localidad: </span>
+<input ng-model="newFinca.localidad" type="text">
+</label>
+<label class="item item-input">
+<span class="input-label">Provincia: </span>
+<input ng-model="newFinca.provincia" type="text">
+</label>
+
+
+<button class="button button-block button-positive" ng-click="createFinca(newFinca)">Create <i class="icon ion-ios-checkmark-outline"></i></button>
+</div>
+</ion-content>
+</ion-modal-view>
+</script>

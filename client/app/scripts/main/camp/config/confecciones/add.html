@@ -1,0 +1,51 @@
+<div class="button-bar">
+  <a class="button  button-light" ng-click="back()">
+    <span class="positive">
+      <i class="icon left ion-ios7-close-outline"></i> Cerrar
+    </span>
+  </a>
+  <a class="button  button-light" ng-click="create()">
+    <span class="positive">
+      Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+    </span>
+  </a>
+</div>
+
+<div class="item item-divider item-light">
+  <p>Detalle Confeccion:</p>
+</div>
+
+<label class="item item-input">
+  <span class="input-label positive">Nombre: <span class="assertive">*</span></span>
+  <input type="text" ng-model="confecc.name" placeholder="Introduzca Capacidad del Envase...">
+</label>
+<!-- <label class="item item-input item-select">
+  <span class="input-label positive">Especie: <span class="assertive">*</span></span>
+  <select ng-model="confecc.especie"
+    ng-options="espec.name for espec in especies">
+  </select>
+</label> -->
+<label class="item item-input item-select">
+  <span class="input-label positive">Categoria: <span class="assertive">*</span></span>
+  <select ng-model="confecc.categ">
+    <option value="e">Especial</option>
+    <option value="1">1ª Categoria</option>
+    <option value="2">2ª Categoria</option>
+    <option value="i">Industria</option>
+    <option value="d">Destrio</option>
+  </select>
+</label>
+<label class="item item-input">
+  <span class="input-label positive">Nº Envases:</span>
+  <input type="number" ng-model="confecc.nenvases" placeholder="Introduzca Capacidad del Envase...">
+</label>
+<label class="item item-input">
+  <span class="input-label positive">Peso Unitario:</span>
+  <input type="text" ng-model="confecc.pesounit" placeholder="Introduzca Capacidad del Envase...">
+</label>
+<label class="item item-input item-select">
+  <span class="input-label positive">Unidad Peso:</span>
+  <select ng-model="confecc.unidad"
+  ng-options="ud.name for ud in udesPeso">
+</select>
+</label>

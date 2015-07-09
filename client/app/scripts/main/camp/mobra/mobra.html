@@ -1,0 +1,26 @@
+<div class="tabs-striped tabs-top tabs-background-stable tabs-color-positive tabs-icon-left">
+  <div class="tabs" style="height:54px;" >
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.mobra.presencia')}"  ui-sref="main.camp.mobra.presencia.inicio" style="font-size:14px">
+      <i class="icon ion-edit"></i>
+      Hoy
+    </a>
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.mobra.historico')}"  ui-sref="main.camp.mobra.historico" style="font-size:14px">
+      <i class="icon ion-calendar"></i>
+      Historico
+    </a>
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.mobra.empleados')}"  ui-sref="main.camp.mobra.empleados" style="font-size:14px">
+      <i class="icon ion-ios-people-outline"></i>
+      Empleados
+    </a>
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.mobra.tarjetas')}"  ui-sref="main.camp.mobra.tarjetas" style="font-size:14px">
+      <i class="icon ion-ios-people-outline"></i>
+      Tarjetas
+    </a>
+  </div>
+</div>
+<ion-content>
+  <div ui-view style="margin-top:64px"></div>
+</ion-content>
+
+
+    <!-- <div ui-view></div> -->

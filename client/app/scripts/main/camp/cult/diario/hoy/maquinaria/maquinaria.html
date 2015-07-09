@@ -1,0 +1,69 @@
+<div style="margin-top: 12px" class="item item-divider">
+  Detalle Maquinaria ({{$stateParams.nameDia}}): <span class="right energized">Total: {{getTotal() | currency}}</span>
+</div>
+<div class="bar bar-header item item-input-inset">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios7-search placeholder-icon"></i>
+    <input placeholder="Buscar..." type="search"/>
+  </label>
+  <div class="buttons">
+  <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.cult.home.hoy.diario.maquinaria.add">
+    Maq. Propia
+  </a>
+  <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.cult.home.hoy.diario.maquinaria.addalq">
+    Maq. Alquiler
+  </a>
+</div>
+</div>
+<div ui-view ng-if="(!$stateParams.maqId)&&($state.includes('main.camp.cult.home.hoy.diario.maquinaria.add'))"></div>
+<div ui-view ng-if="(!$stateParams.maqId)&&($state.includes('main.camp.cult.home.hoy.diario.maquinaria.addalq'))"></div>
+<div class="row responsive-md">
+  <div class="col">
+    <!-- <div class="buttons">
+      <button class="button button-positive button-clear icon ion-ios7-plus-outline" ui-sref="main.camp.cult.home.plantacion.maquinaria.add"> Añadir Maquinaria Propia</button>
+    </div>
+    <div ui-view ng-if="(!$stateParams.maqId)&&($state.includes('main.camp.cult.home.plantacion.maquinaria.add'))"></div> -->
+      <div class="card">
+        <div class="item" ng-if="detmaquinaria.message">{{maquinaria.message}}</div>
+        <div class="item item-divider">
+          Propiedad:
+        </div>
+        <div class="item" ng-repeat="maq in resDia" ng-if="maq.litProp == 'propiedad'">
+          <div class="item-button-left">
+            <button class="button assertive button-small button-icon icon ion-ios7-minus-outline" ng-click="deleteMaq(maq)"></button>
+          </div>
+          <div style="margin-left:42px">{{maq.litMaq}}
+            <span ng-if="maq.cantidad" class="badge badge-royal">{{maq.cantidad}} h</span>
+            <div class="button-bar">
+              <button class="button button-clear button-positive icon ion-ios7-compose-outline" ui-sref="main.camp.cult.home.hoy.diario.maquinaria.edit({maqId: maq.id})"><small>Horas Uso: {{maq.cantidad}}</small></button>
+            </div>
+          </div>
+          <div ui-view ng-if="$stateParams.maqId === maq.id"></div>
+        </div>
+      </div>
+  </div>
+  <div class="col">
+    <!-- <div class="buttons">
+      <button class="button button-positive button-clear icon ion-ios7-plus-outline" ui-sref="main.camp.cult.home.plantacion.maquinaria.addalq"> Añadir Maquinaria Alquiler</button>
+    </div>
+    <div ui-view ng-if="(!$stateParams.maqId)&&($state.includes('main.camp.cult.home.plantacion.maquinaria.addalq'))"></div> -->
+      <div class="list card">
+        <div class="item" ng-if="detmaquinaria.message">{{maquinaria.message}}</div>
+        <div class="item item-divider">
+        Alquiler:
+        </div>
+        <div class="item" ng-repeat="maq in resDia" ng-if="maq.litProp == 'alquiler'">
+          <div class="item-button-left">
+            <button class="button assertive button-small button-icon icon ion-ios7-minus-outline" ng-click="deleteMaq(maq)"></button>
+          </div>
+          <div style="margin-left:42px">{{maq.litMaq}}
+            <span ng-if="maq.cantidad" class="badge badge-energized">{{maq.cantidad * maq.precio | currency}}</span>
+            <div class="button-bar">
+              <button class="button button-clear button-positive icon ion-ios7-compose-outline" ui-sref="main.camp.cult.home.hoy.diario.maquinaria.edit({maqId: maq.id})"><small>Coste: {{maq.cantidad}} x {{maq.precio}}€</small></button>
+            </div>
+          </div>
+          <div ui-view ng-if="$stateParams.maqId === maq.id"></div>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<ion-content>
+  <div class="card" style="margin-top:64px">
+    <ion-scroll zooming="true" direction="x" style="height: 50px">
+    <div class="button-bar" style="margin-top:0px">
+      <a ui-sref="main.camp.cult.home.ejerc.inic({nameDia: dia.pathname})"
+      ng-class="{active: $state.is('main.camp.cult.home.ejerc.inic')}"
+      class="button button-positive button-outline" style="min-width:128px">
+      <small>Total:</small></a>
+      <a style="min-width:128px" ng-repeat="dia in diarios" ui-sref="main.camp.cult.home.ejerc.inic({nameDia: dia.pathname})"
+      ng-class="{active: $stateParams.nameDia == dia.pathname}" class="button button-positive button-outline">
+      <i class="icon ion-ios-bookmarks-outline"></i>  <small> {{dia.name}}</small>
+      </a>
+    </div>
+  </ion-scroll>
+
+  <div ui-view></div>
+</div>
+</ion-content>
+
+<!-- <div class="list card" id="cultEjerc">
+  <div class="list">
+    <div class="button-bar" style="margin-top:-1px;">
+      <a ui-sref="main.camp.cult.home.diario.inic({nameDia: dia.pathname})"
+      ng-class="{active: $stateParams.nameDia == dia.pathname}"
+      class="button positive active">
+      <small>Resumen Campaña {{curfinca.ejercCurso.name}}</small></a>
+    </div>
+      <div class="button-bar" style="margin-top:-1px;">
+        <a ng-repeat="dia in diarios" ng-if="$even"
+        ui-sref="main.camp.cult.home.diario.inic({nameDia: dia.pathname})"
+        ng-class="{active: $stateParams.nameDia == dia.pathname}"
+        class="button positive">
+        <i ng-if="(dia.partes[0].nparc + dia.partes[0].nmobra + dia.partes[0].nmaq + dia.partes[0].nmat + dia.partes[0].notros)>0" class="icon-left energized ion-flame"></i>
+        <small>{{dia.name}}</small></a>
+      </div>
+      <div class="button-bar" style="margin-top:-1px;">
+        <a ng-repeat="dia in diarios" ng-if="$odd"
+        ui-sref="main.camp.cult.home.diario.inic({nameDia: dia.pathname})"
+        ng-class="{active: $stateParams.nameDia == dia.pathname}"
+        class="button positive">
+        <i ng-if="(dia.partes[0].nparc + dia.partes[0].nmobra + dia.partes[0].nmaq + dia.partes[0].nmat + dia.partes[0].notros)>0" class="icon-left energized ion-flame"></i>
+        <small>{{dia.name}}</small></a>
+      </div>
+    <div ui-view></div>
+  </div>
+</div> -->

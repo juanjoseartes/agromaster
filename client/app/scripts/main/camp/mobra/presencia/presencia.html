@@ -1,0 +1,25 @@
+<div class="card">
+<ion-scroll zooming="true" direction="x" style="height: 50px">
+<div class="button-bar">
+  <a ui-sref="main.camp.mobra.presencia.inicio"
+    ng-class="{active: $state.includes('main.camp.mobra.presencia.inicio')}"
+    class="button button-outline button-positive icon-left ion-ios7-paper">
+    <small>Resumen</small>
+
+  </a>
+  <button ui-sref="main.camp.mobra.presencia.cultivo" ng-class="{active: $state.includes('main.camp.mobra.presencia.cultivo')}" class="button button-outline button-positive icon-left ion-leaf">
+    <small>Cultivo</small>
+    <span ng-if="nCult" class="badge badge-energized">{{nCult}}</span>
+  </button>
+  <a ui-sref="main.camp.mobra.presencia.recoleccion" ng-class="{active: $state.includes('main.camp.mobra.presencia.recoleccion')}" class="button button-outline button-positive icon-left ion-ios7-cart">
+    <small>Recoleccion</small>
+    <span ng-if="nRec" class="badge badge-energized">{{nRec}}</span>
+  </a>
+  <a ui-sref="main.camp.mobra.presencia.encargados" ng-class="{active: $state.includes('main.camp.mobra.presencia.encargados')}" class="button button-outline button-positive icon-left ion-ios7-eye">
+    <small>Encargados</small>
+    <span ng-if="nEnc" class="badge badge-energized">{{nEnc}}</span>
+  </a>
+</div>
+</ion-scroll>
+<div ui-view class="item item-image"></div>
+</div>

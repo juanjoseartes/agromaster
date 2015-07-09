@@ -1,0 +1,25 @@
+<div class="list card" id="inicCompras">
+  <!-- <div class="item item-icon-left item-divider item-button-right">
+    <i class="icon ion-ios7-download-outline"></i>
+
+    <h2>{{compras.title}}</h2>
+    <p>{{compras.fincaName}}</p>
+  </div> -->
+
+  <div class="list">
+    <a ng-show="$state.is('main.camp.compras.home.alb')" class="button button-clear icon-left ion-ios7-plus-outline button-positive" ui-sref="main.camp.compras.add.alb">
+    Añadir Albaran
+  </a>
+  <a ng-show="$state.is('main.camp.compras.home.fact')" class="button button-clear icon-left ion-ios7-plus-outline button-positive" ui-sref="main.camp.compras.add.fact">
+  Añadir Factura
+</a>
+    <!-- <div class="button-bar">
+      <a ui-sref="main.camp.compras.home.alb.mes" ng-class="{active: $state.includes('main.camp.compras.home.alb')}" class="button button-outline button-positive icon-left ion-ios7-copy-outline">Albaranes</a>
+      <a ui-sref="main.camp.compras.home.fact" ui-sref-active="active" class="button button-outline button-positive icon-left ion-ios7-paper-outline">Facturas</a>
+    </div> -->
+
+    <div ui-view></div>
+
+  </div>
+
+</div>

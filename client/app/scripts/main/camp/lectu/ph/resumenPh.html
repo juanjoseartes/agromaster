@@ -1,0 +1,35 @@
+<div class="row responsive-lg">
+  <div class="col col-50">
+    <div class="list card">
+      <div class="item item-divider">
+        {{parc.name}}
+      </div>
+
+      <div class="list">
+        <div class="item" ng-repeat="linea in hoyPh track by $index" ng-if="linea.parcela.id == $stateParams.parcId">
+          <a class="item-icon-left" ng-class="{energized: linea.valor === 0}" ui-sref="main.camp.lectu.parc.edit({ lectId: linea.id })">
+            <i class="icon ion-thermometer"></i> pH: {{linea.valor}}
+            <span class="badge badge-stable">Hora: {{linea.fecha | date: 'H:mm'}}</span>
+          </a>
+          <div ui-view ng-if="$stateParams.lectId === linea.id"></div>
+        </div>
+      </div>
+      <nvd3-stacked-area-chart
+      data="pHData"
+      xAxisTickFormat="xAxisTickFormat()"
+      yAxisTickFormat="yAxisTickFormat()"
+      margin="{left:50,top:50,bottom:50,right:50}"
+      height="400"
+      showXAxis="true"
+      showYAxis="true"
+      tooltips="true"
+      showLegend="true"
+      useInteractiveGuideLine="true"
+      tooltips="true"
+      tooltipcontent="toolTipContentFunction()"
+      interactive="true">
+      <svg></svg>
+    </nvd3-stacked-area-chart>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="bar bar-header item-input-inset">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios7-search placeholder-icon"></i>
+    <input type="search" placeholder="Buscar...">
+  </label>
+  <button class="button button-clear button-positive">
+    <i class="icon ion-ios7-plus-outline"></i>
+
+  </button>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Variedad ({{fitosanitarios.length}})</th>
+        <th>Formulado</th>
+        <th>Titular</th>
+        <th>Ent.</th>
+        <th>Sal.</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="variedad in variedades track by variedad.id">
+        <td>
+          <a class="button button-block button-small button-clear button-positive" href="#/inicio/{{ejercId}}/parcela/{{parcela.id}}">{{variedad.name}}</a>
+        </td>
+        <td>{{variedad.formulado}}</td>
+        <td>{{variedad.titular}}</td>
+        <td>{{variedad.entradas}}</td>
+        <td>{{variedad.salidas}}</td>
+        <td>{{variedad.entradas - fit.salidas}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

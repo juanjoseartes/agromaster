@@ -1,0 +1,6 @@
+
+		<ion-header-bar class="bar-positive">
+			<button class="button button-icon ion-navicon" ng-click="toggleLeft()" ng-hide="$exposeAside.active"></button>
+			<h1 ng-repeat="item in header" class="title"><i class="icon {{item.icon}}"></i> {{item.title}} - {{date}}</h1>
+			<button class="button button-icon icon icon-right ion-ios7-close-outline button-clear" ng-click="logout()">Salir </button>
+		</ion-header-bar>

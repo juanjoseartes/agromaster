@@ -1,0 +1,26 @@
+<a class="button icon-left ion-ios7-arrow-left button-clear button-positive" ng-click="back()"> Volver</a>
+<div class="list">
+  <div class="item item-divider">
+    Proveedores Disponibles:
+  </div>
+  <div class="item item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Buscar...." ng-model="query.$" autofocus>
+    </label>
+    <a class="item-note button button-small button-clear button-positive icon-left ion-ios7-plus-outline"
+    ui-sref="main.camp.maq.add.alq1.new"> Añadir
+    </a>
+  </div>
+  <div ui-view></div>
+  <div class="card list" ng-repeat="finca in proveed">
+    <a ng-repeat="prov in finca.proveedores | orderBy: 'name' | filter: query"
+      ui-sref="main.camp.maq.add.alq2({provId: prov.id})" 
+      class="item item-icon-right">
+      {{prov.name}}
+      <i class="icon ion-ios7-arrow-forward"></i>
+    </a>
+
+  </div>
+
+</div>

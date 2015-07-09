@@ -1,0 +1,130 @@
+
+<div class="row responsive-lg">
+  <div class="col col-50">
+    <div class="list">
+      <div class="item item-divider item-energized">
+        COSTES <span class="badge badge-light" style="margin-top:-2px"><h2><span class="energized">{{getTotalCult() + getTotalAmort() | currency}}</span></h2></span>
+      </div>
+
+      <div class="item item-divider">
+        <span class="energized">Cultivo <span class="badge badge-energized">{{getTotalCult() | currency}}</span></span>
+      </div>
+      <div ng-repeat="parc in reparto.parcela">
+        <a class="item"
+        ng-click="toggleGroup(parc.id)"
+        ui-sref="main.camp.cmi.espec.total.costes({parcId:parc.id})"
+        ng-class="{active: isGroupShown(parc.id)}">
+        <i class="icon positive" ng-class="isGroupShown(parc.id) ? 'ion-ios7-arrow-down' : 'ion-ios7-arrow-forward'"></i>
+        &nbsp;
+        {{parc.name}} <span class="badge badge-light" ng-if="parc.otros + parc.mat + parc.maq + parc.mobra">{{parc.otros + parc.mat + parc.maq + parc.mobra | currency}}</span>
+      </a>
+      <div ng-if="$stateParams.parcId = parc.id" ng-repeat="dia in totales | orderBy: '_id.name'">
+        <a class="item"
+        ng-click="toggleGroup(dia._id.tipoId)"
+        ui-sref="main.camp.cmi.espec.total.costes({tipoId:dia._id.tipoId})"
+        ng-class="{active: isGroupShown(dia._id.tipoId)}">
+        <i class="icon positive" ng-class="isGroupShown(dia._id.tipoId) ? 'ion-ios7-arrow-down' : 'ion-ios7-arrow-forward'"></i>
+        &nbsp;
+        {{dia._id.name}} <span class="badge badge-light" ng-if="dia.otros + dia.materiales + dia.maquinaria + dia.mobra">{{dia.otros + dia.materiales + dia.maquinaria + dia.mobra | currency}}</span>
+      </a>
+      <div ui-view ng-if="isGroupShown(dia._id.tipoId)"></div>
+    </div>
+  </div>
+  <div class="item item-divider">
+    <span class="energized">Recoleccion</span>
+  </div>
+  <div class="item"
+  ng-click="toggleGroup(5)"
+  ng-class="{active: isGroupShown(5)}">
+  <i class="icon positive" ng-class="isGroupShown(5) ? 'ion-ios7-arrow-down' : 'ion-ios7-arrow-forward'"></i>
+  &nbsp;
+  Recoleccion <span class="badge badge-energized"></span>
+</div>
+<div class="item" ng-show="isGroupShown(5)">Mano de Obra</div>
+<div class="item" ng-show="isGroupShown(5)">Materiales</div>
+<div class="item" ng-show="isGroupShown(5)">Maquinaria</div>
+<div class="item" ng-show="isGroupShown(5)">Otros</div>
+
+<div class="item item-divider">
+  <span class="energized">Amortizacion <span class="badge badge-energized">{{getTotalAmort() | currency}}</span></span>
+</div>
+
+<a class="item"
+ng-click="toggleGroup(6)"
+ng-class="{active: isGroupShown(6)}">
+<i class="icon positive" ng-class="isGroupShown(6) ? 'ion-ios7-arrow-down' : 'ion-ios7-arrow-forward'"></i>
+&nbsp;
+Amortizaciones <span class="badge badge-light">{{getTotalAmort() | currency}}</span>
+</a>
+<div ng-if="isGroupShown(6)">
+  <div ng-repeat="amort in amortizacion">
+    <div class="item positive" style="padding-left:48px;font-size:14px">
+      {{amort.marca}} {{amort.modelo}}<span class="badge badge-light"><span class="positive">{{amort.amort | currency}}</span></span>
+    </div>
+  </div>
+</div>
+
+
+</div>
+</div>
+
+<div class="col col-50">
+  <div class="list">
+    <div class="item item-divider item-balanced">
+      INGRESOS <span class="badge badge-light" style="margin-top:-2px"><h2><span class="balanced">1.343.123,31€</span></h2></span>
+    </div>
+    <ion-list>
+
+      <ion-item class="item-stable"
+      ng-click="toggleGroup(i-1)"
+      ng-class="{active: isGroupShown(i-1)}">
+      <i class="icon" ng-class="isGroupShown(i-1) ? 'ion-minus' : 'ion-plus'"></i>
+      &nbsp;
+      Confeccion A <span class="badge badge-balanced">3.123,31€</span>
+    </ion-item>
+    <ion-item class="item-accordion" ng-show="isGroupShown(i-1)">Parcela 1</ion-item>
+    <ion-item class="item-accordion" ng-show="isGroupShown(i-1)">Parcela 2</ion-item>
+    <ion-item class="item-accordion" ng-show="isGroupShown(i-1)">Parcela 3</ion-item>
+    <ion-item class="item-accordion" ng-show="isGroupShown(i-1)">Parcela 4</ion-item>
+
+
+    <ion-item class="item-stable"
+    ng-click="toggleGroup(i-2)"
+    ng-class="{active: isGroupShown(i-2)}">
+    <i class="icon" ng-class="isGroupShown(i-2) ? 'ion-minus' : 'ion-plus'"></i>
+    &nbsp;
+    Confeccion B <span class="badge badge-balanced">13.123,31€</span>
+  </ion-item>
+  <ion-item class="item-accordion" ng-show="isGroupShown(i-2)">Parcela 1</ion-item>
+  <ion-item class="item-accordion" ng-show="isGroupShown(i-2)">Parcela 2</ion-item>
+  <ion-item class="item-accordion" ng-show="isGroupShown(i-2)">Parcela 3</ion-item>
+  <ion-item class="item-accordion" ng-show="isGroupShown(i-2)">Parcela 4</ion-item>
+
+  <ion-item class="item-stable"
+  ng-click="toggleGroup(i-3)"
+  ng-class="{active: isGroupShown(i-3)}">
+  <i class="icon" ng-class="isGroupShown(i-3) ? 'ion-minus' : 'ion-plus'"></i>
+  &nbsp;
+  Confeccion C <span class="badge badge-balanced">123.123,31€</span>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-3)">Parcela 1</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-3)">Parcela 2</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-3)">Parcela 3</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-3)">Parcela 4</ion-item>
+
+<ion-item class="item-stable"
+ng-click="toggleGroup(i-4)"
+ng-class="{active: isGroupShown(i-4)}">
+<i class="icon" ng-class="isGroupShown(i-4) ? 'ion-minus' : 'ion-plus'"></i>
+&nbsp;
+Confeccion D <span class="badge badge-balanced">3.123,31€</span>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-4)">Parcela 1</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-4)">Parcela 2</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-4)">Parcela 3</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-4)">Parcela 4</ion-item>
+
+</ion-list>
+</div>
+</div>
+</div>

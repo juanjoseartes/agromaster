@@ -1,0 +1,30 @@
+<div class="tabs-striped tabs-top tabs-background-stable tabs-color-positive tabs-icon-left">
+  <div class="tabs" style="height:54px;" ng-if="navbarItems">
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.recolecc.home.espec.hoy.confecc')}"  ui-sref="main.camp.recolecc.home.espec.hoy.confecc" style="font-size:14px">
+      <i class="icon ion-edit"></i>
+      Hoy
+    </a>
+    <a class="tab-item" ng-class="{active: $state.includes('main.camp.recolecc.home.espec.ejerc.confecc')}"  ui-sref="main.camp.recolecc.home.espec.ejerc.confecc" style="font-size:14px">
+      <i class="icon ion-calendar"></i>
+      Campaña
+    </a>
+  </div>
+</div>
+<ion-content>
+  <div class="list card" style="margin-top:64px">
+    <!-- <div class="item item-icon-left item-divider">
+      <i class="icon ion-ios7-cart-outline"></i>
+      <h2>{{title}}</h2>
+      <p>{{date}}</p>
+    </div> -->
+    <div class="list">
+      <div class="button-bar">
+        <a ng-repeat="espec in ejercCurso.especies"
+        ui-sref="main.camp.recolecc.home.espec.hoy.confecc({especId: espec.id})"
+        ng-class="{active: $stateParams.especId == espec.id }"
+        class="button button-outline button-positive icon-left ion-leaf">{{espec.name}}</a>
+      </div>
+    </div>
+    <div ui-view></div>
+  </div>
+</ion-content>

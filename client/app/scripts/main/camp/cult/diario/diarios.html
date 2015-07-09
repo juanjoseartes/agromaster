@@ -1,0 +1,10 @@
+<ion-content
+direction="x">
+<div class="button-bar">
+  <a ng-repeat="dia in diarios" ui-sref="main.camp.cult.home.diario.inic" ng-class="{active: $state.includes('main.camp.cult.home.diario.inic')}" class="button positive icon-left ion-ios7-paper">
+    <small> {{dia.name}}</small>
+  </a>
+</div>
+</ion-content>
+
+<div ui-view></div>

@@ -1,0 +1,46 @@
+
+    <div class="row responsive-lg">
+      <div class="col col-50">
+        <div class="list card" ng-repeat="parc in parcelas track by $index">
+          <div class="item item-divider">
+            {{parc.name}}
+            <a class="item-note button button-small button-clear button-positive icon-left ion-ios7-plus-outline"
+              ng-click="addPhParc(parc)"> Lectura pH
+            </a>
+          </div>
+          <div class="list">
+            <div class="item" ng-repeat="linea in hoy track by $index" ng-if="linea.parcela.name == parc.name">
+            <a class="item-icon-left" ng-class="{energized: linea.valor === 0}" ui-sref="main.camp.lectu.ph.edit({ lectId: linea.id })">
+              <i class="icon ion-thermometer"></i> pH: {{linea.valor}}
+              <span class="badge badge-stable">Hora: {{linea.fecha | date: 'H:mm'}}</span>
+            </a>
+              <div ui-view ng-if="$stateParams.lectId === linea.id"></div>
+            </div>
+          </div>
+      </div>
+      </div>
+    <div class="col col-50">
+      <div class="card">
+        <div class="item item-divider">
+          <h2>Evolucion Ejercicio</h2>
+        </div>
+
+        <nvd3-line-chart
+        data="pHData"
+        xAxisTickFormat="xAxisTickFormat()"
+        yAxisTickFormat="yAxisTickFormat()"
+        margin="{left:50,top:50,bottom:50,right:50}"
+        height="320"
+        showXAxis="true"
+        showYAxis="true"
+        tooltips="true"
+        showLegend="true"
+        useInteractiveGuideLine="true"
+        tooltips="true"
+        tooltipcontent="toolTipContentFunction()"
+        interactive="true">
+        <svg></svg>
+        </nvd3-line-chart>
+      </div>
+    </div>
+  </div>

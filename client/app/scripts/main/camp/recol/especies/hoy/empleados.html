@@ -1,0 +1,16 @@
+<p>
+  Hoy - Empleados
+</p>
+
+<div ng-repeat="(key, value) in resDia | groupBy: 'empleados.name' | orderBy: 'empleados.name'">
+  <div class="item item-divider" >
+    {{key}}
+  </div>
+  <div ng-repeat="(confecc, value2) in value | groupBy: 'confecciones.name' | orderBy: 'confecciones.name'">
+    <a class="item item-icon-left"
+    ui-sref="main.camp.config.home.confecc.edit({confeccId: confecc.id})">
+    <i class="icon ion-grid"></i>
+    <h2>{{confecc.name}} <span class="badge badge-stable">{{confecc.length | number}}</span></h2>
+  </a>
+</div>
+</div>

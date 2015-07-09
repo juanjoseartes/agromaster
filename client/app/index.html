@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css" />
+  <link rel="stylesheet" href="bower_components/ionicons/css/ionicons.css" />
+  <link rel="stylesheet" href="bower_components/nvd3/src/nv.d3.css" />
+  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <link href="styles/style.css" rel="stylesheet">
+
+  <link href="styles/bootstrap.css" rel="stylesheet">
+  <link href="styles/bootstrap-theme.css" rel="stylesheet">
+
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <link href="styles/ionic.app.css" rel="stylesheet">
+-->
+
+<script>
+(function onLoad() {
+  var io;
+  Object.defineProperty(window, 'io', {
+    get: function get() {
+      return io;
+    },
+    set: function set(value) {
+      var sails;
+      io = value;
+      Object.defineProperty(io, 'sails', {
+        get: function get() {
+          return sails;
+        },
+        set: function set(value) {
+          sails = value;
+          sails.url = 'http://localhost:1337';
+        }
+      });
+    }
+  });
+})();
+</script>
+
+<!-- ionic/angularjs js -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/ionic/release/js/ionic.js"></script>
+<script src="bower_components/ionic/release/js/ionic-angular.js"></script>
+<script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
+<script src="bower_components/d3/d3.js"></script>
+<script src="bower_components/nvd3/nv.d3.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+<script src="bower_components/sails.io.js/dist/sails.io.js"></script>
+<script src="bower_components/angularSails/dist/ngsails.io.js"></script>
+<script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+<script src="bower_components/angular-moment/angular-moment.js"></script>
+<script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
+<script src="bower_components/angular-filter/dist/angular-filter.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
+<script src="bower_components/checklist-model/checklist-model.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- cordova script (this will be a 404 during development) -->
+<script src="cordova.js"></script>
+<script src="bower_components/angular-i18n/angular-locale_es-es.js"></script>
+<script src="bower_components/moment/locale/es.js"></script>
+<!-- your app's js -->
+<!-- build:js scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/configuration.js"></script>
+<!-- endbuild -->
+<script src="scripts/core/constants/constants.js"></script>
+<script src="scripts/core/constants/AccessLevels.js"></script>
+<script src="scripts/core/constants/BackendConfig.js"></script>
+<script src="scripts/core/constants/csrf.js"></script>
+<script src="scripts/core/constants/k.js"></script>
+
+<script src="scripts/core/core.js"></script>
+
+<!-- AUTH -->
+
+<!-- CORE -->
+<script src="scripts/core/auth/auth.js"></script>
+<script src="scripts/core/auth/services/services.js"></script>
+<script src="scripts/core/auth/services/AuthService.js"></script>
+<script src="scripts/core/auth/services/UserService.js"></script>
+<script src="scripts/core/auth/login/login.js"></script>
+<script src="scripts/core/components/components.js"></script>
+<script src="scripts/core/services/services.js"></script>
+<script src="scripts/core/components/FocusOn.js"></script>
+
+<script src="scripts/core/dependencies/dependencies.js"></script>
+
+<script src="scripts/core/directives/directives.js"></script>
+<script src="scripts/core/directives/ListSearch.js"></script>
+
+<script src="scripts/core/error/error.js"></script>
+<script src="scripts/core/error/error-controller.js"></script>
+
+<script src="scripts/core/filters/filters.js"></script>
+
+<script src="scripts/core/interceptors/interceptors.js"></script>
+<script src="scripts/core/interceptors/AuthInterceptor.js"></script>
+<script src="scripts/core/interceptors/ErrorInterceptor.js"></script>
+
+<script src="scripts/core/libraries/libraries.js"></script>
+<script src="scripts/core/libraries/LoDash.js"></script>
+<script src="scripts/core/libraries/Moment.js"></script>
+
+<script src="scripts/core/models/models.js"></script>
+
+<script src="scripts/core/models/DataModel.js"></script>
+<script src="scripts/core/models/orm.js"></script>
+
+<script src="scripts/core/services/CurrentFinca.js"></script>
+<script src="scripts/core/services/CurrentUser.js"></script>
+<script src="scripts/core/services/DataService.js"></script>
+<script src="scripts/core/services/HttpStatusService.js"></script>
+<script src="scripts/core/services/ListConfigService.js"></script>
+<script src="scripts/core/services/MessageService.js"></script>
+<script src="scripts/core/services/preAlbaran.js"></script>
+<script src="scripts/core/services/preAnalisis.js"></script>
+<script src="scripts/core/services/preEjerc.js"></script>
+<script src="scripts/core/services/preResiduos.js"></script>
+<script src="scripts/core/services/SocketHelperService.js"></script>
+<script src="scripts/core/services/validation.js"></script>
+<script src="scripts/core/services/TitleService.js"></script>
+<script src="scripts/core/services/LayoutService.js"></script>
+
+
+<script src="scripts/core/services-prev/index.js"></script>
+<script src="scripts/core/services-prev/lodash.js"></script>
+
+<!-- LOGIN -->
+<script src="scripts/main/login/login.js"></script>
+<script src="scripts/main/login/login-controller.js"></script>
+
+<!-- ADMIN -->
+<script src="scripts/main/admin/admin.js"></script>
+<script src="scripts/main/admin/loginHistory/login-history.js"></script>
+<script src="scripts/main/admin/loginHistory/login-history-controllers.js"></script>
+<script src="scripts/main/admin/loginHistory/login-history-models.js"></script>
+
+<!-- MAIN -->
+<script src="scripts/main/main.js"></script>
+<script src="scripts/main/main-controller.js"></script>
+<script src="scripts/main/layout-controller.js"></script>
+
+<script src="scripts/main/camp/finca.js"></script>
+<script src="scripts/main/camp/inicio-controller.js"></script>
+
+
+<script src="scripts/main/camp/almacen/almacen.js"></script>
+<script src="scripts/main/camp/almacen/almacen-controller.js"></script>
+<script src="scripts/main/camp/almacen/abono/abono.js"></script>
+<script src="scripts/main/camp/almacen/abono/abono-controller.js"></script>
+<script src="scripts/main/camp/almacen/fitosanitario/fitosanitario.js"></script>
+<script src="scripts/main/camp/almacen/fitosanitario/fitosanitario-controller.js"></script>
+<script src="scripts/main/camp/almacen/matvegetal/matvegetal.js"></script>
+<script src="scripts/main/camp/almacen/matvegetal/matvegetal-controller.js"></script>
+
+<script src="scripts/main/camp/cmi/cmi.js"></script>
+<script src="scripts/main/camp/cmi/cmi-controller.js"></script>
+<script src="scripts/main/camp/cmi/especies/especies.js"></script>
+
+<script src="scripts/main/camp/compras/compras.js"></script>
+<script src="scripts/main/camp/compras/compras-controller.js"></script>
+<script src="scripts/main/camp/compras/albaranes/albaran.js"></script>
+<script src="scripts/main/camp/compras/albaranes/albaran-controller.js"></script>
+<script src="scripts/main/camp/compras/facturas/factura.js"></script>
+<script src="scripts/main/camp/compras/facturas/factura-controller.js"></script>
+<script src="scripts/main/camp/compras/lineas/lineas.js"></script>
+<script src="scripts/main/camp/compras/lineas/lineas-controller.js"></script>
+
+<script src="scripts/main/camp/config/config.js"></script>
+<script src="scripts/main/camp/config/config-controller.js"></script>
+<script src="scripts/main/camp/config/confecciones/confecciones.js"></script>
+<script src="scripts/main/camp/config/confecciones/confecciones-controller.js"></script>
+<script src="scripts/main/camp/config/diario/diario.js"></script>
+<script src="scripts/main/camp/config/diario/diario-controller.js"></script>
+<script src="scripts/main/camp/config/ejercicio/ejercicio.js"></script>
+<script src="scripts/main/camp/config/ejercicio/ejercicio-controller.js"></script>
+<script src="scripts/main/camp/config/grupomaquinaria/grupomaq.js"></script>
+<script src="scripts/main/camp/config/grupomaquinaria/grupomaq-controller.js"></script>
+<script src="scripts/main/camp/config/parcela/parcela.js"></script>
+<script src="scripts/main/camp/config/parcela/parcela-controller.js"></script>
+<script src="scripts/main/camp/config/unidad/unidad.js"></script>
+<script src="scripts/main/camp/config/unidad/unidad-controller.js"></script>
+<script src="scripts/main/camp/config/usuario/usuario.js"></script>
+<script src="scripts/main/camp/config/usuario/usuario-controller.js"></script>
+
+
+<script src="scripts/main/camp/cult/cultivo.js"></script>
+<script src="scripts/main/camp/cult/cultivo-controller.js"></script>
+
+<script src="scripts/main/camp/cult/diario/diario.js"></script>
+<script src="scripts/main/camp/cult/diario/diario-controller.js"></script>
+
+<script src="scripts/main/camp/cult/diario/ejercicio/ejercicio.js"></script>
+<script src="scripts/main/camp/cult/diario/ejercicio/ejercicio-controller.js"></script>
+
+<script src="scripts/main/camp/cult/diario/hoy/hoy.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/hoy-controller.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/inicio/inicio.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/inicio/inicio-controller.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/maquinaria/maquinaria.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/maquinaria/maquinaria-controller.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/materiales/materiales.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/materiales/materiales-controller.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/mobra/mobra.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/mobra/mobra-controller.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/otros/otros.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/otros/otros-controller.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/parcelas/parcelas.js"></script>
+<script src="scripts/main/camp/cult/diario/hoy/parcelas/parcelas-controller.js"></script>
+
+<script src="scripts/main/camp/lectu/lecturas.js"></script>
+<script src="scripts/main/camp/lectu/lecturas-controller.js"></script>
+<script src="scripts/main/camp/lectu/parcelas/parcelas.js"></script>
+<script src="scripts/main/camp/lectu/parcelas/parcelas-controller.js"></script>
+<script src="scripts/main/camp/lectu/ph/ph-controller.js"></script>
+
+<script src="scripts/main/camp/maquinaria/maquinaria.js"></script>
+<script src="scripts/main/camp/maquinaria/maquinaria-controller.js"></script>
+<script src="scripts/main/camp/maquinaria/alquiler/alquiler.js"></script>
+<script src="scripts/main/camp/maquinaria/propiedad/propiedad.js"></script>
+
+<script src="scripts/main/camp/mobra/mobra.js"></script>
+<script src="scripts/main/camp/mobra/mobra-controller.js"></script>
+
+<script src="scripts/main/camp/mobra/empleados/empleados.js"></script>
+<script src="scripts/main/camp/mobra/empleados/empleados-controller.js"></script>
+
+<script src="scripts/main/camp/mobra/historico/historico.js"></script>
+<script src="scripts/main/camp/mobra/historico/historico-controller.js"></script>
+
+<script src="scripts/main/camp/mobra/presencia/presencia.js"></script>
+<script src="scripts/main/camp/mobra/presencia/presencia-controller.js"></script>
+<script src="scripts/main/camp/mobra/presencia/cultivo/cultivo.js"></script>
+<script src="scripts/main/camp/mobra/presencia/cultivo/cultivo-controller.js"></script>
+<script src="scripts/main/camp/mobra/presencia/encargados/encargados.js"></script>
+<script src="scripts/main/camp/mobra/presencia/encargados/encargados-controller.js"></script>
+<script src="scripts/main/camp/mobra/presencia/inicio/inicio.js"></script>
+<script src="scripts/main/camp/mobra/presencia/inicio/inicio-controller.js"></script>
+<script src="scripts/main/camp/mobra/presencia/recoleccion/recoleccion.js"></script>
+<script src="scripts/main/camp/mobra/presencia/recoleccion/recoleccion-controller.js"></script>
+<script src="scripts/main/camp/mobra/tarjetas/tarjetas.js"></script>
+<script src="scripts/main/camp/mobra/tarjetas/tarjetas-controller.js"></script>
+
+<script src="scripts/main/camp/recol/recoleccion.js"></script>
+<script src="scripts/main/camp/recol/recoleccion-controller.js"></script>
+<script src="scripts/main/camp/recol/especies/especies.js"></script>
+<script src="scripts/main/camp/recol/especies/ejercicio/ejercicio.js"></script>
+<script src="scripts/main/camp/recol/especies/hoy/hoy.js"></script>
+
+<script src="scripts/main/camp/residuos/residuos.js"></script>
+<script src="scripts/main/camp/residuos/residuos-controller.js"></script>
+<script src="scripts/main/camp/scout/scout.js"></script>
+<script src="scripts/main/camp/scout/scout-controller.js"></script>
+<script src="scripts/main/camp/tprog/tprog.js"></script>
+<script src="scripts/main/camp/tprog/tprog-controller.js"></script>
+
+<script src="scripts/main/camp/analisis/analisis.js"></script>
+<script src="scripts/main/camp/analisis/analisis-controller.js"></script>
+<script src="scripts/main/camp/analisis/tipo/tipo.js"></script>
+
+<script src="scripts/main/camp/vtas/ventas.js"></script>
+<script src="scripts/main/camp/vtas/ventas-controller.js"></script>
+
+<script src="scripts/main/models/confeccion-models.js"></script>
+<script src="scripts/main/models/ejercicio-models.js"></script>
+<script src="scripts/main/models/empleado-models.js"></script>
+<script src="scripts/main/models/especie-models.js"></script>
+<script src="scripts/main/models/finca-models.js"></script>
+<script src="scripts/main/models/lectura-models.js"></script>
+<script src="scripts/main/models/listempleado-models.js"></script>
+<script src="scripts/main/models/maqcultivo-models.js"></script>
+<script src="scripts/main/models/maquinaria-models.js"></script>
+<script src="scripts/main/models/matcultivo-models.js"></script>
+<script src="scripts/main/models/mocultivo-models.js"></script>
+<script src="scripts/main/models/otroscultivo-models.js"></script>
+<script src="scripts/main/models/parcela-models.js"></script>
+<script src="scripts/main/models/parcelacultivo-models.js"></script>
+<script src="scripts/main/models/partecultivo-models.js"></script>
+<script src="scripts/main/models/partemo-models.js"></script>
+<script src="scripts/main/models/producto-models.js"></script>
+<script src="scripts/main/models/repartocultivo-models.js"></script>
+<script src="scripts/main/models/tag-models.js"></script>
+<script src="scripts/main/models/tipodiario-models.js"></script>
+<script src="scripts/main/models/tipomaquinaria-models.js"></script>
+<script src="scripts/main/models/unidad-models.js"></script>
+
+
+
+
+
+</head>
+
+<body ng-app="App">
+  <ion-nav-view></ion-nav-view>
+</body>
+</html>

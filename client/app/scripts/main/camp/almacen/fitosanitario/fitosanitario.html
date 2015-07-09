@@ -1,0 +1,81 @@
+<div class="list">
+
+  <div class="item item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Buscar....">
+    </label>
+    <a ui-sref="main.camp.almac.searchfito" class="button button-small button-clear button-positive icon icon-right ion-ios7-plus-outline">
+      Añadir
+    </a>
+
+  </div>
+</div>
+<div class="row responsive-lg">
+
+  <div class="col col-50">
+    <div ng-repeat="(key, value) in fitosanitarios | groupBy: 'articulo.formulado' | orderBy: 'articulo.formulado'" ng-if="$even">
+      <div class="item item-divider item-positive">
+        <h2 style="color: #fff"><i class="icon ion-bug"></i> {{key}}</h2>
+        <span class="badge badge-light">{{value.length}}</span>
+      </div>
+      <div class="list card" ng-repeat="fit in value track by $index | orderBy: 'articulo.name'">
+        <div class="item item-divider">
+          <h3>{{fit.articulo.name}}</h3>
+          <p>{{fit.articulo.titular}}<br/>Nº Reg: {{fit.articulo.nreg}}</p>
+        </div>
+        <div class="item tabs tabs-secondary tabs-icon-top">
+          <a class="tab-item positive" href="#">
+            <i class="icon ion-ios7-pricetags-outline"></i>
+            <!-- P.Med: {{getPMed(fit) | currency}}<br/> -->
+            P.Med: {{fit.impEnt/fit.udsEnt | currency}}
+          </a>
+          <a class="tab-item positive" href="#">
+            <i class="icon ion-ios7-speedometer-outline"></i>
+            <!-- Stock: {{getStock(fit) | number: 2}}  -->
+            Stock: {{fit.udsEnt | number: 2}}
+            <span ng-if="fit.tipounidad == 'Peso'">Kg</span><span ng-if="fit.tipounidad == 'Volumen'">Lt</span>
+          </a>
+          <a class="tab-item energized" href="#">
+            <i class="icon ion-ios7-calculator-outline"></i>
+            <strong>Valor: {{((fit.impEnt/fit.udsEnt)*fit.udsEnt) | currency}}</strong>
+            <!-- <strong>Valor: {{getPMed(fit) * getStock(fit) | currency}}</strong> -->
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-50">
+    <div ng-repeat="(key, value) in fitosanitarios | groupBy: 'articulo.formulado' | orderBy: 'articulo.formulado'" ng-if="$odd">
+      <div class="item item-divider item-positive">
+        <h2 style="color: #fff"><i class="icon ion-bug"></i> {{key}}</h2>
+        <span class="badge badge-light">{{value.length}}</span>
+      </div>
+      <div class="list card" ng-repeat="fit in value track by $index | orderBy: 'articulo.name'">
+        <div class="item item-divider">
+          <h3>{{fit.articulo.name}}</h3>
+          <p>{{fit.articulo.titular}}<br/>Nº Reg: {{fit.articulo.nreg}}</p>
+        </div>
+        <div class="item tabs tabs-secondary tabs-icon-top">
+          <a class="tab-item positive" href="#">
+            <i class="icon ion-ios7-pricetags-outline"></i>
+            <!-- P.Med: {{getPMed(fit) | currency}}<br/> -->
+            P.Med: {{fit.impEnt/fit.udsEnt | currency}}
+          </a>
+          <a class="tab-item positive" href="#">
+            <i class="icon ion-ios7-speedometer-outline"></i>
+            <!-- Stock: {{getStock(fit) | number: 2}}  -->
+            Stock: {{fit.udsEnt | number: 2}}
+            <span ng-if="fit.tipounidad == 'Peso'">Kg</span><span ng-if="fit.tipounidad == 'Volumen'">Lt</span>
+          </a>
+          <a class="tab-item energized" href="#">
+            <i class="icon ion-ios7-calculator-outline"></i>
+            <strong>Valor: {{((fit.impEnt/fit.udsEnt)*fit.udsEnt) | currency}}</strong>
+            <!-- <strong>Valor: {{getPMed(fit) * getStock(fit) | currency}}</strong> -->
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

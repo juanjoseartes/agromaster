@@ -1,0 +1,83 @@
+<div class="list">
+  <!-- <div class="button-bar">
+    <a ui-sref="main.camp.analisis.tipo({tipoName: 'suelo'})" ng-class="{active: $stateParams.tipoName == 'suelo'}" class="button button-outline button-positive icon-left ion-image">Suelo</a>
+    <a ui-sref="main.camp.analisis.tipo({tipoName: 'planta'})" ng-class="{active: $stateParams.tipoName == 'planta'}" class="button button-outline button-positive icon-left ion-leaf">Planta</a>
+    <a ui-sref="main.camp.analisis.tipo({tipoName: 'agua'})" ng-class="{active: $stateParams.tipoName == 'agua'}" class="button button-outline button-positive icon-left ion-waterdrop">Agua</a>
+  </div> -->
+
+  <div class="item item-divider">
+    Detalle Analisis: {{$stateParams.tipoName | uppercase}} <span class="right energized">Total: {{analisis.length}}</span>
+  </div>
+  <div class="bar bar-header item item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios7-search placeholder-icon"></i>
+      <input placeholder="Buscar..." type="search"/>
+    </label>
+    <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.analisis.tipo.add">
+      Añadir
+    </a>
+  </div>
+  <div ui-view ng-if="$state.includes('main.camp.analisis.tipo.add')"></div>
+  <div class="row responsive-lg">
+    <div class="col col-50">
+      <div class="list" ng-repeat="ana in analisis" ng-if="$even">
+        <div class="item item-divider">
+          {{ana.laboratorio.name}}<br/>Ref. Analisis: {{ana.nref}}
+        </div>
+        <a class="item" ui-sref="main.camp.analisis.tipo.edit({anaId: ana.id})">
+          <h2>{{ana.motivo}}</h2>
+          <span class="badge badge-energized">{{ana.fecha | date}}</span>
+          <p>Muestra: {{ana.muestra}}</p>
+        </a>
+        <div ui-view ng-if="$state.includes('main.camp.analisis.tipo.edit')&&$stateParams.anaId === ana.id"></div>
+        <div class="item item-divider">
+        Documentos:
+        <a class="item-note button button-positive button-clear button-small" ui-sref="main.camp.analisis.tipo.upload({anaId: ana.id})">
+          <i class="icon icon-left ion-ios7-plus-outline"></i>
+          Docs
+        </a>
+        </div>
+        <div ng-repeat="doc in ana.informes" class="item">
+          <a class="item-button-left button button-positive button-clear icon ion-ios7-paper" ng-href="/{{doc.url}}"> {{doc.name}}</a>
+          <button ng-click="deleteDoc(doc)" class="item-button-right button button-clear button-energized icon ion-ios7-close-outline"></button>
+        </div>
+        <div ui-view ng-if="$state.includes('main.camp.analisis.tipo.upload')&&$stateParams.anaId === ana.id"></div>
+        <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item assertive" ng-click="delete(ana)" ui-sref="main.camp.analisis.tipo">
+            <i class="icon ion-ios7-minus-outline"></i>
+            Borrar Analisis
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col col-50">
+      <div class="list" ng-repeat="ana in analisis" ng-if="$odd">
+        <div class="item item-divider">
+          {{ana.laboratorio.name}}<br/>Ref. Analisis: {{ana.nref}}
+        </div>
+        <div class="item">
+          <h2>{{ana.motivo}}</h2>
+          <span class="badge badge-energized">{{ana.fecha | date}}</span>
+          <p>Muestra: {{ana.muestra}}</p>
+        </div>
+        <div ui-view ng-if="$stateParams.anaId === ana.id"></div>
+
+        <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item" ui-sref="main.camp.analisis.tipo.edit({anaId: ana.id})">
+            <i class="icon ion-ios7-compose-outline"></i>
+            Edit
+          </a>
+          <a class="tab-item assertive" ng-click="delete(ana)" ui-sref="main.camp.analisis.tipo">
+            <i class="icon ion-ios7-minus-outline"></i>
+            Borrar
+          </a>
+          <a class="tab-item" href="#">
+            <i class="icon ion-ios7-paper-outline"></i>
+            Docs
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

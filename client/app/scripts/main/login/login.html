@@ -1,0 +1,140 @@
+<ion-side-menus>
+
+		<ion-side-menu-content>
+		        <ion-header-bar class="bar-positive">
+		          <button class="button button-icon ion-navicon" ng-click="toggleLeft()" ng-if="$state.includes('main')" ng-hide="$exposeAside.active"></button>
+		          <h1 class="title">{{appName}}</h1>
+							<button class="button button-icon icon icon-right ion-ios7-close-outline button-clear" ng-if="$state.includes('main')" ng-click="logout()">Salir </button>
+		        </ion-header-bar>
+		        <ion-content class="padding">
+
+              <form name="signupLoginForm" novalidate="novalidate" method="post" role="form">
+                <div class="list card">
+
+                  <div class="item item-avatar item-divider">
+                    <i class="ion-leaf"
+                      style=
+                      "font-size:48px;
+                      color: green;
+                      position: absolute;
+                      top: 0px;
+                      left: 14px"></i>
+                    <h2>Bienvenido a {{appName}}</h2>
+                    <p>{{date}}</p>
+                  </div>
+
+									<div class="item item-body">
+                    <!-- email -->
+                    <div class="row responsive-md">
+	                    <div class="col">
+		                    <label class="item item-input-wrapper item-floating-label">
+		                      <span class="input-label">
+														<i class="icon ion-email placeholder-icon"></i>
+														E-mail:
+														<span class="item-note">
+															<i class="icon ion-checkmark-circled success" ng-show="inputValid(signupLoginForm.email)"></i>
+															<i class="icon ion-close-circled error" ng-show="inputInvalid(signupLoginForm.email)"></i>
+														</span>
+													</span>
+
+		                      <input type="text" name="username" placeholder="Introduzca email acceso..."
+													autofocus
+													autocomplete="off"
+													data-focus-on="username"
+													required = "required"
+		                      ng-model="credentials.identifier"
+		                      ng-minlength="3"
+		                      ng-maxlength="254">
+
+		                    </label>
+	                  	</div>
+
+	                    <!-- user password -->
+	                    <div class="col">
+		                    <label class="item item-input-wrapper item-floating-label">
+		                      <span class="input-label">
+														<i class="icon ion-more placeholder-icon"></i>
+														Password:
+														<span class="item-note">
+															<i class="icon ion-checkmark-circled success" ng-show="inputValid(signupLoginForm.password)"></i>
+															<i class="icon ion-close-circled error" ng-show="inputInvalid(signupLoginForm.password)"></i>
+														</span>
+													</span>
+
+		                      <input type="password" name="password" placeholder="Introduzca password..." required="required"
+		                      ng-model="credentials.password"
+		                      ng-minlength="3">
+
+		                    </label>
+	                  	</div>
+                		</div>
+                  </div>
+
+                  <div class="item item-body">
+                    <div class="row responsive-md">
+                      <!-- <div class="col">
+                        <a class="button button-block button-outline icon-left ion-ios7-plus" ui-sref="roles.list">
+                          Roles
+                        </a>
+                      </div> -->
+                      <div class="col">
+                        <a class="button button-block button-energized button-outline icon-left ion-ios7-paperplane" ng-click="modal.show()">
+                          Nuevo Usuario
+                        </a>
+                      </div>
+                      <!-- <div class="col">
+                        <a class="button button-block button-balanced button-outline icon-left ion-ios7-plus" ui-sref="signup">
+                          Registrar Usuario
+                        </a>
+                      </div> -->
+                      <div class="col">
+                        <button class="button button-block button-positive button-outline icon-left ion-log-in"
+                        ng-click="login()"
+                        ng-disabled="!(signupLoginForm.$dirty && signupLoginForm.$valid)">
+                        Acceder</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div cg-busy="'loadingTracker'"></div>
+                </form>
+
+		        </ion-content>
+		      </ion-side-menu-content>
+
+    </ion-side-menus>
+
+		<script id="templates/modal.html" type="text/ng-template">
+		<ion-modal-view>
+		<ion-header-bar class="bar bar-header bar-positive">
+		<button class="button button-clear button-primary" ng-click="modal.hide()"><i class="icon ion-ios-close-outline"></i> Cancel</button>
+		<h1 class="title">Nuevo Usuario</h1>
+
+		</ion-header-bar>
+		<ion-content class="padding">
+		<div class="list">
+		<label class="item item-input">
+		<span class="input-label">Nombre de Usuario: </span>
+		<input ng-model="newUser.username" type="text">
+		</label>
+		<label class="item item-input">
+		<span class="input-label">Nombre de Pila: </span>
+		<input ng-model="newUser.firstName" type="text">
+		</label>
+		<label class="item item-input">
+		<span class="input-label">Apellidos: </span>
+		<input ng-model="newUser.lastName" type="text">
+		</label>
+		<label class="item item-input">
+		<span class="input-label">Email: </span>
+		<input ng-model="newUser.email" type="email">
+		</label>
+		<label class="item item-input">
+		<span class="input-label">Password: </span>
+		<input ng-model="newUser.password" type="text">
+		</label>
+
+		<button class="button button-block button-positive" ng-click="createUser(newUser)">Create <i class="icon ion-ios-checkmark-outline"></i></button>
+		</div>
+		</ion-content>
+		</ion-modal-view>
+		</script>

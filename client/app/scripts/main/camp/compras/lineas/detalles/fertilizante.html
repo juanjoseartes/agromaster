@@ -1,0 +1,95 @@
+<div style="margin-top:-24px" class="row responsive-lg">
+  <div class="col col-20">
+    <h3>{{linea.articulo.name}}</h3>
+    <p>{{linea.articulo.titular}}<br/>Nº Reg: {{linea.articulo.nreg}}</p>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="item item-divider">
+        <p>Detalle de Compra:</p>
+      </div>
+      <label class="item item-input">
+        <span class="input-label">Cantidad:</span>
+        <input type="text" ng-model="detalle.cant" placeholder="Introduzca cantidad Albaran...">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Precio:</span>
+        <input type="text" ng-model="detalle.precunit" placeholder="Introduzca precio Albaran...">
+      </label>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="item item-divider">
+        <p>Detalle Envase:</p>
+      </div>
+      <label class="item item-input">
+        <span class="input-label">Capac. Envase:</span>
+        <input type="text" ng-model="detalle.capenvase" placeholder="Introduzca Capacidad del Envase...">
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Unidad Envase:
+        </div>
+        <select ng-model="detalle.udenvase" ng-options="a.id as a.name group by a.tipo for a in unidades"></select>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row" style="margin-top:-12px">
+  <div class="col col-20">&nbsp;</div>
+  <div class="col">
+    <div class="button-bar">
+      <a class="button  button-light" ng-click="back()">
+        <span class="positive">
+          <i class="icon left ion-ios7-close-outline"></i> Cerrar
+        </span>
+      </a>
+      <a class="button  button-light" ng-click="save(detalle)">
+        <span class="positive">
+          Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+<!--
+
+
+<div class="item">
+<h3>{{linea.articulo.name}}</h3>
+<p>{{linea.articulo.titular}}<br/>Nº Reg: {{linea.articulo.nreg}}</p>
+</div>
+
+<div class="row responsive-md">
+<div class="col">
+<div class="item item-divider">
+<p>Detalle de Compra:</p>
+</div>
+<label class="item item-input">
+<span class="input-label">Cantidad:</span>
+<input type="text" ng-model="detalle.cant" placeholder="Introduzca cantidad Albaran...">
+</label>
+<label class="item item-input">
+<span class="input-label">Precio:</span>
+<input type="text" ng-model="detalle.precunit" placeholder="Introduzca precio Albaran...">
+</label>
+</div>
+<div class="col">
+<div class="item item-divider">
+<p>Detalle Envase:</p>
+</div>
+
+<label class="item item-input">
+<span class="input-label">Capac. Envase:</span>
+<input type="text" ng-model="detalle.capenvase" placeholder="Introduzca Capacidad del Envase...">
+</label>
+
+<label class="item item-input item-select">
+<div class="input-label">
+Unidad Envase:
+</div>
+<select ng-model="detalle.udenvase" ng-options="a.id as a.name group by a.tipo for a in unidades"></select>
+</label>
+</div>
+</div> -->

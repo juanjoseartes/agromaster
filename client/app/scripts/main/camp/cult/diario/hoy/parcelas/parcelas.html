@@ -1,0 +1,175 @@
+<div style="margin-top: 12px" class="item item-divider">
+  Detalle Parcelas -> Reparto Costes ({{$stateParams.nameDia}}): <span class="right energized">Total: {{getTotal() | currency}}</span>
+</div>
+
+<div class="button-bar" style="margin-top:0px">
+  <!-- <a ui-sref="main.camp.cult.home.hoy.inic" ng-class="{active: $state.is('main.camp.cult.home.hoy.inic')}" class="button positive icon-left ion-ios7-paper">
+  <small> Resumen</small>
+</a> -->
+<a ui-sref="main.camp.cult.home.hoy.diario.parcela" ng-class="{active: $state.includes('main.camp.cult.home.hoy.diario.parcela')}" class="button positive icon-left ion-cube">
+  <span ng-if="resDia.parcelas.length" class="txtleft badge badge-light">{{resDia.parcelas.length}}</span>
+  <small>Parcelas</small>
+</a>
+<a ui-sref="main.camp.cult.home.hoy.diario.mobra" ng-class="{active: $state.includes('main.camp.cult.home.hoy.diario.mobra')}" ng-disabled="(resDia.parcelas.length == 0) || (resDia.message == 'Parte no encontrado')" class="button positive icon-left ion-ios7-people">
+  <span ng-if="resDia.mobra.length" class="txtleft badge badge-light">{{resDia.mobra.length}}</span>
+  <small>Mano de Obra</small>
+</a>
+<a ui-sref="main.camp.cult.home.hoy.diario.materiales" ng-class="{active: $state.includes('main.camp.cult.home.hoy.diario.materiales')}" ng-disabled="(resDia.parcelas.length == 0) || (resDia.message == 'Parte no encontrado')" class="button positive icon-left ion-ios7-filing">
+  <span ng-if="resDia.materiales.length" class="txtleft badge badge-light">{{resDia.materiales.length}}</span>
+  <small>Materiales</small>
+</a>
+<a ui-sref="main.camp.cult.home.hoy.diario.maquinaria" ng-class="{active: $state.includes('main.camp.cult.home.hoy.diario.maquinaria')}" ng-disabled="(resDia.parcelas.length == 0) || (resDia.message == 'Parte no encontrado')" class="button positive icon-left ion-ios7-cog">
+  <span ng-if="resDia.maquinaria.length" class="txtleft badge badge-light">{{resDia.maquinaria.length}}</span>
+  <small>Maquinaria</small>
+</a>
+<a ui-sref="main.camp.cult.home.hoy.diario.otros" ng-class="{active: $state.includes('main.camp.cult.home.hoy.diario.otros')}" ng-disabled="(resDia.parcelas.length == 0) || (resDia.message == 'Parte no encontrado')" class="button positive icon-left ion-ios7-pricetag">
+  <span ng-if="resDia.otros.length" class="txtleft badge badge-light">{{resDia.otros.length}}</span>
+  <small>Otros</small>
+</a>
+</div>
+
+<div class="bar bar-header item item-input-inset" ng-show="$state.is('main.camp.cult.home.hoy.diario.parcela')">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios7-search placeholder-icon"></i>
+    <input placeholder="Buscar..." type="search"/>
+  </label>
+  <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.cult.home.hoy.diario.parcela.add">
+    Añadir Parcela/s
+  </a>
+</div>
+<div ui-view ng-if="!$stateParams.parcId"></div>
+
+
+
+      <div class="row responsive-md" ng-if="resDia.parcelas.length">
+
+      <div class="col">
+        <div class="card">
+        <div class="item" ng-repeat="parc in detparcelas" ng-show="$even">
+          <div class="item-button-left">
+            <button ng-disabled="parc.all" class="button assertive button-small button-icon icon ion-ios7-minus-outline" ng-click="deleteParc(parc)"></button>
+          </div>
+          <div style="margin-left:42px">
+            {{parc.parcela.name}}
+          </div>
+          <div ng-if="parc.all">
+            <span class="badge badge-royal">{{parc.superf}} has</span>
+          </div>
+          <div ng-if="!parc.all">
+            <div ng-if="((parc.fin | date: 'H') - (parc.inicio | date: 'H')) < 0">
+              <span class="badge badge-energized">{{(parc.fin | date: 'H') - (parc.inicio | date: 'H')}}:{{(parc.fin | date: 'mm') - (parc.inicio | date: 'mm')}}</span>
+            </div>
+            <div ng-if="((parc.fin | date: 'H') - (parc.inicio | date: 'H')) == 0">
+              <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm'))<0">
+                <span class="badge badge-energized">{{(parc.fin | date: 'H') - (parc.inicio | date: 'H')}}:{{(parc.fin | date: 'mm') - (parc.inicio | date: 'mm')}}</span>
+              </div>
+              <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm')) == 0">
+                <span class="badge badge-stable">{{((parc.fin | date: 'H') - (parc.inicio | date: 'H'))}}:00</span>
+              </div>
+              <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm')) > 0">
+                <span class="badge badge-royal">{{(parc.fin | date: 'H') - (parc.inicio | date: 'H')}}:{{(parc.fin | date: 'mm') - (parc.inicio | date: 'mm')}}</span>
+              </div>
+            </div>
+            <div ng-if="((parc.fin | date: 'H') - (parc.inicio | date: 'H')) > 0">
+              <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm')) < 0">
+                <span class="badge badge-royal">{{((parc.fin | date: 'H') - (parc.inicio | date: 'H'))-1}}:{{((parc.inicio | date: 'mm')*1) + ((parc.fin | date:'mm')*1)}}</span>
+              </div>
+              <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm')) == 0">
+                <span class="badge badge-royal">{{((parc.fin | date: 'H') - (parc.inicio | date: 'H'))}}:00</span>
+              </div>
+              <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm')) > 0">
+                <span class="badge badge-royal">{{(parc.fin | date: 'H') - (parc.inicio | date: 'H')}}:{{(parc.fin | date: 'mm') - (parc.inicio | date: 'mm')}}</span>
+              </div>
+            </div>
+            <div class="button-bar">
+              <button class="button button-clear button-positive icon ion-ios7-clock-outline" ng-click="toggleIni()" ui-sref="main.camp.cult.home.hoy.diario.parcela.edit({parcId: parc.id})"> <small>Inicio: {{parc.inicio | date: 'H:mm'}}</small></button>
+              <button class="button button-clear button-positive icon ion-ios7-clock" ng-click="toggleFin()" ui-sref="main.camp.cult.home.hoy.diario.parcela.edit({parcId: parc.id})"> <small>Fin: {{parc.fin | date: 'H:mm'}}</small></button>
+            </div>
+          </div>
+          <div ui-view ng-if="$stateParams.parcId === parc.id"></div>
+        </div>
+      </div>
+    </div>
+
+      <div class="col">
+        <div class="card">
+          <div class="item" ng-repeat="parc in detparcelas" ng-show="$odd">
+            <div class="item-button-left">
+              <button ng-disabled="parc.all" class="button assertive button-small button-icon icon ion-ios7-minus-outline" ng-click="deleteParc(parc)"></button>
+            </div>
+            <div style="margin-left:42px">
+              {{parc.parcela.name}}
+            </div>
+            <div ng-if="parc.all">
+              <span class="badge badge-royal">{{parc.superf}} has</span>
+            </div>
+            <div ng-if="!parc.all">
+              <div ng-if="((parc.fin | date: 'H') - (parc.inicio | date: 'H')) < 0">
+                <span class="badge badge-energized">{{(parc.fin | date: 'H') - (parc.inicio | date: 'H')}}:{{(parc.fin | date: 'mm') - (parc.inicio | date: 'mm')}}</span>
+              </div>
+              <div ng-if="((parc.fin | date: 'H') - (parc.inicio | date: 'H')) == 0">
+                <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm'))<0">
+                  <span class="badge badge-energized">{{(parc.fin | date: 'H') - (parc.inicio | date: 'H')}}:{{(parc.fin | date: 'mm') - (parc.inicio | date: 'mm')}}</span>
+                </div>
+                <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm')) == 0">
+                  <span class="badge badge-stable">{{((parc.fin | date: 'H') - (parc.inicio | date: 'H'))}}:00</span>
+                </div>
+                <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm')) > 0">
+                  <span class="badge badge-royal">{{(parc.fin | date: 'H') - (parc.inicio | date: 'H')}}:{{(parc.fin | date: 'mm') - (parc.inicio | date: 'mm')}}</span>
+                </div>
+              </div>
+              <div ng-if="((parc.fin | date: 'H') - (parc.inicio | date: 'H')) > 0">
+                <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm')) < 0">
+                  <span class="badge badge-royal">{{((parc.fin | date: 'H') - (parc.inicio | date: 'H'))-1}}:{{((parc.inicio | date: 'mm')*1) + ((parc.fin | date:'mm')*1)}}</span>
+                </div>
+                <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm')) == 0">
+                  <span class="badge badge-royal">{{((parc.fin | date: 'H') - (parc.inicio | date: 'H'))}}:00</span>
+                </div>
+                <div ng-if="((parc.fin | date: 'mm') - (parc.inicio | date: 'mm')) > 0">
+                  <span class="badge badge-royal">{{(parc.fin | date: 'H') - (parc.inicio | date: 'H')}}:{{(parc.fin | date: 'mm') - (parc.inicio | date: 'mm')}}</span>
+                </div>
+              </div>
+              <div class="button-bar">
+                <button class="button button-clear button-positive icon ion-ios7-clock-outline" ng-click="toggleIni()" ui-sref="main.camp.cult.home.hoy.diario.parcela.edit({parcId: parc.id})"> <small>Inicio: {{parc.inicio | date: 'H:mm'}}</small></button>
+                <button class="button button-clear button-positive icon ion-ios7-clock" ng-click="toggleFin()" ui-sref="main.camp.cult.home.hoy.diario.parcela.edit({parcId: parc.id})"> <small>Fin: {{parc.fin | date: 'H:mm'}}</small></button>
+              </div>
+            </div>
+            <div ui-view ng-if="$stateParams.parcId === parc.id"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="item item-divider">
+        Detalle Campaña
+      </div>
+      <div class="item">
+        <nvd3-multi-bar-chart
+        data="gTarea"
+        id="grafTarea"
+        xAxisTickFormat="xAxisTickFormat()"
+        yAxisTickFormat="yAxisTickFormat()"
+        xAxisRotateLabels="-45"
+        margin="{left:40,top:25,bottom:75,right:40}"
+        height="320"
+        showXAxis="true"
+        showYAxis="true"
+        tooltips="true"
+        showLegend="true"
+        showControls="true"
+        useInteractiveGuideLine="true"
+        tooltips="true"
+        tooltipcontent="toolTipContentFunction()"
+        interactive="true"
+        interpolate="linear">
+        <svg></svg>
+      </nvd3-multi-bar-chart>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>

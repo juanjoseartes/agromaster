@@ -1,0 +1,56 @@
+<div class="list card">
+  <div class="item item-avatar item-divider">
+    <i class="icon ion-ios7-plus"></i>
+    <h2>{{title}}</h2>
+    <p>Proveedor: {{fincaName}}</p>
+  </div>
+
+  <a class="button icon-left ion-ios7-arrow-left button-clear button-positive" ng-click="back()"> Volver</a>
+
+  <div class="row responsive-lg">
+    <div class="col col-67">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Proveedor:</span>
+            {{provSel.name}}
+              <button class="button button-clear button-positive icon-right ion-ios7-search" ui-sref="main.camp.compras.sel.prov"></button>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Fecha:</span>
+          {{fchSel | amDateFormat:'DD/MM/YYYY'}}
+            <button class="button button-clear button-positive icon-right ion-ios7-search" ui-sref="main.camp.compras.sel.fch"></button>
+        </label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Nº Albaran:</span>
+          <input type="text" ng-model="alb.nalb" placeholder="Introduzca nº documento...">
+        </label>
+        <a
+          ng-disabled="!(provSel.id)"
+          ng-if="!$stateParams.albId"
+          ng-click="addLines()"
+          class="button icon-right ion-ios7-plus-outline button-clear button-positive" > Añadir Lineas</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="list card" ng-if="$stateParams.albId">
+  <div class="item item-divider">
+    Lineas Albaran:
+  </div>
+  <div class="row responsive-lg">
+
+    <div class="col">
+      <div class="button-bar">
+        <a ui-sref="main.camp.compras.albadd.fertil" ui-sref-active="active" class="button button-outline button-positive icon-left ion-ios7-download-outline" >Fertilizantes &nbsp;&nbsp;&nbsp;<span ng-if="linFertil" class="badge badge-positive">{{linFertil}}</span></a>
+        <a ui-sref="main.camp.compras.albadd.fitos" ui-sref-active="active" class="button button-outline button-positive icon-left ion-ios7-download-outline">Fitosanitarios &nbsp;&nbsp;&nbsp;<span ng-if="linFitos" class="badge badge-positive">{{linFitos}}</span></a>
+        <a ui-sref="main.camp.compras.albadd.mveg" ui-sref-active="active" class="button button-outline button-positive icon-left ion-ios7-download-outline">Mat. Vegetal &nbsp;&nbsp;&nbsp;<span ng-if="linMVeg" class="badge badge-positive">{{linMVeg}}</span></a>
+        <a ui-sref="main.camp.compras.albadd.otros" ui-sref-active="active" class="button button-outline button-positive icon-left ion-ios7-download-outline">Otros &nbsp;&nbsp;&nbsp;<span ng-if="linOtros" class="badge badge-positive">{{linOtros}}</span></a>
+      </div>
+      <div ui-view></div>
+    </div>
+  </div>
+</div>

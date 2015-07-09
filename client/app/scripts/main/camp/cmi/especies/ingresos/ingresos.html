@@ -1,0 +1,57 @@
+<div class="list">
+  <div class="item item-divider item-balanced">
+    INGRESOS <span class="badge badge-light" style="margin-top:-2px"><h2><span class="balanced">1.343.123,31€</span></h2></span>
+  </div>
+  <ion-list>
+
+    <ion-item class="item-stable"
+    ng-click="toggleGroup(i-1)"
+    ng-class="{active: isGroupShown(i-1)}">
+    <i class="icon" ng-class="isGroupShown(i-1) ? 'ion-minus' : 'ion-plus'"></i>
+    &nbsp;
+    Confeccion A <span class="badge badge-balanced">3.123,31€</span>
+  </ion-item>
+  <ion-item class="item-accordion" ng-show="isGroupShown(i-1)">Parcela 1</ion-item>
+  <ion-item class="item-accordion" ng-show="isGroupShown(i-1)">Parcela 2</ion-item>
+  <ion-item class="item-accordion" ng-show="isGroupShown(i-1)">Parcela 3</ion-item>
+  <ion-item class="item-accordion" ng-show="isGroupShown(i-1)">Parcela 4</ion-item>
+
+
+  <ion-item class="item-stable"
+  ng-click="toggleGroup(i-2)"
+  ng-class="{active: isGroupShown(i-2)}">
+  <i class="icon" ng-class="isGroupShown(i-2) ? 'ion-minus' : 'ion-plus'"></i>
+  &nbsp;
+  Confeccion B <span class="badge badge-balanced">13.123,31€</span>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-2)">Parcela 1</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-2)">Parcela 2</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-2)">Parcela 3</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-2)">Parcela 4</ion-item>
+
+<ion-item class="item-stable"
+ng-click="toggleGroup(i-3)"
+ng-class="{active: isGroupShown(i-3)}">
+<i class="icon" ng-class="isGroupShown(i-3) ? 'ion-minus' : 'ion-plus'"></i>
+&nbsp;
+Confeccion C <span class="badge badge-balanced">123.123,31€</span>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-3)">Parcela 1</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-3)">Parcela 2</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-3)">Parcela 3</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-3)">Parcela 4</ion-item>
+
+<ion-item class="item-stable"
+ng-click="toggleGroup(i-4)"
+ng-class="{active: isGroupShown(i-4)}">
+<i class="icon" ng-class="isGroupShown(i-4) ? 'ion-minus' : 'ion-plus'"></i>
+&nbsp;
+Confeccion D <span class="badge badge-balanced">3.123,31€</span>
+</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-4)">Parcela 1</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-4)">Parcela 2</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-4)">Parcela 3</ion-item>
+<ion-item class="item-accordion" ng-show="isGroupShown(i-4)">Parcela 4</ion-item>
+
+</ion-list>
+</div>

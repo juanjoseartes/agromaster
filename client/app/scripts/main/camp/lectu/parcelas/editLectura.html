@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col col-10">
+    <a class="button button-positive button-clear icon ion-chevron-left" ng-click="back()"></a>
+  </div>
+  <div class="col col-80">
+    <div class="range range-positive" ng-if="lectura.tipo == 'ph'">
+      <input type="range" ng-model="lectura.valor" min="0" max="14" step=".1" ng-value="lectura.valor">{{lectura.valor}}
+    </div>
+    <div class="range range-positive" ng-if="lectura.tipo == 'ec'">
+      <input type="range" ng-model="lectura.valor" min="0" max="100" step=".1" ng-value="lectura.valor">{{lectura.valor}}
+    </div>
+  </div>
+  <div class="col col-10">
+    <a class="button button-positive button-clear icon ion-ios7-checkmark-outline" ng-click="save()"></a>
+  </div>
+</div>

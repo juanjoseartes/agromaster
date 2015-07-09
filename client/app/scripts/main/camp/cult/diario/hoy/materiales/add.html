@@ -1,0 +1,37 @@
+<div class="button-bar">
+  <a class="button  button-light" ng-click="back()">
+    <span class="positive">
+      <i class="icon left ion-ios7-close-outline"></i> Cerrar
+    </span>
+  </a>
+  <a class="button  button-light" ng-click="create()">
+    <span class="positive">
+      Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+    </span>
+  </a>
+</div>
+
+<ul class="list" ng-if="$stateParams.nameDia == 'abonado'">
+  <li ng-repeat="abono in abonos | orderBy: 'articulo.name' " class="item item-checkbox">
+    <label class="checkbox">
+      <input type="checkbox" checklist-model="diario.materiales" checklist-value="abono.id">
+    </label>
+    {{abono.articulo.name}}
+  </li>
+</ul>
+<ul class="list" ng-if="$stateParams.nameDia == 'tratamientos'">
+  <li ng-repeat="fito in fitos | orderBy: 'articulo.name' " class="item item-checkbox">
+    <label class="checkbox">
+      <input type="checkbox" checklist-model="diario.materiales" checklist-value="fito.id">
+    </label>
+    {{fito.articulo.name}}
+  </li>
+</ul>
+<ul class="list" ng-if="$stateParams.nameDia == 'plantacion'">
+  <li ng-repeat="matv in matveg | orderBy: 'articulo.name' " class="item item-checkbox">
+    <label class="checkbox">
+      <input type="checkbox" checklist-model="diario.materiales" checklist-value="matv.id">
+    </label>
+    {{matv.articulo.name}}
+  </li>
+</ul>

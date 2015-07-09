@@ -1,0 +1,183 @@
+<ion-side-menus>
+
+	<ion-side-menu-content>
+
+		<ion-header-bar class="bar-positive">
+			<button class="button button-icon ion-navicon" ng-click="toggleLeft()" ng-hide="$exposeAside.active"></button>
+			<h1 class="title"><i class="icon {{headerItem[0].icon}}"></i> {{headerItem[0].title}} - {{date}}</h1>
+			<button class="button button-icon icon icon-right ion-ios7-close-outline button-clear" ng-click="logout()">Salir </button>
+		</ion-header-bar>
+
+
+		<!-- <div class="tabs-striped tabs-top tabs-background-stable tabs-color-positive tabs-icon-left">
+			<div class="tabs" style="height:54px;" ng-if="navbarItems">
+				<a ng-repeat="item in navbarItems" class="tab-item" ng-class="{active: $state.includes('{{item.state}}')}" ui-sref="{{item.state}}" style="font-size:14px">
+					<i class="icon {{item.icon}}"></i>
+					{{item.title}}
+				</a>
+			</div>
+		</div>
+		<ion-content>
+			<div ui-view style="margin-top:64px"></div>
+		</ion-content> -->
+		<div ui-view></div>
+
+	</ion-side-menu-content>
+
+	<ion-side-menu expose-aside-when="large" ng-if="$state.includes('main.camp')">
+
+		<ion-header-bar class="bar-positive">
+			<h1 class="title">
+				<i ng-if="user.admin" class="icon ion-ios7-person"></i>
+				{{user.username}}
+			</h1>
+		</ion-header-bar>
+
+		<ion-header-bar class="bar-stable bar-subheader" style="height:54px">
+			<div class="button-bar">
+				<a class="button button-clear button-positive" ng-click="popOpcFincas.show($event)" style="line-height:42px">
+					<span ng-show="!curfinca"><small>Selecciona una Finca...</small></span>
+					<span ng-show="curfinca"><small>{{curfinca.fincaname}} - {{curfinca.ejercCurso.name}} &nbsp;</small></span>
+					<i class="icon ion-navicon"></i>
+				</a>
+			</div>
+
+		</ion-header-bar>
+
+		<ion-content>
+			<div style="margin-top:10px">
+				<ion-list>
+					<ion-item ui-sref="main.camp.mobra.presencia.inicio" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.mobra')}">
+						<i ng-if="$state.includes('main.camp.mobra')" class="icon ion-ios7-people"></i>
+						<i ng-if="!$state.includes('main.camp.mobra')" class="icon ion-ios7-people-outline"></i>
+						Mano Obra
+						<i ng-if="$state.includes('main.camp.mobra')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.mobra')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.cult.home.hoy.inic" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.cult')}">
+						<i ng-if="$state.includes('main.camp.cult')" class="icon ion-ios7-bookmarks"></i>
+						<i ng-if="!$state.includes('main.camp.cult')" class="icon ion-ios7-bookmarks-outline"></i>
+						Cultivo
+						<i ng-if="$state.includes('main.camp.cult')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.cult')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.recolecc.home.espec.hoy.confecc({especId: especCurso})" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.recolecc')}">
+						<i ng-if="$state.includes('main.camp.recolecc')" class="icon ion-ios7-cart"></i>
+						<i ng-if="!$state.includes('main.camp.recolecc')" class="icon ion-ios7-cart-outline"></i>
+						Recoleccion
+						<i ng-if="$state.includes('main.camp.recolecc')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.recolecc')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.lectu.parc({parcId: curParc})" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.lectu')}">
+						<i ng-if="$state.includes('main.camp.lectu')" class="icon ion-ios7-analytics"></i>
+						<i ng-if="!$state.includes('main.camp.lectu')" class="icon ion-ios7-analytics-outline"></i>
+						Lecturas
+						<i ng-if="$state.includes('main.camp.lectu')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.lectu')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.tprog.riego" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.tprog')}">
+						<i ng-if="$state.includes('main.camp.tprog')" class="icon ion-ios7-calendar"></i>
+						<i ng-if="!$state.includes('main.camp.tprog')" class="icon ion-ios7-calendar-outline"></i>
+						Tareas Programadas
+						<i ng-if="$state.includes('main.camp.tprog')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.tprog')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.analisis.tipo({tipoName: 'suelo'})" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.analisis')}">
+						<i ng-if="$state.includes('main.camp.analisis')" class="icon ion-ios7-settings-strong"></i>
+						<i ng-if="!$state.includes('main.camp.analisis')" class="icon ion-ios7-settings"></i>
+						Analisis Quimico
+						<i ng-if="$state.includes('main.camp.analisis')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.analisis')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.residuos" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.residuos')}">
+						<i ng-if="$state.includes('main.camp.residuos')" class="icon ion-ios7-trash"></i>
+						<i ng-if="!$state.includes('main.camp.residuos')" class="icon ion-ios7-trash-outline"></i>
+						Gestion Residuos
+						<i ng-if="$state.includes('main.camp.residuos')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.residuos')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.scout" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.scout')}">
+						<i ng-if="$state.includes('main.camp.scout')" class="icon ion-ios7-glasses"></i>
+						<i ng-if="!$state.includes('main.camp.scout')" class="icon ion-ios7-glasses-outline"></i>
+						Scouting
+						<i ng-if="$state.includes('main.camp.scout')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.scout')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.compras.home.alb.mes" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.compras')}">
+						<i ng-if="$state.includes('main.camp.compras')" class="icon ion-ios7-download"></i>
+						<i ng-if="!$state.includes('main.camp.compras')" class="icon ion-ios7-download-outline"></i>
+						Compras
+						<i ng-if="$state.includes('main.camp.compras')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.compras')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.vtas" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.vtas')}">
+						<i ng-if="$state.includes('main.camp.vtas')" class="icon ion-ios7-upload"></i>
+						<i ng-if="!$state.includes('main.camp.vtas')" class="icon ion-ios7-upload-outline"></i>
+						Ventas
+						<i ng-if="$state.includes('main.camp.vtas')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.vtas')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.almac.abono" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.almac')}">
+						<i ng-if="$state.includes('main.camp.almac')" class="icon ion-ios7-filing"></i>
+						<i ng-if="!$state.includes('main.camp.almac')" class="icon ion-ios7-filing-outline"></i>
+						Almacen
+						<i ng-if="$state.includes('main.camp.almac')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.almac')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.maq.prop" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.maq')}">
+						<i ng-if="$state.includes('main.camp.maq')" class="icon ion-ios7-cog"></i>
+						<i ng-if="!$state.includes('main.camp.maq')" class="icon ion-ios7-cog-outline"></i>
+						Maquinaria
+						<i ng-if="$state.includes('main.camp.maq')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.maq')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.cmi.espec.total" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.cmi')}">
+						<i ng-if="$state.includes('main.camp.cmi')" class="icon ion-ios7-pulse-strong"></i>
+						<i ng-if="!$state.includes('main.camp.cmi')" class="icon ion-ios7-pulse"></i>
+						Resumen
+						<i ng-if="$state.includes('main.camp.cmi')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.cmi')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+					<ion-item ui-sref="main.camp.config.home" class="item-icon-left item-icon-right positive" ng-class="{active: $state.includes('main.camp.config')}">
+						<i ng-if="$state.includes('main.camp.config')" class="icon ion-ios7-toggle"></i>
+						<i ng-if="!$state.includes('main.camp.config')" class="icon ion-ios7-toggle-outline"></i>
+						Configuracion
+						<i ng-if="$state.includes('main.camp.config')" class="icon ion-ios7-arrow-forward"></i>
+						<i ng-if="!$state.includes('main.camp.config')" class="icon ion-ios7-arrow-right"></i>
+					</ion-item>
+				</ion-list>
+			</div>
+		</ion-content>
+	</ion-side-menu>
+
+</ion-side-menus>
+
+<script id="templates/popover-fincas.html" type="text/ng-template">
+<ion-popover-view>
+<ion-content ng-controller="PopFincasCtrl">
+<div class="list">
+
+<div class="item item-divider">
+Finca Actual -> {{ curfinca.fincaname }}
+</div>
+<a ng-repeat="finca in user.fincas" class="item item-icon-right positive" ng-click="closePopover(finca)">
+<i class="icon ion-ios7-arrow-right"></i>
+{{finca.name}}
+</a>
+</div>
+</ion-content>
+</ion-popover-view>
+</script>
+<script id="templates/popover-ejercicios.html" type="text/ng-template">
+<ion-popover-view>
+<ion-content ng-controller="PopEjercCtrl">
+<div class="list">
+<div class="item item-divider">Campaña Actual:</div>
+<a ng-repeat="ejerc in curfinca.ejercicios" class="item item-icon-right positive" ng-click="closePopover(ejerc)">
+<i class="icon ion-ios7-arrow-right"></i>
+{{ejerc.name}}
+</a>
+</div>
+</ion-content>
+</ion-popover-view>
+</script>

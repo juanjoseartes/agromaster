@@ -1,0 +1,19 @@
+<!-- <div ui-view></div> -->
+<ion-content>
+  <div class="card" style="margin-top:64px">
+    <ion-scroll zooming="true" direction="x" style="height: 50px">
+    <div class="button-bar" style="margin-top:0px">
+      <a ui-sref="main.camp.cult.home.hoy.inic({nameDia: tipo.pathname})"
+      ng-class="{active: $state.is('main.camp.cult.home.hoy.inic')}"
+      class="button button-positive button-outline" style="min-width:128px">
+      <small>Total: {{date}}</small></a>
+      <a style="min-width:128px" ng-repeat="dia in diarios" ui-sref="main.camp.cult.home.hoy.diario.parcela({nameDia: dia.name})"
+      ng-class="{active: $state.includes( 'main.camp.cult.home.hoy.diario', {nameDia: dia.name} )}" class="button button-positive button-outline">
+      <i class="icon ion-ios-bookmarks-outline"></i>  <small> {{dia.name}}</small>
+      </a>
+    </div>
+  </ion-scroll>
+
+  <div ui-view></div>
+</div>
+</ion-content>

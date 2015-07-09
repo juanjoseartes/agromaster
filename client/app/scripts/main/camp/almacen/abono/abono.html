@@ -1,0 +1,81 @@
+<div class="list">
+
+  <div class="item item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Buscar....">
+    </label>
+    <a ui-sref="main.camp.almac.searchabono" class="button button-small button-clear button-positive icon icon-right ion-ios7-plus-outline">
+      Añadir
+    </a>
+  </div>
+</div>
+<div class="row responsive-lg">
+  <div class="col col-50">
+    <div ng-repeat="(key,value) in abonos | groupBy: 'articulo.formulado' | orderBy: 'articulo.formulado'" ng-if="$even">
+      <div class="item item-divider item-positive">
+        <h2 style="color: #fff"><i class="icon ion-waterdrop"></i> {{key}}</h2>
+        <span class="badge badge-light">{{value.length}}</span>
+      </div>
+      <div class="list card" ng-repeat="abono in value track by $index | orderBy: 'articulo.name'">
+        <div class="item item-divider">
+          <h3>{{abono.articulo.name}}</h3>
+          <p>{{abono.articulo.titular}}<br/>Nº Reg: {{abono.articulo.nreg}}</p>
+        </div>
+        <div class="item tabs tabs-secondary tabs-icon-top">
+          <a class="tab-item positive" href="#">
+            <i class="icon ion-ios7-pricetags-outline"></i>
+            P.Med: {{abono.impEnt/abono.udsEnt | number: 2}}
+            <!-- P.Med: {{getPMed(abono) | number: 2}} -->
+          </a>
+          <a class="tab-item positive" href="#">
+            <i class="icon ion-ios7-speedometer-outline"></i>
+            Stock: {{abono.udsEnt | number: 2}} <span ng-if="abono.tipounidad == 'Peso' ">Kg</span><span ng-if="abono.tipounidad == 'Volumen' ">Lt</span>
+            <!-- Stock: {{getStock(abono) | number: 2}} <span ng-if="abono.tipounidad == 'Peso' ">Kg</span><span ng-if="abono.tipounidad == 'Volumen' ">Lt</span> -->
+          </a>
+          <a class="tab-item energized" href="#">
+            <strong>
+              <i class="icon ion-ios7-calculator-outline"></i>
+              Valor: {{((abono.impEnt/abono.udsEnt)*abono.udsEnt) | currency}}
+              <!-- Valor: {{getPMed(abono) * getStock(abono) | currency}} -->
+            </strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-50">
+    <div ng-repeat="(key,value) in abonos | groupBy: 'articulo.formulado' | orderBy: 'articulo.formulado'" ng-if="$odd">
+      <div class="item item-divider item-positive">
+        <h2 style="color: #fff"><i class="icon ion-waterdrop"></i> {{key}}</h2>
+        <span class="badge badge-light">{{value.length}}</span>
+      </div>
+      <div class="list card" ng-repeat="abono in value track by $index | orderBy: 'articulo.name'">
+        <div class="item item-divider">
+          <h3>{{abono.articulo.name}}</h3>
+          <p>{{abono.articulo.titular}}<br/>Nº Reg: {{abono.articulo.nreg}}</p>
+        </div>
+        <div class="item tabs tabs-secondary tabs-icon-top">
+          <a class="tab-item positive" href="#">
+            <i class="icon ion-ios7-pricetags-outline"></i>
+            P.Med: {{abono.impEnt/abono.udsEnt | number: 2}}
+            <!-- P.Med: {{getPMed(abono) | number: 2}} -->
+          </a>
+          <a class="tab-item positive" href="#">
+            <i class="icon ion-ios7-speedometer-outline"></i>
+            Stock: {{abono.udsEnt | number: 2}} <span ng-if="abono.tipounidad == 'Peso' ">Kg</span><span ng-if="abono.tipounidad == 'Volumen' ">Lt</span>
+            <!-- Stock: {{getStock(abono) | number: 2}} <span ng-if="abono.tipounidad == 'Peso' ">Kg</span><span ng-if="abono.tipounidad == 'Volumen' ">Lt</span> -->
+          </a>
+          <a class="tab-item energized" href="#">
+            <strong>
+              <i class="icon ion-ios7-calculator-outline"></i>
+              Valor: {{((abono.impEnt/abono.udsEnt)*abono.udsEnt) | currency}}
+              <!-- Valor: {{getPMed(abono) * getStock(abono) | currency}} -->
+            </strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

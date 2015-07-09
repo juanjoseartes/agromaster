@@ -1,0 +1,468 @@
+<div class="list card" id="cultHoy">
+  <div class="item item-divider">
+    Resumen Cultivo:
+  </div>
+  <div class="row responsive-sm" ng-if="!vGraf">
+    <div class="col">
+      <div class="list card" ng-repeat="tarea in resDia" ng-if="$even">
+        <div class="item item-divider item-button-right" style="padding-bottom:20px">
+
+          <h2 style="padding-top:6px;margin-bottom:-4px">{{tarea.tipo.name}}</h2>
+          <button class="button button-outline button-positive" ng-click="pieJorn = !pieJorn" ng-class="{active: pieJorn}">
+            <i class="icon left" ng-class="pieJorn ? 'ion-ios-grid-view' : 'ion-pie-graph'"></i>
+          </button>
+        </div>
+        <div class="item item-body" ng-if="!pieJorn">
+          <div class="item row">
+            <div class="col">&nbsp;</div>
+            <div class="col txtright energized"><strong>{{date}}</strong></div>
+          </div>
+          <div class="item row">
+            <div class="col txtleft">Mano Obra</div>
+            <div class="col txtright energized">{{tarea.totalmobra}}</div>
+          </div>
+          <div class="item row">
+            <div class="col txtleft">Materiales</div>
+            <div class="col txtright energized">{{tarea.totalmat}}</div>
+          </div>
+          <div class="item row">
+            <div class="col txtleft">Maquinaria</div>
+            <div class="col txtright energized">{{tarea.totalmaq}}</div>
+          </div>
+          <div class="item row">
+            <div class="col txtleft">Otros</div>
+            <div class="col txtright energized">{{tarea.totalotros}}</div>
+          </div>
+        </div>
+        <div class="item item-divider">
+          <div class="row">
+            <div class="col txtleft">Total</div>
+            <div class="col txtright energized"><strong>{{tarea.totalmobra+tarea.totalmat+tarea.totalmaq+tarea.totalotros}}</strong></div>
+          </div>
+        </div>
+
+        <div class="list" ng-if="pieJorn">
+          <div class="item">
+              <h2 class="center energized-bg energized-border"><strong style="color:white">Jornales Hoy</strong></h2>
+              <nvd3-pie-chart
+              data="pJornDia"
+              id="JornalesDia"
+              margin="{left:10,top:10,bottom:10,right:10}"
+              height=600
+              x="xFunction()"
+              y="yFunction()"
+              showLabels="true"
+              pieLabelsOutside="false"
+              labelType="percent"
+              showLegend="true"
+              tooltips="true"
+              tooltipcontent="toolTipPie()">
+              <svg></svg>
+            </nvd3-pie-chart>
+          </div>
+          <div class="item">
+            <h2 class="center royal-bg royal-border"><strong style="color:white">Jornales Campaña</strong></h2>
+            <nvd3-pie-chart
+            data="pJornEjerc"
+            id="JornalesCamp"
+            margin="{left:10,top:10,bottom:10,right:10}"
+            height=600
+            x="xFunction()"
+            y="yFunction()"
+            showLabels="true"
+            pieLabelsOutside="false"
+            labelType="percent"
+            showLegend="true"
+            tooltips="true"
+            tooltipcontent="toolTipPieJorn()">
+            <svg></svg>
+          </nvd3-pie-chart>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="list card" ng-repeat="tarea in resDia" ng-if="$odd">
+        <div class="item item-divider item-button-right" style="padding-bottom:20px">
+
+          <h2 style="padding-top:6px;margin-bottom:-4px">{{tarea.tipo.name}}</h2>
+          <button class="button button-outline button-positive" ng-click="pieJorn = !pieJorn" ng-class="{active: pieJorn}">
+            <i class="icon left" ng-class="pieJorn ? 'ion-ios-grid-view' : 'ion-pie-graph'"></i>
+          </button>
+        </div>
+        <div class="item item-body" ng-if="!pieJorn">
+          <div class="item row">
+            <div class="col">&nbsp;</div>
+            <div class="col txtright energized"><strong>Hoy</strong></div>
+            <div class="col txtright royal"><strong>Campaña</strong></div>
+          </div>
+          <div class="item row">
+            <div class="col txtleft">Mano Obra</div>
+            <div class="col txtright energized"></div>
+            <div class="col txtright royal"></div>
+          </div>
+          <div class="item row">
+            <div class="col txtleft">Materiales</div>
+            <div class="col txtright energized"></div>
+            <div class="col txtright royal"></div>
+          </div>
+          <div class="item row">
+            <div class="col txtleft">Maquinaria</div>
+            <div class="col txtright energized"></div>
+            <div class="col txtright royal"></div>
+          </div>
+          <div class="item row">
+            <div class="col txtleft">Otros</div>
+            <div class="col txtright energized"></div>
+            <div class="col txtright royal"></div>
+          </div>
+        </div>
+        <div class="item item-divider">
+          <div class="row">
+            <div class="col txtleft">Total</div>
+            <div class="col txtright energized"><strong></strong></div>
+            <div class="col txtright royal"><strong></strong></div>
+          </div>
+        </div>
+
+        <div class="list" ng-if="pieJorn">
+          <div class="item">
+              <h2 class="center energized-bg energized-border"><strong style="color:white">Jornales Hoy</strong></h2>
+              <nvd3-pie-chart
+              data="pJornDia"
+              id="JornalesDia"
+              margin="{left:10,top:10,bottom:10,right:10}"
+              height=600
+              x="xFunction()"
+              y="yFunction()"
+              showLabels="true"
+              pieLabelsOutside="false"
+              labelType="percent"
+              showLegend="true"
+              tooltips="true"
+              tooltipcontent="toolTipPie()">
+              <svg></svg>
+            </nvd3-pie-chart>
+          </div>
+          <div class="item">
+            <h2 class="center royal-bg royal-border"><strong style="color:white">Jornales Campaña</strong></h2>
+            <nvd3-pie-chart
+            data="pJornEjerc"
+            id="JornalesCamp"
+            margin="{left:10,top:10,bottom:10,right:10}"
+            height=600
+            x="xFunction()"
+            y="yFunction()"
+            showLabels="true"
+            pieLabelsOutside="false"
+            labelType="percent"
+            showLegend="true"
+            tooltips="true"
+            tooltipcontent="toolTipPieJorn()">
+            <svg></svg>
+          </nvd3-pie-chart>
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+</div>
+
+<!-- <div class="table-responsive" ng-if="!vGraf">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="stable-bg stable-border">Parcela</th>
+        <th class="stable-bg stable-border">Total<br/>Dia</th>
+        <th class="stable-bg stable-border">Total<br/>Ha</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th class="stable-bg stable-border">Totales</th>
+        <th class="txtright stable-bg stable-border">{{getTotalCultivo() + getTotalRecolecc() + getTotalEncarg() | currency}}</th>
+        <th class="txtright stable-bg stable-border">{{(nRec + nEnc + nCult) | number}}</th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr ng-repeat="parc in repartoDia | orderBy: 'parcela.name' ">
+        <td>{{parc.parcela.name}} <small>{{parc.parcela.supcult}}has</small></td>
+        <td class="txtright">{{parc.mat + parc.maq + parc.mobra + parc.otros | currency}}</td>
+        <td class="txtright">{{(parc.mat + parc.maq + parc.mobra + parc.otros)/parc.parcela.supcult | currency}}</td>
+        <tr ng-repeat="tipo in parc">
+          <td style="margin-left:10px">{{tipo.name}} - Demo: {{tipo | json}}</td>
+          <td class="txtright">{{getTotalCultivo() | currency}}</td>
+          <td class="txtright">{{nCult | number}}</td>
+          <tr>
+            <td class="txtright">Mano Obra</td>
+            <td class="txtright">{{getTotalMObra() | currency}}</td>
+            <td class="txtright">{{nCult | number}}</td>
+          </tr>
+          <tr>
+            <td class="txtright">Materiales</td>
+            <td class="txtright">{{getTotalMat() | currency}}</td>
+            <td class="txtright">{{nCult | number}}</td>
+          </tr>
+          <tr>
+            <td class="txtright">Maquinaria</td>
+            <td class="txtright">{{getTotalMaq() | currency}}</td>
+            <td class="txtright">{{nCult | number}}</td>
+          </tr>
+          <tr>
+            <td class="txtright">Otros</td>
+            <td class="txtright">{{getTotalOtros() | currency}}</td>
+            <td class="txtright">{{nCult | number}}</td>
+          </tr>
+        </tr>
+      </tr>
+
+    </tbody>
+  </table>
+</div> -->
+
+<!-- <div class="item item-image"> -->
+<!-- <i class="icon ion-ios7-bookmarks-outline"></i> -->
+<!-- <div class="button-bar">
+<button style="max-width:20%" class="button button-outline icon-left ion-ios7-close-outline button-assertive" ng-click="modal.show()"><small> Eliminar</small></button>
+<button ng-click="popover.show($event)" class="button button-outline button-positive icon-right ion-ios7-plus-outline"> <small>Diario</small></button>
+</div> -->
+<!-- <h2>{{title}}</h2>
+<p>{{fincaName}}: {{date}}</p> -->
+
+<!-- </div> -->
+<!-- <div class="item item-image">
+<div class="button-bar" style="margin-top:-1px;">
+<a ng-repeat="tipo in tiposDia | orderBy: 'name'"
+ui-sref="main.camp.cult.home.hoy.diario.parcela({nameDia: tipo.pathname})"
+ng-class="{active: $stateParams.nameDia == tipo.pathname}"
+class="button positive">
+{{tipo.name}} <sup><small>{{tipo.total|currency}}</small></sup>
+</a>
+<a ui-sref="main.camp.cult.home.hoy.inic({nameDia: tipo.pathname})"
+ng-class="{active: $state.is('main.camp.cult.home.hoy.inic')}"
+class="button energized">
+<strong>Total: {{date}}</strong></a> -->
+<!-- <button style="max-width:42px" class="right button icon-left ion-ios7-close-outline assertive" ng-click="modal.show()"></button> -->
+<!-- </div>
+</div> -->
+<!-- <div ui-view></div> -->
+
+
+<!-- <div class="button-bar">
+<a
+ui-sref="main.camp.cult.home.hoy.inic"
+ng-class="{active: $state.includes('main.camp.cult.home.hoy')}"
+class="button button-outline button-positive"><i class="icon left ion-stats-bars"></i> Hoy</a>
+<a ui-sref="main.camp.cult.home.ejerc"
+ng-class="{active: $state.includes('main.camp.cult.home.ejerc')}"
+class="button button-outline button-positive"><i class="icon left ion-stats-bars"></i> Campaña</a>
+</div> -->
+
+
+<!-- <div ui-view></div> -->
+
+<!-- <div class="list">
+<div class="item item-button-left">
+<a ui-sref="main.camp.cult.home.diario.parcela" class="button button-clear button-positive">
+<i class="icon ion-ios7-search-strong"></i>
+</a>
+Parcelas: <span ng-if="getTotalParc()" class="badge badge-royal">{{getTotalParc()}}</span>
+<span class="badge badge-energized">12.234,56</span>
+<span class="badge badge-energized" style="margin-right:96px">10.234,56</span>
+
+</div>
+<div class="item item-button-left">
+<a ui-sref="main.camp.cult.home.diario.mobra" class="button button-clear button-positive">
+<i class="icon ion-ios7-search-strong"></i>
+</a>
+Mano Obra: <span ng-if="getTotalMObra()" class="badge badge-energized">{{getTotalMObra() | currency}}</span>
+</div>
+<div class="item item-button-left">
+<a ui-sref="main.camp.cult.home.diario.materiales" class="button button-clear button-positive">
+<i class="icon ion-ios7-search-strong"></i>
+</a>
+Materiales: <span ng-if="getTotalMat()" class="badge badge-energized">{{getTotalMat() | currency}}</span>
+</div>
+<div class="item item-button-left">
+<a ui-sref="main.camp.cult.home.diario.maquinaria" class="button button-clear button-positive">
+<i class="icon ion-ios7-search-strong"></i>
+</a>
+Maquinaria <span ng-if="getTotalMaq()" class="badge badge-energized">{{getTotalMaq() | currency}}</span>
+</div>
+<div class="item item-button-left">
+<a ui-sref="main.camp.cult.home.diario.otros" class="button button-clear button-positive">
+<i class="icon ion-ios7-search-strong"></i>
+</a>
+Otros: <span ng-if="getTotalOtros()" class="badge badge-energized">{{getTotalOtros() | currency}}</span>
+</div>
+<div class="item item-divider">
+<div class="row responsive-md">
+<div class="col">
+Total:
+</div>
+<div class="col center">
+
+</div>
+<div class="col center">
+<span ng-if="getTotalMaq() + getTotalOtros()" class="energized">{{(getTotalMaq() + getTotalOtros() + getTotalMat()) | currency}}</span>
+</div>
+</div>
+</div>
+</div> -->
+
+
+
+<!-- <div class="card">
+<div class="list">
+<div class="item item-divider">
+Total Parcelas: <span ng-if="getEjercParc()" class="badge badge-royal">{{getEjercParc()}}</span>
+</div>
+<div class="item item-divider">
+Total Mano Obra: <span ng-if="getEjercMObra()" class="badge badge-energized">{{getEjercMObra() | currency}}</span>
+</div>
+<div class="item item-divider">
+Total Materiales: <span ng-if="getEjercMat()" class="badge badge-energized">{{getEjercMat() | currency}}</span>
+</div>
+<div class="item item-divider">
+Total Maquinaria <span ng-if="getEjercMaq()" class="badge badge-energized">{{getEjercMaq() | currency}}</span>
+</div>
+<div class="item item-divider">
+Total Otros: <span ng-if="getEjercOtros()" class="badge badge-energized">{{getEjercOtros() | currency}}</span>
+</div>
+<div class="item item-divider">
+<div class="row responsive-md">
+<div class="col">
+Acumulado Campaña:
+</div>
+<div class="col center">
+
+</div>
+<div class="col center">
+<span ng-if="getEjercMat() + getEjercMaq() + getEjercOtros()" class="energized">{{(getEjercMaq() + getEjercOtros() + getEjercMat()) | currency}}</span>
+</div>
+</div>
+</div>
+<div class="item">
+<nvd3-pie-chart
+data="pEjerc"
+id="plantEjerc"
+height="320"
+x="xFunction()"
+y="yFunction()"
+showLabels="true"
+tooltips="true"
+tooltipcontent="toolTipPie()">
+<svg></svg>
+</nvd3-pie-chart>
+</div>
+</div>
+</div> -->
+
+
+
+
+<!-- <div class="card">
+<div class="item item-divider">
+Evolucion Campaña
+</div>
+<nvd3-line-chart ng-if="getEjercMat()"
+data="gMat"
+id ="ResMaterialesPlant"
+xAxisTickFormat="xAxisTickFormat()"
+yAxisTickFormat="yAxisTickFormat()"
+margin="{left:40,top:25,bottom:25,right:40}"
+height="320"
+showXAxis="true"
+showYAxis="true"
+tooltips="true"
+showLegend="true"
+showControls="true"
+useInteractiveGuideLine="true"
+tooltips="true"
+tooltipcontent="toolTipContentFunction()"
+interactive="true"
+interpolate="linear">
+<svg></svg>
+</nvd3-line-chart>
+<nvd3-line-chart ng-if="getEjercMaq()"
+data="gMaq"
+id ="ResMaqPlant"
+xAxisTickFormat="xAxisTickFormat()"
+yAxisTickFormat="yAxisTickFormat()"
+margin="{left:50,top:50,bottom:50,right:50}"
+height="320"
+showXAxis="true"
+showYAxis="true"
+tooltips="true"
+showLegend="true"
+showControls="true"
+useInteractiveGuideLine="true"
+tooltips="true"
+tooltipcontent="toolTipContentFunction()"
+interactive="true"
+interpolate="linear">
+<svg></svg>
+</nvd3-line-chart>
+<nvd3-line-chart ng-if="getEjercOtros()"
+data="gOtros"
+id ="ResOtrosPlant"
+xAxisTickFormat="xAxisTickFormat()"
+yAxisTickFormat="yAxisTickFormat()"
+margin="{left:50,top:50,bottom:50,right:50}"
+height="320"
+showXAxis="true"
+showYAxis="true"
+tooltips="true"
+showLegend="true"
+showControls="true"
+useInteractiveGuideLine="true"
+tooltips="true"
+tooltipcontent="toolTipContentFunction()"
+interactive="true"
+interpolate="linear">
+<svg></svg>
+</nvd3-line-chart>
+
+</div> -->
+
+
+<!--
+<script id="templates/popover-diarios.html" type="text/ng-template">
+<ion-popover-view>
+<ion-header-bar class="item item-divider">
+<h1 class="title">Diario a Crear: </h1>
+</ion-header-bar>
+
+<ion-content>
+<div class="list">
+<a ng-repeat="dia in diarios" ng-click="createDiario(dia.id); closePopover()" class="item item-icon-right">
+<i class="icon ion-ios7-arrow-forward"></i>
+{{dia.name}}
+</a>
+</div>
+</ion-content>
+</ion-popover-view>
+</script> -->
+<!--
+<script id="my-modal.html" type="text/ng-template">
+<ion-modal-view>
+<ion-header-bar class="bar bar-header bar-assertive">
+<h1 class="title">Eliminar Diario</h1>
+<button class="button button-clear button-primary" ng-click="modal.hide()">Cancelar</button>
+</ion-header-bar>
+<ion-content>
+<div class="list" style="margin-top: 30px">
+<a ng-click="deleteDia(parte); closeModal()" ng-repeat="parte in partes" class="button button-full" ng-class="{'disabled': parte.nlineas > 0}" style="margin-top:-12px;margin-bottom:11px">
+<i class="icon right ion-ios7-close assertive"></i>
+{{parte.name}} -> Total Diario {{parte.total|currency}}
+</a>
+</div>
+</ion-content>
+</ion-modal-view>
+</script> -->

@@ -1,0 +1,39 @@
+<div class="list card">
+  <div class="item item-avatar item-divider">
+    <i class="icon balanced ion-ios7-plus"></i>
+    <h2>{{title}}</h2>
+    <p>{{$stateParams.tipoName | uppercase}}</p>
+  </div>
+  <div class="button-bar">
+    <a class="button button-outline button-positive icon-left ion-ios7-arrow-left" ng-click="back()"> Volver</a>
+    <a class="button button-outline button-positive icon-right ion-ios7-cloud-upload-outline" ng-click="save()"> Guardar</a>
+  </div>
+    <label class="item item-input">
+      <span class="input-label">Laboratorio:</span>
+      {{labSel.name}}
+        <button class="button button-clear button-positive icon-right ion-ios7-search" ui-sref="main.camp.analisis.tipo.add.lab"></button>
+    </label>
+
+      <div ng-if="$state.includes('main.camp.analisis.tipo.add.lab')" ui-view></div>
+
+    <label class="item item-input">
+      <span class="input-label">Fecha:</span>
+      {{fchSel | amDateFormat:'DD/MM/YYYY'}}
+        <button class="button button-clear button-positive icon-right ion-ios7-search" ui-sref="main.camp.analisis.tipo.add.fecha"></button>
+    </label>
+
+    <div ng-if="$state.includes('main.camp.analisis.tipo.add.fecha')" ui-view></div>
+
+    <label class="item item-input">
+      <span class="input-label">Nº Referencia:</span>
+        <input type="text" ng-model="ana.nref" placeholder="Introduzca nº referencia del analisis...">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Muestra:</span>
+      <input type="text" ng-model="ana.muestra" placeholder="Introduzca identificacion de la muestra...">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Motivo:</span>
+      <input type="text" ng-model="ana.motivo" placeholder="Introduzca motivo del analisis...">
+    </label>
+</div>

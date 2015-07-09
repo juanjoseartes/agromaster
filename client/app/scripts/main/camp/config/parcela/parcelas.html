@@ -1,0 +1,45 @@
+<div class="row" style="margin-top:-20px;">
+  <div class="col col-33 col-offset-67">
+    <a class="button button-clear button-positive icon-left ion-ios7-plus-outline"
+    ui-sref="main.camp.config.home.parc.add"> Parcela</a>
+  </div>
+</div>
+<div ui-view ng-if="$state.includes('main.camp.config.home.parc.add')"></div>
+<div class="list">
+
+  <div ng-repeat="parcela in parcelas track by $index | orderBy: 'confecc.name'">
+    <a class="item" ui-sref="main.camp.config.home.parc.edit({parcId: parcela.id})">
+      <h2 ng-if="parcela.active" class="positive">{{parcela.name}}</h2>
+      <h2 ng-if="!parcela.active" class="button button-small button-clear button-stable">{{parcela.name}}</h2>
+      <p>Sup. Total: {{parcela.suptotal}} has
+        <br/>Sup. Cultiv.: <strong>{{parcela.supcult}} has</strong> <small>( {{(parcela.supcult/parcela.suptotal)}} )</small>
+      </p>
+    </a>
+    <div ui-view ng-if="($stateParams.parcId == parcela.id)"></div>
+  </div>
+</div>
+
+<!-- <div class="table-responsive">
+  <table class="table table-bordered table-condensed table-striped">
+    <thead>
+      <tr>
+        <th>Parcelas</th>
+        <th>Superficie (has)</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="2"><a class="button button-block button-outline button-positive icon icon-left ion-ios7-plus-outline" ui-sref="main.camp.config.parcadd">Parcela</a></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr ng-repeat="parcela in parcelas">
+        <td>
+          <a ng-if="parcela.active" class="button button-block button-small button-clear button-positive" href="#/inicio/{{ejercId}}/parcela/{{parcela.id}}">{{parcela.name}}</a>
+          <a ng-if="!parcela.active" class="button button-block button-small button-clear button-stable" href="#/inicio/{{ejercId}}/parcela/{{parcela.id}}">{{parcela.name}}</a>
+        </td>
+        <td>{{parcela.suptotal}}has totales<br/>{{parcela.supcult}}has cultivo <span ng-class="{assertive: (parcela.supcult/(parcela.suptotal || 1)) > 1}"></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->

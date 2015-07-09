@@ -1,0 +1,265 @@
+<h4 class="title" style="margin-top: 12px">
+  Resumen Cultivo <strong class="positive">Campaña {{curfinca.ejercCurso.name}}</strong> :
+</h4>
+<div class="row responsive-lg">
+  <div class="col">
+    <div class="card">
+      <div class="item item-divider">
+        Resumen Campaña
+      </div>
+      <div class="list">
+        <div class="item">
+          Abonado: <span ng-if="getEjercAbon()" class="badge badge-energized">{{getEjercAbon() | currency}}</span>
+        </div>
+        <div class="item">
+          Entutorado: <span ng-if="getEjercMant()" class="badge badge-energized">{{getEjercMant() | currency}}</span>
+        </div>
+        <div class="item">
+          Plantacion: <span ng-if="getEjercPlant()" class="badge badge-energized">{{getEjercPlant() | currency}}</span>
+        </div>
+        <div class="item">
+          Poda: <span ng-if="getEjercPoda()" class="badge badge-energized">{{getEjercPoda() | currency}}</span>
+        </div>
+        <div class="item">
+          Riego: <span ng-if="getEjercRiego()" class="badge badge-energized">{{getEjercRiego() | currency}}</span>
+        </div>
+        <div class="item">
+          Suelo: <span ng-if="getEjercSuelo()" class="badge badge-energized">{{getEjercSuelo() | currency}}</span>
+        </div>
+        <div class="item">
+          Tratamientos: <span ng-if="getEjercTrat()" class="badge badge-energized">{{getEjercTrat() | currency}}</span>
+        </div>
+        <div class="item">
+          Tuneles: <span ng-if="getEjercLimp()" class="badge badge-energized">{{getEjercLimp() | currency}}</span>
+        </div>
+        <div class="item item-divider">
+          <div class="row responsive-md">
+            <div class="col">
+              Total:
+            </div>
+            <div class="col center"></div>
+            <div class="col center">
+              <span class="energized">{{(getEjercAbon() + getEjercLimp() + getEjercMant() + getEjercPlant() + getEjercPoda() + getEjercRiego() + getEjercSuelo() + getEjercTrat()) | currency}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item item-divider">
+        Reparto:
+      </div>
+      <div class="item">
+        <nvd3-pie-chart
+        data="pEjerc"
+        id="cultEjerc"
+        height="320"
+        x="xFunction()"
+        y="yFunction()"
+        showLabels="true"
+        tooltips="true"
+        tooltipcontent="toolTipPie()">
+        <svg></svg>
+      </nvd3-pie-chart>
+    </div>
+    </div>
+
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="item item-divider">
+        Evolucion Campaña:
+      </div>
+      <div ng-if="getEjercAbon()" class="padding-top">
+        <div class="item item-divider">
+          Abonado:
+        </div>
+        <nvd3-line-chart
+        data="gAbon"
+        id ="ResAbonadoCult"
+        xAxisTickFormat="xAxisTickFormat()"
+        yAxisTickFormat="yAxisTickFormat()"
+        margin="{left:40,top:25,bottom:25,right:40}"
+        height="320"
+        showXAxis="true"
+        showYAxis="true"
+        tooltips="true"
+        showLegend="true"
+        showControls="true"
+        useInteractiveGuideLine="true"
+        tooltips="true"
+        tooltipcontent="toolTipContentFunction()"
+        interactive="true"
+        interpolate="linear">
+          <svg></svg>
+        </nvd3-line-chart>
+    </div>
+    <div ng-if="getEjercMant()" class="padding-top">
+      <div class="item item-divider">
+        Entutorado:
+      </div>
+      <nvd3-line-chart
+      data="gMant"
+      id ="ResMantenimientoCult"
+      xAxisTickFormat="xAxisTickFormat()"
+      yAxisTickFormat="yAxisTickFormat()"
+      margin="{left:40,top:25,bottom:25,right:40}"
+      height="320"
+      showXAxis="true"
+      showYAxis="true"
+      tooltips="true"
+      showLegend="true"
+      showControls="true"
+      useInteractiveGuideLine="true"
+      tooltips="true"
+      tooltipcontent="toolTipContentFunction()"
+      interactive="true"
+      interpolate="linear">
+        <svg></svg>
+      </nvd3-line-chart>
+    </div>
+    <div ng-if="getEjercPlant()" class="padding-top">
+      <div class="item item-divider">
+        Plantacion:
+      </div>
+      <nvd3-line-chart
+      data="gPlant"
+      id ="ResPlantacionCult"
+      xAxisTickFormat="xAxisTickFormat()"
+      yAxisTickFormat="yAxisTickFormat()"
+      margin="{left:40,top:25,bottom:25,right:40}"
+      height="320"
+      showXAxis="true"
+      showYAxis="true"
+      tooltips="true"
+      showLegend="true"
+      showControls="true"
+      useInteractiveGuideLine="true"
+      tooltips="true"
+      tooltipcontent="toolTipContentFunction()"
+      interactive="true"
+      interpolate="linear">
+        <svg></svg>
+      </nvd3-line-chart>
+    </div>
+    <div ng-if="getEjercPoda()" class="padding-top">
+      <div class="item item-divider">
+        Poda:
+      </div>
+      <nvd3-line-chart
+      data="gPoda"
+      id ="ResPodaCult"
+      xAxisTickFormat="xAxisTickFormat()"
+      yAxisTickFormat="yAxisTickFormat()"
+      margin="{left:40,top:25,bottom:25,right:40}"
+      height="320"
+      showXAxis="true"
+      showYAxis="true"
+      tooltips="true"
+      showLegend="true"
+      showControls="true"
+      useInteractiveGuideLine="true"
+      tooltips="true"
+      tooltipcontent="toolTipContentFunction()"
+      interactive="true"
+      interpolate="linear">
+        <svg></svg>
+      </nvd3-line-chart>
+    </div>
+    <div ng-if="getEjercRiego()" class="padding-top">
+      <div class="item item-divider">
+        Riego:
+      </div>
+      <nvd3-line-chart
+      data="gRiego"
+      id ="ResRiegoCult"
+      xAxisTickFormat="xAxisTickFormat()"
+      yAxisTickFormat="yAxisTickFormat()"
+      margin="{left:40,top:25,bottom:25,right:40}"
+      height="320"
+      showXAxis="true"
+      showYAxis="true"
+      tooltips="true"
+      showLegend="true"
+      showControls="true"
+      useInteractiveGuideLine="true"
+      tooltips="true"
+      tooltipcontent="toolTipContentFunction()"
+      interactive="true"
+      interpolate="linear">
+        <svg></svg>
+      </nvd3-line-chart>
+    </div>
+    <div ng-if="getEjercSuelo()" class="padding-top">
+      <div class="item item-divider">
+        Suelo:
+      </div>
+      <nvd3-line-chart
+      data="gSuelo"
+      id ="ResSueloCult"
+      xAxisTickFormat="xAxisTickFormat()"
+      yAxisTickFormat="yAxisTickFormat()"
+      margin="{left:40,top:25,bottom:25,right:40}"
+      height="320"
+      showXAxis="true"
+      showYAxis="true"
+      tooltips="true"
+      showLegend="true"
+      showControls="true"
+      useInteractiveGuideLine="true"
+      tooltips="true"
+      tooltipcontent="toolTipContentFunction()"
+      interactive="true"
+      interpolate="linear">
+        <svg></svg>
+      </nvd3-line-chart>
+    </div>
+    <div ng-if="getEjercTrat()" class="padding-top">
+      <div class="item item-divider">
+        Tratamientos:
+      </div>
+      <nvd3-line-chart
+      data="gTrat"
+      id ="ResTratamientosCult"
+      xAxisTickFormat="xAxisTickFormat()"
+      yAxisTickFormat="yAxisTickFormat()"
+      margin="{left:40,top:25,bottom:25,right:40}"
+      height="320"
+      showXAxis="true"
+      showYAxis="true"
+      tooltips="true"
+      showLegend="true"
+      showControls="true"
+      useInteractiveGuideLine="true"
+      tooltips="true"
+      tooltipcontent="toolTipContentFunction()"
+      interactive="true"
+      interpolate="linear">
+        <svg></svg>
+      </nvd3-line-chart>
+    </div>
+    <div ng-if="getEjercLimp()" class="padding-top">
+      <div class="item item-divider">
+        Tuneles:
+      </div>
+      <nvd3-line-chart
+      data="gLimp"
+      id ="ResLimpiezaCult"
+      xAxisTickFormat="xAxisTickFormat()"
+      yAxisTickFormat="yAxisTickFormat()"
+      margin="{left:40,top:25,bottom:25,right:40}"
+      height="320"
+      showXAxis="true"
+      showYAxis="true"
+      tooltips="true"
+      showLegend="true"
+      showControls="true"
+      useInteractiveGuideLine="true"
+      tooltips="true"
+      tooltipcontent="toolTipContentFunction()"
+      interactive="true"
+      interpolate="linear">
+      <svg></svg>
+    </nvd3-line-chart>
+  </div>
+  </div>
+</div>
+</div>

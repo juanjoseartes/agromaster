@@ -1,0 +1,24 @@
+<div class="row">
+  <a class="item-note button button-clear button-positive icon-left ion-ios7-plus-outline"
+  ui-sref="main.camp.config.home.confecc.add"> Confeccion</a>
+</div>
+<div ui-view ng-if="(!$stateParams.confeccId)&&($state.includes('main.camp.config.home.confecc.add'))"></div>
+<div class="list">
+
+    <div ng-repeat="confecc in confecciones | orderBy: 'confecc.name'">
+      <a class="item item-icon-left"
+      ui-sref="main.camp.config.home.confecc.edit({confeccId: confecc.id})">
+      <i class="icon ion-grid"></i>
+      <h2>{{confecc.name}} ({{confecc.nenvases}} x {{confecc.pesounit}}) <span class="badge badge-stable">{{confecc.nenvases*confecc.pesounit*confecc.unidad.coefconvert | number}}Kgs</span></h2>
+      <p>Categ:
+        <span ng-if="confecc.categ == 'e'" class="color-demo assertive-bg assertive-border padding-left padding-right" style="color:white">Especial</span>
+        <span ng-if="confecc.categ == '1'" class="color-demo energized-bg energized-border padding-left padding-right" style="color:white">1ª Categoria</span>
+        <span ng-if="confecc.categ == '2'" class="color-demo balanced-bg balanced-border padding-left padding-right" style="color:white">2ª Categoria</span>
+        <span ng-if="confecc.categ == 'i'" class="color-demo calm-bg calm-border padding-left padding-right" style="color:white">Industria</span>
+        <span ng-if="confecc.categ == 'd'" class="color-demo dark-bg dark-border padding-left padding-right" style="color:white">Destrio</span>
+      </p>
+    </a>
+    <div ui-view ng-if="($stateParams.confeccId === confecc.id)"></div>
+  </div>
+
+</div>

@@ -1,0 +1,60 @@
+    <div class="list card">
+      <div class="item item-divider">
+        Seleccione una Campaña:
+      </div>
+      <div class="item item-text-wrap">
+        <p>
+          <div class="list card">
+            <a class="item item-icon-left item-icon-right" ng-click="selectEjerc(ejerc)" class="item item-icon-right" ng-repeat="ejerc in ejercicios">
+              <i ng-if="ejerc.active" class="icon ion-ios7-checkmark balanced"></i>
+              <i ng-if="!ejerc.active" class="icon ion-ios7-circle-filled energized"></i>
+              {{ejerc.name}}<br/><small>{{ejerc.especies[0].name}}</small>
+              <i class="icon ion-ios7-arrow-right"></i>
+            </a>
+          </div>
+
+        </p>
+      </div>
+      <div class="item">
+        <button class="button button-small button-clear button-positive pull-right" ng-click="modalEjerc.show()">
+          <i class="icon ion-ios7-plus-outline"></i>
+          Nuevo Ejercicio
+        </button>
+      </div>
+    </div>
+
+    <script id="templates/ejerc-modal.html" type="text/ng-template">
+    <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+    <button class="button button-clear button-primary" ng-click="modalEjerc.hide()"><i class="icon ion-ios-close-outline"></i> Cancelar</button>
+    <h1 class="title">Nuevo Ejercicio</h1>
+
+    </ion-header-bar>
+    <ion-content class="padding">
+    <div class="list">
+    <label class="item item-input">
+    <span class="input-label">Descripcion del Ejercicio: </span>
+    <input ng-model="newEjerc.name" type="text">
+    </label>
+    <label class="item item-input item-select">
+      <div class="input-label">
+        Especie a Cultivar:
+      </div>
+      <select ng-model="newEjerc.especies" ng-options="especie.id as especie.name for especie in especies">
+      </select>
+    </label>
+    <label class="item item-input">
+    <span class="input-label">Fecha de Inicio: </span>
+    <input ng-model="newEjerc.fchinic" type="date">
+    </label>
+    <label class="item item-input">
+    <span class="input-label">Fecha de Cierre: </span>
+    <input ng-model="newEjerc.fchfin" type="date">
+    </label>
+
+
+    <button class="button button-block button-positive" ng-click="createEjercicio(newEjerc)">Create <i class="icon ion-ios-checkmark-outline"></i></button>
+    </div>
+    </ion-content>
+    </ion-modal-view>
+    </script>

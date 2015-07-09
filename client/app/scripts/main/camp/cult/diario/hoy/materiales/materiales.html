@@ -1,0 +1,51 @@
+<div style="margin-top: 12px" class="item item-divider">
+  Detalle Materiales ({{$stateParams.nameDia}}): <span class="right energized">Total: {{getTotal() | currency}}</span>
+</div>
+<div class="bar bar-header item item-input-inset">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios7-search placeholder-icon"></i>
+    <input placeholder="Buscar..." type="search"/>
+  </label>
+  <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.cult.home.hoy.diario.materiales.add">
+    Añadir
+  </a>
+</div>
+<div ui-view ng-if="(!$stateParams.matId)&&($state.includes('main.camp.cult.home.hoy.diario.materiales.add'))"></div>
+<div class="row responsive-md">
+  <div class="col">
+    <div class="card">
+      <div class="item" ng-if="detmateriales.message">{{maquinaria.message}}</div>
+      <div class="item" ng-repeat="mat in resDia" ng-if="$even">
+        <div class="item-button-left">
+          <button class="button assertive button-small button-icon icon ion-ios7-minus-outline" ng-click="deleteMat(mat)"></button>
+        </div>
+        <div style="margin-left:42px">{{mat.litArt}}
+          <span class="badge badge-energized">{{mat.cantidad * mat.precio | currency}}</span>
+          <div class="button-bar">
+            <button class="button button-clear button-positive icon icon-left ion-ios7-compose-outline" ui-sref="main.camp.cult.home.hoy.diario.materiales.edit({matId: mat.id})"> Cantidad: {{mat.cantidad}} {{mat.litUnidad}}</button>
+          </div>
+        </div>
+
+        <div ui-view ng-if="$stateParams.matId === mat.id"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="list card">
+      <div class="item" ng-if="detmateriales.message">{{maquinaria.message}}</div>
+      <div class="item" ng-repeat="mat in resDia" ng-if="$odd">
+        <div class="item-button-left">
+          <button class="button assertive button-small button-icon icon ion-ios7-minus-outline" ng-click="deleteMat(mat)"></button>
+        </div>
+        <div style="margin-left:42px">{{mat.litArt}}
+          <span class="badge badge-energized">{{mat.cantidad * mat.precio | currency}}</span>
+          <div class="button-bar">
+            <button class="button button-clear button-positive icon icon-left ion-ios7-compose-outline" ui-sref="main.camp.cult.home.hoy.diario.materiales.edit({matId: mat.id})"><small>Cantidad: {{mat.cantidad}} {{mat.litUnidad}}</small></button>
+          </div>
+        </div>
+
+        <div ui-view ng-if="$stateParams.matId === mat.id"></div>
+      </div>
+    </div>
+  </div>
+</div>

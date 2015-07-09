@@ -1,0 +1,88 @@
+<div class="list card" id="residuos">
+  <!-- <div class="item item-icon-left item-divider">
+    <i class="icon ion-ios7-trash-outline"></i>
+    <h2>{{title}}</h2>
+    <p>{{fincaName}}</p>
+  </div> -->
+
+  <div class="item item-divider">
+    Retirada Residuos: <span class="right energized">Total: {{residuos.length}}</span>
+  </div>
+  <div class="bar bar-header item item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios7-search placeholder-icon"></i>
+      <input placeholder="Buscar..." type="search"/>
+    </label>
+    <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.residuos.add">
+      Añadir
+    </a>
+  </div>
+  <div ui-view ng-if="$state.includes('main.camp.residuos.add')"></div>
+  <div class="row responsive-lg">
+    <div class="col col-50">
+      <div class="list" ng-repeat="res in residuos" ng-if="$even">
+        <div class="item item-divider">
+          {{res.gestor.name}}<br/>Nº. Albaran: {{res.nalbaran}}
+        </div>
+        <a class="item" ui-sref="main.camp.residuos.edit({resId: res.id})">
+          <h2>{{res.tipo}}</h2>
+          <span class="badge badge-energized">{{res.fecha | date}}</span>
+          <p>Obs: {{res.obs}}</p>
+        </a>
+        <div ui-view ng-if="$state.includes('main.camp.residuos.edit')&&$stateParams.resId === res.id"></div>
+        <div class="item item-divider">
+          Copia Albaran:
+          <a class="item-note button button-positive button-clear button-small" ui-sref="main.camp.residuos.upload({resId: res.id})">
+            <i class="icon icon-left ion-ios7-plus-outline"></i>
+            Alb.
+          </a>
+        </div>
+        <div ng-repeat="doc in res.albaranes" class="item">
+          <a class="item-button-left button button-positive button-clear icon ion-ios7-paper" ng-href="/{{doc.url}}"> {{doc.name}}</a>
+          <button ng-click="deleteDoc(doc)" class="item-button-right button button-clear button-energized icon ion-ios7-close-outline"></button>
+        </div>
+        <div ui-view ng-if="$state.includes('main.camp.residuos.upload')&&$stateParams.resId === res.id"></div>
+        <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item assertive" ng-click="delete(res)">
+            <i class="icon ion-ios7-minus-outline"></i>
+            Borrar Gest. Residuos
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-50">
+      <div class="list" ng-repeat="res in residuos" ng-if="$odd">
+        <div class="item item-divider">
+          {{res.gestor.name}}<br/>Nº. Albaran: {{res.nalbaran}}
+        </div>
+        <a class="item" ui-sref="main.camp.residuos.edit({resId: res.id})">
+          <h2>{{res.tipo}}</h2>
+          <span class="badge badge-energized">{{res.fecha | date}}</span>
+          <p>Obs: {{res.obs}}</p>
+        </a>
+        <div ui-view ng-if="$state.includes('main.camp.residuos.edit')&&$stateParams.resId === res.id"></div>
+        <div class="item item-divider">
+          Copia Albaran:
+          <a class="item-note button button-positive button-clear button-small" ui-sref="main.camp.residuos.upload({resId: res.id})">
+            <i class="icon icon-left ion-ios7-plus-outline"></i>
+            Alb.
+          </a>
+        </div>
+        <div ng-repeat="doc in res.albaranes" class="item">
+          <a class="item-button-left button button-positive button-clear icon ion-ios7-paper" ng-href="/{{doc.url}}"> {{doc.name}}</a>
+          <button ng-click="deleteDoc(doc)" class="item-button-right button button-clear button-energized icon ion-ios7-close-outline"></button>
+        </div>
+        <div ui-view ng-if="$state.includes('main.camp.residuos.upload')&&$stateParams.resId === res.id"></div>
+        <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item assertive" ng-click="delete(res)">
+            <i class="icon ion-ios7-minus-outline"></i>
+            Borrar Gest. Residuos
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,58 @@
+<div style="margin-top: 12px" class="item item-divider">
+  Detalle Otros ({{$stateParams.nameDia}}): <span class="right energized">Total: {{getTotal() | currency}}</span>
+</div>
+<div class="bar bar-header item item-input-inset">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios7-search placeholder-icon"></i>
+    <input placeholder="Buscar..." type="search"/>
+  </label>
+  <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.cult.home.hoy.diario.otros.add">
+    Añadir
+  </a>
+</div>
+<div ui-view ng-if="(!$stateParams.otId)&&($state.includes('main.camp.cult.home.hoy.diario.otros.add'))"></div>
+
+<div class="row responsive-md">
+  <div class="col">
+    <!-- <div class="buttons">
+      <button class="button button-positive button-clear icon ion-ios7-plus-outline" ui-sref="main.camp.cult.home.plantacion.otros.add"> Añadir Otros Plantacion</button>
+    </div>
+    <div ui-view ng-if="(!$stateParams.otId)&&($state.includes('main.camp.cult.home.plantacion.otros.add'))"></div> -->
+    <div class="list card">
+      <div class="item" ng-if="detotros.message">{{detotros.message}}</div>
+      <div class="item" ng-repeat="ot in detotros" ng-if="$even">
+        <div class="item-button-left">
+          <button class="button assertive button-small button-icon icon ion-ios7-minus-outline" ng-click="deleteOt(ot)"></button>
+        </div>
+        <div style="margin-left:42px">{{ot.concepto}}
+          <span class="badge badge-energized">{{ot.cantidad * ot.precio | currency}}</span>
+          <div class="button-bar">
+            <button class="button button-clear button-positive icon ion-ios7-compose-outline" ui-sref="main.camp.cult.home.hoy.diario.otros.edit({otId: ot.id})"><small>Cantidad: {{ot.cantidad}} x Precio: {{ot.precio}}</small></button>
+          </div>
+        </div>
+        <div ui-view ng-if="$stateParams.otId === ot.id"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <!-- <div class="buttons">
+      <button disabled class="button button-clear" ui-sref="main.camp.cult.home.plantacion.otros.add"></button>
+    </div> -->
+    <!-- <div ui-view ng-if="(!$stateParams.otId)&&($state.includes('main.camp.cult.home.plantacion.otros.add'))"></div> -->
+    <div class="list card">
+      <div class="item" ng-if="detotros.message">{{detotros.message}}</div>
+      <div class="item" ng-repeat="ot in detotros" ng-if="$odd">
+        <div class="item-button-left">
+          <button class="button assertive button-small button-icon icon ion-ios7-minus-outline" ng-click="deleteOt(ot)"></button>
+        </div>
+        <div style="margin-left:42px">{{ot.concepto}}
+          <span class="badge badge-energized">{{ot.cantidad * ot.precio | currency}}</span>
+          <div class="button-bar">
+            <button class="button button-clear button-positive icon ion-ios7-compose-outline" ui-sref="main.camp.cult.home.hoy.diario.otros.edit({otId: ot.id})"><small>Cantidad: {{ot.cantidad}} x Precio: {{ot.precio}}</small></button>
+          </div>
+        </div>
+        <div ui-view ng-if="$stateParams.otId === ot.id"></div>
+      </div>
+    </div>
+  </div>
+</div>

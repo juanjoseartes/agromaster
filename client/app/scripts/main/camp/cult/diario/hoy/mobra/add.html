@@ -1,0 +1,21 @@
+<div class="button-bar">
+  <a class="button  button-light" ng-click="back()">
+    <span class="positive">
+      <i class="icon left ion-ios7-close-outline"></i> Cerrar
+    </span>
+  </a>
+  <a class="button  button-light" ng-click="create()">
+    <span class="positive">
+      Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+    </span>
+  </a>
+</div>
+
+<ul class="list">
+  <li ng-repeat="emp in listempleados" class="item item-checkbox">
+    <label class="checkbox">
+      <input type="checkbox" checklist-model="diario.empleados" checklist-value="emp.empleado.id">
+    </label>
+    {{emp.empleado.name}} {{emp.empleado.apellidos}}
+  </li>
+</ul>

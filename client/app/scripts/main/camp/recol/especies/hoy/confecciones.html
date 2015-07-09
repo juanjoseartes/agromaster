@@ -1,0 +1,27 @@
+<div class="list" style="margin-top: 12px" >
+<div class="item item-divider">
+  Detalle Confecciones: <span class="right energized">Total: </span>
+</div>
+<div class="bar bar-header item item-input-inset" ng-if="$state.is('main.camp.recolecc.home.espec.hoy.confecc')">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios7-search placeholder-icon"></i>
+    <input placeholder="Buscar confeccion..." type="search" ng-model="searchText"/>
+  </label>
+  <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.recolecc.home.espec.hoy.confecc.add">
+    Añadir
+  </a>
+</div>
+
+<div ui-view></div>
+<div class="item item-text-wrap">
+<ul class="row">
+  <div ng-repeat="confecc in confeccHoy | filter:searchText" class="col">
+      <li class="item item-divider item-balanced item-button-right" >
+        <button style="margin-top: -12px" ng-disabled="!confeccHoy" class="button button-clear icon-left ion-ios7-close-outline button-assertive" ng-click="modal.show()"><small> Eliminar</small></button>
+        {{$index+1}} - {{confecc.name}}
+      </li>
+      <div class="item">Grafico Resumen:</div>
+  </div>
+</ul>
+</div>
+</div>

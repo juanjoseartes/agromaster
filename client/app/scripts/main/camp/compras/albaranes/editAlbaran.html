@@ -1,0 +1,182 @@
+
+<div style="margin-top:1px" class="item item-avatar item-divider item-button-left">
+  <a style="margin-top:-2px" class="button icon-left ion-ios7-arrow-back button-clear button-positive" ng-click="back()"></a>
+  <h2>{{title}} <span class="item-note dark">Nº: {{albaran.nalb}} - Total: {{sumAbono()+sumFito()+sumMatVeg()+sumOtros() | currency}}</span></h2>
+  <p>Proveedor: {{albaran.proveedor.name}} <span class="item-note">Fch: {{albaran.fch | amDateFormat:'DD/MM/YYYY'}}</span></p>
+</div>
+<div class="card">
+  <div class="item item-divider item-button-right">
+    <a style="margin-top:-12px" class="button icon-left ion-ios7-plus-outline button-clear button-positive" ui-sref="main.camp.compras.search.albFertil({ albId: albaran.id })"> <small>Abono</small></a>
+    <h2>ABONOS</h2>
+  </div>
+  <div ng-repeat="linea in detCompra track by $index | orderBy: 'articulo.name'" ng-if="linea.almacen == 'abonos'" class="item">
+    <div class="item row responsive-md" ng-if="linea.id != $stateParams.detId">
+      <div class="col">
+        <h3><a style="margin-top:-12px;margin-bottom:-12px" class="button button-clear button-positive icon icon-left ion-ios7-compose-outline" ui-sref="main.camp.compras.home.alb.edit.fertil({ detId: linea.id })"> {{linea.articulo.name}}</a></h3>
+        <p>{{linea.articulo.titular}}<br/>Nº Reg: {{linea.articulo.nreg}}</p>
+      </div>
+      <div class="col">
+        <i class="icon ion-ios7-pricetags-outline"></i>
+        Compra:
+        <p style="margin-left:24px">{{linea.cant}}u x {{linea.capenvase}}{{linea.udenvase.name}}
+          <br/>{{linea.precunit | currency}}/u</p>
+        </div>
+        <div class="col">
+          <i class="icon ion-ios7-speedometer-outline"></i>
+          Total:
+          <p style="margin-left:24px">{{linea.cant*linea.precunit | currency}}
+            <br/>{{linea.cant*linea.capenvase*linea.udenvase.coefconvert | number}}
+            <span ng-if="linea.udenvase.tipo == 'Peso'">Kg</span>
+            <span ng-if="linea.udenvase.tipo == 'Volumen'">Lt</span>
+          </p>
+        </div>
+        <div class="col">
+          <span class="item-note">
+            <a class="button button-small button-clear button-assertive icon ion-ios7-close-outline" ng-click="delete()"> </a>
+          </span>
+          <i class="icon ion-ios7-calculator-outline"></i>
+          Coste Unit:
+          <p style="margin-left:24px">{{((linea.cant*linea.precunit)/(linea.cant*linea.capenvase))/linea.udenvase.coefconvert | currency}}/
+            <span ng-if="linea.udenvase.tipo == 'Peso'">Kg</span>
+            <span ng-if="linea.udenvase.tipo == 'Volumen'">Lt</span>
+          </p>
+        </div>
+      </div>
+      <div ui-view ng-if="linea.id == $stateParams.detId"></div>
+    </div>
+    <div class="item item-divider item-button-right" ng-if="sumAbono()">
+      <h2 class="item-note energized">TOTAL ABONOS: {{sumAbono()|currency}}</h2>
+    </div>
+  </div>
+  <div class="card">
+    <div class="item item-divider item-button-right">
+      <a style="margin-top:-12px" class="button icon-left ion-ios7-plus-outline button-clear button-positive" ui-sref="main.camp.compras.search.albFito({ albId: albaran.id })"> <small>Fitosanitario</small></a>
+      <h2>FITOSANITARIOS</h2>
+    </div>
+    <div ng-repeat="linea in detCompra track by $index | orderBy: 'articulo.name'" ng-if="linea.almacen == 'fitosanitarios'" class="item">
+      <div class="item row responsive-sm" ng-if="linea.id != $stateParams.detId">
+        <div class="col">
+          <h3><a style="margin-top:-12px;margin-bottom:-12px" class="button button-clear button-positive icon icon-left ion-ios7-compose-outline" ui-sref="main.camp.compras.home.alb.edit.fertil({ detId: linea.id })"> {{linea.articulo.name}}</a></h3>
+          <p>{{linea.articulo.titular}}<br/>Nº Reg: {{linea.articulo.nreg}}</p>
+        </div>
+        <div class="col">
+          <i class="icon ion-ios7-pricetags-outline"></i>
+          Compra:
+          <p style="margin-left:24px">{{linea.cant}}u x {{linea.capenvase}}{{linea.udenvase.name}}
+            <br/>{{linea.precunit | currency}}/u</p>
+          </div>
+          <div class="col">
+            <i class="icon ion-ios7-speedometer-outline"></i>
+            Total:
+            <p style="margin-left:24px">{{linea.cant*linea.precunit | currency}}
+              <br/>{{linea.cant*linea.capenvase*linea.udenvase.coefconvert}}
+              <span ng-if="linea.udenvase.tipo == 'Peso'">Kg</span>
+              <span ng-if="linea.udenvase.tipo == 'Volumen'">Lt</span>
+            </p>
+          </div>
+          <div class="col">
+            <span class="item-note">
+              <a class="button button-small button-clear button-assertive icon ion-ios7-close-outline" ng-click="delete()"> </a>
+            </span>
+            <i class="icon ion-ios7-calculator-outline"></i>
+            Coste Unit:
+            <p style="margin-left:24px">{{((linea.cant*linea.precunit)/(linea.cant*linea.capenvase))/linea.udenvase.coefconvert | currency}}/
+              <span ng-if="linea.udenvase.tipo == 'Peso'">Kg</span>
+              <span ng-if="linea.udenvase.tipo == 'Volumen'">Lt</span>
+            </p>
+          </div>
+        </div>
+        <div ui-view ng-if="linea.id == $stateParams.detId"></div>
+      </div>
+      <div class="item item-divider item-button-right" ng-if="sumFito()">
+        <h2 class="item-note energized">TOTAL FITOSANITARIOS: {{sumFito()|currency}}</h2>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-divider item-button-right">
+        <a style="margin-top:-12px" class="button icon-left ion-ios7-plus-outline button-clear button-positive" ui-sref="main.camp.compras.edit.alb.search.fito"> <small>Mat.Vegetal</small></a>
+        <h2>MATERIAL VEGETAL</h2>
+      </div>
+      <div ng-repeat="linea in detCompra track by $index | orderBy: 'articulo.name'" ng-if="linea.almacen == 'material vegetal'" class="item">
+        <div class="item row responsive-sm" ng-if="linea.id != $stateParams.detId">
+          <div class="col">
+            <h3><a style="margin-top:-12px;margin-bottom:-12px" class="button button-clear button-positive icon icon-left ion-ios7-compose-outline" ui-sref="main.camp.compras.home.alb.edit.fertil({ detId: linea.id })"> {{linea.articulo.name}}</a></h3>
+            <p>{{linea.articulo.titular}}<br/>Nº Reg: {{linea.articulo.nreg}}</p>
+          </div>
+          <div class="col">
+            <i class="icon ion-ios7-pricetags-outline"></i>
+            Compra:
+            <p style="margin-left:24px">{{linea.cant}}u x {{linea.capenvase}}{{linea.udenvase.name}}
+              <br/>{{linea.precunit | currency}}/u</p>
+            </div>
+            <div class="col">
+              <i class="icon ion-ios7-speedometer-outline"></i>
+              Total:
+              <p style="margin-left:24px">{{linea.cant*linea.precunit | currency}}
+                <br/>{{linea.cant*linea.capenvase*linea.udenvase.coefconvert}}
+                <span ng-if="linea.udenvase.tipo == 'Peso'">Kg</span>
+                <span ng-if="linea.udenvase.tipo == 'Volumen'">Lt</span>
+              </p>
+            </div>
+            <div class="col">
+              <span class="item-note">
+                <a class="button button-small button-clear button-assertive icon ion-ios7-close-outline" ng-click="delete()"> </a>
+              </span>
+              <i class="icon ion-ios7-calculator-outline"></i>
+              Coste Unit:
+              <p style="margin-left:24px">{{((linea.cant*linea.precunit)/(linea.cant*linea.capenvase))/linea.udenvase.coefconvert | currency}}/
+                <span ng-if="linea.udenvase.tipo == 'Peso'">Kg</span>
+                <span ng-if="linea.udenvase.tipo == 'Volumen'">Lt</span>
+              </p>
+            </div>
+          </div>
+          <div ui-view ng-if="linea.id == $stateParams.detId"></div>
+        </div>
+        <div class="item item-divider item-button-right" ng-if="sumMatVeg()">
+          <h2 class="item-note energized">TOTAL MAT. VEGETAL: {{sumMatVeg()|currency}}</h2>
+        </div>
+      </div>
+      <div class="card">
+        <div class="item item-divider item-button-right">
+          <a style="margin-top:-12px" class="button icon-left ion-ios7-plus-outline button-clear button-positive" ui-sref="main.camp.compras.edit.alb.search.fito"> <small>Otros</small></a>
+          <h2>OTROS</h2>
+        </div>
+        <div ng-repeat="linea in detCompra track by $index | orderBy: 'articulo.name'" ng-if="linea.almacen == 'otros'" class="item">
+          <div class="item row responsive-sm" ng-if="linea.id != $stateParams.detId">
+            <div class="col">
+              <h3><a style="margin-top:-12px;margin-bottom:-12px" class="button button-clear button-positive icon icon-left ion-ios7-compose-outline" ui-sref="main.camp.compras.home.alb.edit.fertil({ detId: linea.id })"> {{linea.articulo.name}}</a></h3>
+              <p>{{linea.articulo.titular}}<br/>Nº Reg: {{linea.articulo.nreg}}</p>
+            </div>
+            <div class="col">
+              <i class="icon ion-ios7-pricetags-outline"></i>
+              Compra:
+              <p style="margin-left:24px">{{linea.cant}}u x {{linea.capenvase}}{{linea.udenvase.name}}
+                <br/>{{linea.precunit | currency}}/u</p>
+              </div>
+              <div class="col">
+                <i class="icon ion-ios7-speedometer-outline"></i>
+                Total:
+                <p style="margin-left:24px">{{linea.cant*linea.precunit | currency}}
+                  <br/>{{linea.cant*linea.capenvase*linea.udenvase.coefconvert}}
+                  <span ng-if="linea.udenvase.tipo == 'Peso'">Kg</span>
+                  <span ng-if="linea.udenvase.tipo == 'Volumen'">Lt</span>
+                </p>
+              </div>
+              <div class="col">
+                <span class="item-note">
+                  <a class="button button-small button-clear button-assertive icon ion-ios7-close-outline" ng-click="delete()"> </a>
+                </span>
+                <i class="icon ion-ios7-calculator-outline"></i>
+                Coste Unit:
+                <p style="margin-left:24px">{{((linea.cant*linea.precunit)/(linea.cant*linea.capenvase))/linea.udenvase.coefconvert | currency}}/
+                  <span ng-if="linea.udenvase.tipo == 'Peso'">Kg</span>
+                  <span ng-if="linea.udenvase.tipo == 'Volumen'">Lt</span>
+                </p>
+              </div>
+            </div>
+            <div ui-view ng-if="linea.id == $stateParams.detId"></div>
+          </div>
+          <div class="item item-divider item-button-right" ng-if="sumOtros()">
+            <h2 class="item-note energized">TOTAL OTROS: {{sumOtros()|currency}}</h2>
+          </div>
+        </div>

@@ -1,0 +1,34 @@
+<div style="margin-top: 12px" class="item item-divider">
+  Listado de Tarjetas:
+</div>
+<div class="table-responsive" st-table="empleados">
+  <div class="bar bar-header item item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios7-search placeholder-icon"></i>
+      <input st-search placeholder="Buscar..." type="search"/>
+    </label>
+    <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.mobra.empleados.add">
+      Añadir
+    </a>
+  </div>
+  <div ui-view></div>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="positive" st-sort="apellidos">Codigo</th>
+        <th class="positive" st-sort="tel">Tipo</th>
+        <th class="positive" st-sort="direccion">Empleado Actual</th>
+        <th class="positive" st-sort="poblacion">Historial Empl.</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="tarjeta in tarjetas">
+        <td>{{tarjeta.code}}</td>
+        <td>{{tarjeta.tipo}}<br/>{{empleado.email}}</td>
+        <td>{{tarjeta.emplCurso.name}}</td>
+        <td><p ng-repeat="empls in tarjeta.emplHist">{{empls.name}}</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

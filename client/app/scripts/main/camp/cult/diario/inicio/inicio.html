@@ -1,0 +1,166 @@
+<div class="row responsive-lg">
+  <div class="col">
+    <div class="card">
+      <div class="item item-divider">
+        Resumen del Dia
+      </div>
+      <div class="list">
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.parcela" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Parcelas: <span ng-if="getTotalParc()" class="badge badge-royal">{{getTotalParc()}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.mobra" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Mano Obra: <span ng-if="getTotalMObra()" class="badge badge-energized">{{getTotalMObra() | currency}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.materiales" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Materiales: <span ng-if="getTotalMat()" class="badge badge-energized">{{getTotalMat() | currency}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.maquinaria" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Maquinaria <span ng-if="getTotalMaq()" class="badge badge-energized">{{getTotalMaq() | currency}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.otros" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Otros: <span ng-if="getTotalOtros()" class="badge badge-energized">{{getTotalOtros() | currency}}</span>
+        </div>
+        <div class="item item-divider">
+          <div class="row responsive-md">
+            <div class="col">
+              Total:
+            </div>
+            <div class="col center">
+
+            </div>
+            <div class="col center">
+              <span ng-if="getTotalMaq() + getTotalOtros()" class="energized">{{(getTotalMaq() + getTotalOtros() + getTotalMat()) | currency}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="list">
+        <div class="item item-divider">
+          Total Parcelas: <span ng-if="getEjercParc()" class="badge badge-royal">{{getEjercParc()}}</span>
+        </div>
+        <div class="item item-divider">
+          Total Mano Obra: <span ng-if="getEjercMObra()" class="badge badge-energized">{{getEjercMObra() | currency}}</span>
+        </div>
+        <div class="item item-divider">
+          Total Materiales: <span ng-if="getEjercMat()" class="badge badge-energized">{{getEjercMat() | currency}}</span>
+        </div>
+        <div class="item item-divider">
+          Total Maquinaria <span ng-if="getEjercMaq()" class="badge badge-energized">{{getEjercMaq() | currency}}</span>
+        </div>
+        <div class="item item-divider">
+          Total Otros: <span ng-if="getEjercOtros()" class="badge badge-energized">{{getEjercOtros() | currency}}</span>
+        </div>
+        <div class="item item-divider">
+          <div class="row responsive-md">
+            <div class="col">
+              Acumulado Campaña:
+            </div>
+            <div class="col center">
+
+            </div>
+            <div class="col center">
+              <span ng-if="getEjercMat() + getEjercMaq() + getEjercOtros()" class="energized">{{(getEjercMaq() + getEjercOtros() + getEjercMat()) | currency}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <nvd3-pie-chart
+          data="pEjerc"
+          id="plantEjerc"
+          height="320"
+          x="xFunction()"
+          y="yFunction()"
+          showLabels="true"
+          tooltips="true"
+          tooltipcontent="toolTipPie()">
+          <svg></svg>
+        </nvd3-pie-chart>
+      </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col">
+    <div class="card">
+      <div class="item item-divider">
+        Evolucion Campaña
+      </div>
+      <nvd3-line-chart ng-if="getEjercMat()"
+      data="gMat"
+      id ="ResMaterialesPlant"
+      xAxisTickFormat="xAxisTickFormat()"
+      yAxisTickFormat="yAxisTickFormat()"
+      margin="{left:40,top:25,bottom:25,right:40}"
+      height="320"
+      showXAxis="true"
+      showYAxis="true"
+      tooltips="true"
+      showLegend="true"
+      showControls="true"
+      useInteractiveGuideLine="true"
+      tooltips="true"
+      tooltipcontent="toolTipContentFunction()"
+      interactive="true"
+      interpolate="linear">
+      <svg></svg>
+    </nvd3-line-chart>
+    <nvd3-line-chart ng-if="getEjercMaq()"
+    data="gMaq"
+    id ="ResMaqPlant"
+    xAxisTickFormat="xAxisTickFormat()"
+    yAxisTickFormat="yAxisTickFormat()"
+    margin="{left:50,top:50,bottom:50,right:50}"
+    height="320"
+    showXAxis="true"
+    showYAxis="true"
+    tooltips="true"
+    showLegend="true"
+    showControls="true"
+    useInteractiveGuideLine="true"
+    tooltips="true"
+    tooltipcontent="toolTipContentFunction()"
+    interactive="true"
+    interpolate="linear">
+    <svg></svg>
+  </nvd3-line-chart>
+  <nvd3-line-chart ng-if="getEjercOtros()"
+  data="gOtros"
+  id ="ResOtrosPlant"
+  xAxisTickFormat="xAxisTickFormat()"
+  yAxisTickFormat="yAxisTickFormat()"
+  margin="{left:50,top:50,bottom:50,right:50}"
+  height="320"
+  showXAxis="true"
+  showYAxis="true"
+  tooltips="true"
+  showLegend="true"
+  showControls="true"
+  useInteractiveGuideLine="true"
+  tooltips="true"
+  tooltipcontent="toolTipContentFunction()"
+  interactive="true"
+  interpolate="linear">
+  <svg></svg>
+</nvd3-line-chart>
+
+    </div>
+  </div>
+</div>

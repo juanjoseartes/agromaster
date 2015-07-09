@@ -1,0 +1,77 @@
+<a class="button icon-left ion-ios7-arrow-left button-clear button-positive" ng-click="back()"> Volver</a>
+
+<form name="editEjerc" role="form">
+<div class="card">
+
+  <div class="item item-avatar item-divider">
+    <i class="icon ion-ios7-compose-outline"></i>
+    <h2 ng-if="campId">{{ejercicio.name}}</h2>
+    <h2 ng-if="!campId"> Nuevo Ejercicio: {{ejercicio.name}}</h2>
+    <p>{{title}}</p>
+  </div>
+  <div class="item">
+  <div class="list">
+  <label class="item item-input">
+    <span class="input-label">Nombre:</span>
+    <input type="text" ng-model="ejercicio.name" required placeholder="Introduzca nombre identificativo del ejercicio... ">
+  </label>
+
+  <label class="item item-input">
+    <div class="row responsive-lg">
+      <div class="col">
+      <span class="input-label">Fecha Inicio: <strong class="center">{{ejercicio.fchinic | amDateFormat:'DD/MM/YYYY'}}</strong></span>
+      <div style="display:inline-block; min-height:290px;">
+          <datepicker ng-model="ejercicio.fchinic" show-weeks="true" starting-day="1" class="well well-sm"></datepicker>
+      </div>
+    </div>
+  <div class="col">
+    <span class="input-label">Fecha Fin: {{ejercicio.fchfin | amDateFormat:'DD/MM/YYYY'}}</span>
+    <div style="display:inline-block; min-height:290px;">
+        <datepicker ng-model="ejercicio.fchfin" show-weeks="true" starting-day="1" class="well well-sm"></datepicker>
+    </div>
+  </div>
+
+  </div>
+  </label>
+  <ion-toggle ng-model="ejercicio.active" toggle-class="toggle-positive">Activo</ion-toggle>
+</div>
+  </div>
+
+  <div class="button-bar">
+  <a class="button button-positive button-clear icon-left ion-ios7-arrow-left" ng-click="back()"> Volver</a>
+  <a ng-if="!campId" class="button button-positive icon-right ion-ios7-cloud-upload-outline" ng-click="newEjerc()">Crear </a>
+  <a ng-if="campId" class="button button-positive icon-right ion-ios7-cloud-upload-outline" ng-click="saveEjerc()">Guardar </a>
+</div>
+</div>
+</div>
+<div class="col" ng-if="campId">
+<div class="card">
+
+  <div class="item item-avatar item-divider">
+    <i class="icon ion-ios7-compose-outline"></i>
+    <h2 ng-if="campId">{{ejercicio.name}}</h2>
+    <h2 ng-if="!campId"> Nuevo Ejercicio: {{ejercicio.name}}</h2>
+    <p>Especies Cultivadas</p>
+  </div>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Cultivos ({{especies.length}})</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td><a class="button button-block button-outline button-positive icon icon-left ion-ios7-plus-outline" href="#/inicio/{{ejercicio.id}}/ejerc/{{campId}}/cultivo">Cultivo</a></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr ng-repeat="espec in especies">
+        <td><a href="#/inicio/{{ejercicio.id}}/ejerc/{{campId}}/cultivo" class="button button-block button-small button-clear button-positive">{{espec.name}}</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</form>

@@ -1,0 +1,28 @@
+
+<div class="button-bar">
+  <a class="button  button-light" ng-click="back()">
+    <span class="positive">
+      <i class="icon left ion-ios7-close-outline"></i> Cerrar
+    </span>
+  </a>
+  <a class="button  button-light" ng-click="save()">
+    <span class="positive">
+      Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+    </span>
+  </a>
+</div>
+<p>
+  Cantidad: {{maquina.cantidad}}
+</p>
+<div class="list">
+  <div class="item range range-positive">
+    <i class="icon ion-ios7-sunny-outline"></i>
+    <input type="range" ng-model="maquina.cantidad" name="volume" min="0" max="24" value="0" step="0.5">
+    <i class="icon ion-ios7-sunny"></i>
+  </div>
+</div>
+<label ng-if="maquina.maquinaria.propiedad == 'alquiler'" class="item item-input">
+  <span class="input-label positive">Precio:</span>
+  <input type="text" ng-model="maquina.precio" placeholder="Introduzca Precio de Alquiler...">
+</label>
+</div>

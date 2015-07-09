@@ -1,0 +1,29 @@
+<div class="table-responsive">
+  <table st-table="otros" class="table table-bordered table-condensed table-striped">
+    <thead>
+      <tr>
+        <th colspan="4">
+          <a class="button button-clear button-positive" ui-sref="main.camp.compras.albadd">
+            <i class="icon ion-ios7-plus-outline"></i>
+            Concepto
+          </a>
+        </th>
+      </tr>
+      <tr>
+        <th st-sort="name">Descripcion</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="linea in fertilizantes">
+        <td><a class="button button-small button-clear button-positive" ui-sref="main.camp.compras.alb.edit">{{linea.articulo.nreg}}</a></td>
+        <td>{{linea.articulo.name}}</td>
+        <td>{{linea.cant}}</td>
+        <td>{{linea.precio | currency}}</td>
+        <td><a class="button button-small button-clear button-asertive icon ion-close" ng-click=""></a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

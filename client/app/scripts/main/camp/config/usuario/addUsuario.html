@@ -1,0 +1,43 @@
+<a class="button icon-left ion-ios7-arrow-left button-clear button-positive" ng-click="back()"> Volver</a>
+
+<div class="card">
+  <form name="editUser" role="form">
+  <div class="item item-avatar item-divider">
+    <i class="icon ion-ios7-compose-outline"></i>
+    <h2>{{newuser.username}} &nbsp;</h2>
+    <p>{{title}}</p>
+  </div>
+  <div class="item">
+  <div class="list">
+  <label class="item item-input">
+    <span class="input-label">Nombre Usuario:</span>
+    <input type="text" ng-model="newuser.username" required placeholder="Introduzca nombre identificativo del usuario... ">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">E-Mail:</span>
+    <input type="email" ng-model="newuser.email" required placeholder="Introduzca email de usuario... ">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Telefono Contacto:</span>
+    <input type="text" ng-model="newuser.telefono"  placeholder="Introduzca nº de telefono del usuario... ">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Password Acceso:</span>
+    <input type="password" ng-model="newuser.password"  placeholder="Introduzca un password de acceso a la aplicacion... ">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Confirme Password Acceso:</span>
+    <input type="password" ng-model="newuser.confirmPassword"  placeholder="Repetir password de acceso a la aplicacion... ">
+  </label>
+  <ion-toggle ng-model="newuser.admin" toggle-class="toggle-positive">Es Administrador ?</ion-toggle>
+  <ion-toggle ng-model="newuser.gerente" toggle-class="toggle-positive">Es Gerente ?</ion-toggle>
+  <ion-toggle ng-model="newuser.active" toggle-class="toggle-balanced">Está Activo ?</ion-toggle>
+</div>
+  </div>
+
+  <div class="button-bar">
+  <a class="button button-positive button-clear icon-left ion-ios7-arrow-left" ng-click="back()"> Volver</a>
+  <a class="button button-positive icon-right ion-ios7-cloud-upload-outline" ng-click="saveUser()">Crear </a>
+</div>
+</form>
+</div>

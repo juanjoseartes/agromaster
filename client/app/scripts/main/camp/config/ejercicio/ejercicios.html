@@ -1,0 +1,27 @@
+
+<div class="item" style="padding:0px" ng-if="!$stateParams.campId">
+  <div class="col col-33 col-offset-67">
+    <a class="button button-clear button-positive icon-left ion-ios7-plus-outline"
+    ui-sref="main.camp.config.home.ejerc.add"> Campaña</a>
+  </div>
+</div>
+
+<div ui-view ng-if="$state.includes('main.camp.config.home.ejerc.add')"></div>
+
+  <div ng-repeat="ejerc in ejercicios track by $index | orderBy: '-fchinic'">
+    <a class="item" ui-sref="main.camp.config.home.ejerc.edit({campId: ejerc.id})">
+      <div class="row responsive-md">
+        <div class="col col-66">
+          <h2 ng-if="ejerc.active" class="positive">{{ejerc.name}}</h2>
+          <h2 ng-if="!ejerc.active" class="button button-small button-clear button-stable">{{ejerc.name}}</h2>
+          <p><small>Inicio: {{ejerc.fchinic | amDateFormat:'DD/MM/YYYY'}}<br/>
+            Fin: {{ejerc.fchfin | amDateFormat:'DD/MM/YYYY'}}</small></p>
+        </div>
+        <div class="col">
+          <p ng-repeat="espec in ejerc.especies">{{espec.name}}</p>
+        </div>
+
+      </div>
+    </a>
+    <div ui-view ng-if="($stateParams.campId == ejerc.id)"></div>
+  </div>

@@ -1,0 +1,107 @@
+<!-- <div class="item item-divider">
+  {{parcela[0].name}}
+</div> -->
+
+<div class="row responsive-md" style="margin-top:64px">
+
+  <div class="col col-50">
+    <div class="list card">
+      <div class="item item-divider item-button-right">pH<br/>{{parcela[0].name}}
+        <a class="button button-small button-energized icon ion-plus-circled" ng-click="addPhParc()"><small>&nbsp;Lectura</small></a>
+      </div>
+      <div class="item" ng-repeat="linea in hoyPh track by $index" ng-if="linea.parcela.id == $stateParams.parcId">
+        <a class="item item-icon-left" ng-class="{energized: linea.valor === 0}" ui-sref="main.camp.lectu.parc.edit({ lectId: linea.id })">
+          <span class="energized"><i class="icon ion-ios-analytics"></i> pH: {{linea.valor}}</span>
+          <span class="badge badge-energized">{{linea.fecha | date: 'dd/MM'}} @ {{linea.fecha | date: 'H:mm'}}</span>
+        </a>
+        <div ui-view ng-if="$stateParams.lectId === linea.id"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-50">
+    <div class="list card">
+      <div class="item item-divider item-button-right">eC<br/>{{parcela[0].name}}
+        <a class="button button-small button-royal icon ion-plus-circled" ng-click="addEcParc()"><small>&nbsp;Lectura</small></a>
+      </div>
+      <div class="item" ng-repeat="linea in hoyEc track by $index" ng-if="linea.parcela.id == $stateParams.parcId">
+        <a class="item item-icon-left" ng-class="{energized: linea.valor === 0}" ui-sref="main.camp.lectu.parc.edit({ lectId: linea.id })">
+          <span class="royal"><i class="icon ion-ios-analytics"></i> eC: {{linea.valor}}</span>
+          <span class="badge badge-royal">{{linea.fecha | date: 'dd/MM'}} @ {{linea.fecha | date: 'H:mm'}}</span>
+        </a>
+        <div ui-view ng-if="$stateParams.lectId === linea.id"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" style="margin-top:-48px">
+  <div class="col">
+<div class="card">
+  <div class="item item-divider">Evolucion Campaña</div>
+<nvd3-line-plus-bar-chart
+ data="pHData"
+ id="exampleId"
+ xAxisTickFormat="xAxisTickFormat()"
+ xAxisRotateLabels="-45"
+ xAxisLabel="Fecha"
+ y1AxisLabel="pH"
+ y2AxisLabel="eC"
+ y1AxisTickFormat="y1AxisTickFormat()"
+ forceY="[0]"
+ margin="{left:75,top:50,bottom:75,right:75}"
+ height="400"
+ showXAxis="true"
+ showYAxis="true"
+ tooltips="true"
+ showLegend="true"
+ useInteractiveGuideLine="true"
+ tooltips="true"
+ tooltipcontent="toolTipContentFunction()"
+ interactive="true">
+</nvd3-line-plus-bar-chart>
+</div>
+</div>
+</div>
+<!--
+<div class="col col-50">
+<div class="list card">
+<div class="item item-divider">
+eC
+</div>
+<div class="bar bar-header item item-input-inset">
+<label class="item-input-wrapper">
+<i class="icon ion-ios7-search placeholder-icon"></i>
+<input placeholder="Buscar..." type="search"/>
+</label>
+<a class="button button-clear button-positive icon ion-ios7-plus-outline" ng-click="addEcParc()">
+Añadir
+</a>
+</div>
+<div class="list">
+<div class="item" ng-repeat="linea in hoyEc track by $index" ng-if="linea.parcela.id == $stateParams.parcId">
+<a class="item-icon-left" ng-class="{energized: linea.valor === 0}" ui-sref="main.camp.lectu.parc.edit({ lectId: linea.id })">
+<i class="icon ion-thermometer"></i> eC: {{linea.valor}} &micro;s
+<span class="badge badge-stable">Hora: {{linea.fecha | date: 'H:mm'}}</span>
+</a>
+<div ui-view ng-if="$stateParams.lectId === linea.id"></div>
+</div>
+</div>
+<nvd3-line-chart
+data="eCData"
+xAxisTickFormat="xAxisTickFormat()"
+yAxisTickFormat="yAxisTickFormat()"
+margin="{left:50,top:50,bottom:50,right:50}"
+height="400"
+showXAxis="true"
+showYAxis="true"
+tooltips="true"
+showLegend="true"
+useInteractiveGuideLine="true"
+tooltips="true"
+tooltipcontent="toolTipContentFunction()"
+interactive="true">
+<svg></svg>
+</nvd3-line-chart>
+</div>
+</div>
+-->

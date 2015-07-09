@@ -1,0 +1,31 @@
+<a class="button icon-left ion-ios7-arrow-left button-clear button-positive" ng-click="back()"> Volver</a>
+
+<div class="card" id="diarioCard">
+  <form name="addDiario" role="form">
+  <div class="item item-avatar item-divider">
+    <i class="icon ion-ios7-plus-outline"></i>
+    <h2>{{diario.name}} &nbsp;</h2>
+    <p>{{title}}</p>
+  </div>
+  <div class="item">
+  <div class="list">
+  <label class="item item-input">
+    <span class="input-label">Nombre:</span>
+    <input type="text" ng-model="diario.name" required placeholder="Introduzca nombre identificativo del diario de cultivo... ">
+  </label>
+
+  <label class="item item-input">
+    <span class="input-label">Nº Orden:</span>
+    <input type="text" ng-model="diario.orden" placeholder="Introduzca nº orden en listados... ">
+  </label>
+  <ion-toggle ng-model="diario.active" toggle-class="toggle-balanced">Está Activo ?</ion-toggle>
+
+</div>
+  </div>
+
+  <div class="button-bar">
+  <a class="button button-positive button-clear icon-left ion-ios7-arrow-left" ng-click="back()"> Volver</a>
+  <a class="button button-positive icon-right ion-ios7-cloud-upload-outline" ng-click="saveDiario()">Guardar </a>
+</div>
+</form>
+</div>

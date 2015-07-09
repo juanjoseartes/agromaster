@@ -1,0 +1,493 @@
+<div class="item item-divider item-button-right" style="margin-top: 12px;padding-bottom:20px">
+  <h2 style="padding-top:6px;margin-bottom:-4px">Resumen Mano de Obra</h2>
+  <button class="button button-outline button-positive" ng-click="vGraf = !vGraf" ng-class="{active: vGraf}">
+    <i class="icon left" ng-class="vGraf ? 'ion-ios-grid-view' : 'ion-stats-bars'"></i>
+  </button>
+</div>
+
+<div class="row responsive-sm" ng-if="!vGraf">
+  <div class="col">
+    <div class="list card">
+      <div class="item item-divider item-button-right" style="padding-bottom:20px">
+        <i class="icon ion-person-stalker"
+        style=
+        "font-size:24px;
+        position: absolute;
+        top: 12px;
+        left: 14px"></i>
+        <h2 style="padding-top:6px;margin-bottom:-4px">Jornales</h2>
+        <button class="button button-outline button-positive" ng-click="pieJorn = !pieJorn" ng-class="{active: pieJorn}">
+          <i class="icon left" ng-class="pieJorn ? 'ion-ios-grid-view' : 'ion-pie-graph'"></i>
+        </button>
+      </div>
+      <div class="item item-body" ng-if="!pieJorn">
+        <div class="item row">
+          <div class="col">&nbsp;</div>
+          <div class="col txtright energized"><strong>Hoy</strong></div>
+          <div class="col txtright royal"><strong>Campaña</strong></div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">Cultivo</div>
+          <div class="col txtright energized">{{nCult | number}}</div>
+          <div class="col txtright royal">{{nEjercCult() | number}}</div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">Recoleccion</div>
+          <div class="col txtright energized">{{nRec | number}}</div>
+          <div class="col txtright royal">{{nEjercRecol() | number}}</div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">Encargados</div>
+          <div class="col txtright energized">{{nEnc | number}}</div>
+          <div class="col txtright royal">{{nEjercEncarg() | number}}</div>
+        </div>
+      </div>
+      <div class="item item-divider">
+        <div class="row">
+          <div class="col txtleft">Total</div>
+          <div class="col txtright energized"><strong>{{(nRec + nEnc + nCult) | number}}</strong></div>
+          <div class="col txtright royal"><strong>{{nEjercCult() + nEjercRecol() + nEjercEncarg() | number}}</strong></div>
+        </div>
+      </div>
+
+      <div class="list" ng-if="pieJorn">
+        <div class="item">
+            <h2 class="center energized-bg energized-border"><strong style="color:white">Jornales Hoy</strong></h2>
+            <nvd3-pie-chart
+            data="pJornDia"
+            id="JornalesDia"
+            margin="{left:10,top:10,bottom:10,right:10}"
+            height=600
+            x="xFunction()"
+            y="yFunction()"
+            showLabels="true"
+            pieLabelsOutside="false"
+            labelType="percent"
+            showLegend="true"
+            tooltips="true"
+            tooltipcontent="toolTipPie()">
+            <svg></svg>
+          </nvd3-pie-chart>
+        </div>
+        <div class="item">
+          <h2 class="center royal-bg royal-border"><strong style="color:white">Jornales Campaña</strong></h2>
+          <nvd3-pie-chart
+          data="pJornEjerc"
+          id="JornalesCamp"
+          margin="{left:10,top:10,bottom:10,right:10}"
+          height=600
+          x="xFunction()"
+          y="yFunction()"
+          showLabels="true"
+          pieLabelsOutside="false"
+          labelType="percent"
+          showLegend="true"
+          tooltips="true"
+          tooltipcontent="toolTipPieJorn()">
+          <svg></svg>
+        </nvd3-pie-chart>
+      </div>
+    </div>
+
+</div>
+  </div>
+  <div class="col">
+    <div class="list card">
+      <div class="item item-divider item-button-right" style="padding-bottom:20px">
+        <i class="icon ion-social-euro"
+        style=
+        "font-size:24px;
+        position: absolute;
+        top: 12px;
+        left: 14px"></i>
+        <h2 style="padding-top:6px;margin-bottom:-4px">Euros Totales</h2>
+        <button class="button button-outline button-positive" ng-click="pieEur = !pieEur" ng-class="{active: pieEur}">
+          <i class="icon left" ng-class="pieEur ? 'ion-ios-grid-view' : 'ion-pie-graph'"></i>
+        </button>
+      </div>
+      <div class="item item-body" ng-if="!pieEur">
+        <div class="item row">
+          <div class="col">&nbsp;</div>
+          <div class="col txtright energized"><strong>Hoy</strong></div>
+          <div class="col txtright royal"><strong>Campaña</strong></div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">Cultivo</div>
+          <div class="col txtright energized">{{getTotalCultivo() | currency}}</div>
+          <div class="col txtright royal">{{getEjercCultivo() | currency}}</div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">Recoleccion</div>
+          <div class="col txtright energized">{{getTotalRecolecc() | currency}}</div>
+          <div class="col txtright royal">{{getEjercRecol() | currency}}</div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">Encargados</div>
+          <div class="col txtright energized">{{getTotalEncarg() | currency}}</div>
+          <div class="col txtright royal">{{getEjercEncarg() | currency}}</div>
+        </div>
+      </div>
+      <div class="item item-divider">
+        <div class="row">
+          <div class="col txtleft">Total</div>
+          <div class="col txtright energized"><strong>{{getTotalCultivo() + getTotalRecolecc() + getTotalEncarg() | currency}}</strong></div>
+          <div class="col txtright royal"><strong>{{getEjercCultivo()+getEjercRecol()+getEjercEncarg() | currency}}</strong></div>
+        </div>
+      </div>
+
+      <div class="list" ng-if="pieEur">
+        <div class="item">
+            <h2 class="center energized-bg energized-border"><strong style="color:white">Euros Hoy</strong></h2>
+            <nvd3-pie-chart
+            data="pEurDia"
+            id="EurosDia"
+            margin="{left:10,top:10,bottom:10,right:10}"
+            height=600
+            x="xFunction()"
+            y="yFunction()"
+            showLabels="true"
+            pieLabelsOutside="false"
+            labelType="percent"
+            showLegend="true"
+            tooltips="true"
+            tooltipcontent="toolTipPie()">
+            <svg></svg>
+          </nvd3-pie-chart>
+        </div>
+        <div class="item">
+          <h2 class="center royal-bg royal-border"><strong style="color:white">Euros Campaña</strong></h2>
+          <nvd3-pie-chart
+          data="pEurEjerc"
+          id="EurosEjerc"
+          margin="{left:10,top:10,bottom:10,right:10}"
+          height=600
+          x="xFunction()"
+          y="yFunction()"
+          showLabels="true"
+          pieLabelsOutside="false"
+          labelType="percent"
+          showLegend="true"
+          tooltips="true"
+          tooltipcontent="toolTipPieJorn()">
+          <svg></svg>
+        </nvd3-pie-chart>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row responsive-sm" ng-if="!vGraf" style="margin-top:-46px">
+  <div class="col">
+    <div class="list card">
+      <div class="item item-divider item-button-right" style="padding-bottom:20px">
+        <i class="icon ion-man"
+        style=
+        "font-size:24px;
+        position: absolute;
+        top: 12px;
+        left: 14px"></i>
+        <h2 style="padding-top:6px;margin-bottom:-4px">Coste Medio Jornal</h2>
+        <button class="button button-outline button-positive" ng-click="pieCost = !pieCost" ng-class="{active: pieCost}">
+          <i class="icon left" ng-class="pieCost ? 'ion-ios-grid-view' : 'ion-pie-graph'"></i>
+        </button>
+      </div>
+      <div class="item item-body" ng-if="!pieCost">
+        <div class="item row">
+          <div class="col">&nbsp;</div>
+          <div class="col txtright energized"><strong>Hoy</strong></div>
+          <div class="col txtright royal"><strong>Campaña</strong></div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">Cultivo</div>
+          <div class="col txtright energized">{{(getTotalCultivo()/nCult) | currency}}</div>
+          <div class="col txtright royal">{{(getEjercCultivo()/nEjercCult()) | currency}}</div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">Recoleccion</div>
+          <div class="col txtright energized">{{(getTotalRecolecc()/nRec) | currency}}</div>
+          <div class="col txtright royal">{{(getEjercRecol()/nEjercRecol()) | currency}}</div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">Encargados</div>
+          <div class="col txtright energized">{{(getTotalEncarg()/nEnc) | currency}}</div>
+          <div class="col txtright royal">{{(getEjercEncarg()/nEjercEncarg()) | currency}}</div>
+        </div>
+      </div>
+      <div class="item item-divider">
+        <div class="row">
+          <div class="col txtleft">Total</div>
+          <div class="col txtright energized"><strong>{{(getTotalCultivo() + getTotalRecolecc() + getTotalEncarg())/(nRec + nEnc + nCult) | currency}}</strong></div>
+          <div class="col txtright royal"><strong>{{(getEjercCultivo()+getEjercRecol()+getEjercEncarg())/(nEjercCult() + nEjercRecol() + nEjercEncarg()) | currency}}</strong></div>
+        </div>
+      </div>
+
+      <div class="list" ng-if="pieCost">
+        <div class="item">
+            <h2 class="center energized-bg energized-border"><strong style="color:white">Coste Unit. Hoy</strong></h2>
+            <nvd3-pie-chart
+            data="pEjerc"
+            id="totalEjerc"
+            margin="{left:10,top:10,bottom:10,right:10}"
+            height=600
+            x="xFunction()"
+            y="yFunction()"
+            showLabels="true"
+            pieLabelsOutside="false"
+            labelType="percent"
+            showLegend="true"
+            tooltips="true"
+            tooltipcontent="toolTipPie()">
+            <svg></svg>
+          </nvd3-pie-chart>
+        </div>
+        <div class="item">
+          <h2 class="center royal-bg royal-border"><strong style="color:white">Coste Unit. Campaña</strong></h2>
+          <nvd3-pie-chart
+          data="pJorn"
+          id="totalJorn"
+          margin="{left:10,top:10,bottom:10,right:10}"
+          height=600
+          x="xFunction()"
+          y="yFunction()"
+          showLabels="true"
+          pieLabelsOutside="false"
+          labelType="percent"
+          showLegend="true"
+          tooltips="true"
+          tooltipcontent="toolTipPieJorn()">
+          <svg></svg>
+        </nvd3-pie-chart>
+      </div>
+    </div>
+
+    </div>
+  </div>
+  <div class="col">
+    <div class="list card">
+      <div class="item item-divider item-button-right" style="padding-bottom:20px">
+        <i class="icon ion-speedometer"
+        style=
+        "font-size:24px;
+        position: absolute;
+        top: 12px;
+        left: 14px"></i>
+        <h2 style="padding-top:6px;margin-bottom:-4px">Coste Kg</h2>
+        <button disabled class="button button-outline button-positive" ng-click="pieKg = !pieKg" ng-class="{active: pieKg}">
+          <i class="icon left" ng-class="pieKg ? 'ion-ios-grid-view' : 'ion-pie-graph'"></i>
+        </button>
+      </div>
+      <div class="item item-body" ng-if="!pieKg">
+        <div class="item row">
+          <div class="col">&nbsp;</div>
+          <div class="col txtright energized"><strong>Hoy</strong></div>
+          <div class="col txtright royal"><strong>Campaña</strong></div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">Kgs Producc.</div>
+          <div class="col txtright energized"></div>
+          <div class="col txtright royal"></div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">M.O. Recol.</div>
+          <div class="col txtright energized"></div>
+          <div class="col txtright royal"></div>
+        </div>
+        <div class="item row">
+          <div class="col txtleft">M.O. Total</div>
+          <div class="col txtright energized"></div>
+          <div class="col txtright royal"></div>
+        </div>
+      </div>
+      <div class="item item-divider">
+        <div class="row">
+          <div class="col txtleft">Recoleccion</div>
+          <div class="col txtright energized"><strong></strong></div>
+          <div class="col txtright royal"><strong></strong></div>
+        </div>
+        <div class="row">
+          <div class="col txtleft">Total</div>
+          <div class="col txtright energized"><strong></strong></div>
+          <div class="col txtright royal"><strong></strong></div>
+        </div>
+      </div>
+
+      <div class="list" ng-if="pieKg">
+        <div class="item">
+            <h2 class="center energized-bg energized-border"><strong style="color:white">Coste Unit. Hoy</strong></h2>
+            <nvd3-pie-chart
+            data="pEjerc"
+            id="totalEjerc"
+            margin="{left:10,top:10,bottom:10,right:10}"
+            height=600
+            x="xFunction()"
+            y="yFunction()"
+            showLabels="true"
+            pieLabelsOutside="false"
+            labelType="percent"
+            showLegend="true"
+            tooltips="true"
+            tooltipcontent="toolTipPie()">
+            <svg></svg>
+          </nvd3-pie-chart>
+        </div>
+        <div class="item">
+          <h2 class="center royal-bg royal-border"><strong style="color:white">Coste Unit. Campaña</strong></h2>
+          <nvd3-pie-chart
+          data="pJorn"
+          id="totalJorn"
+          margin="{left:10,top:10,bottom:10,right:10}"
+          height=600
+          x="xFunction()"
+          y="yFunction()"
+          showLabels="true"
+          pieLabelsOutside="false"
+          labelType="percent"
+          showLegend="true"
+          tooltips="true"
+          tooltipcontent="toolTipPieJorn()">
+          <svg></svg>
+        </nvd3-pie-chart>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+</div>
+<!--
+<div class="table-responsive" ng-if="!vGraf">
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="stable-bg stable-border txtcenter" colspan="2"><strong>Total Euros</strong></th>
+        <th class="stable-bg stable-border txtcenter" colspan="2"><strong>Nº Jornales</strong></th>
+        <th class="stable-bg stable-border txtcenter" colspan="2"><strong>Coste Unitario</strong></th>
+      </tr>
+      <tr>
+        <th width="16%" class="stable-bg stable-border"><strong>Tipo</strong></th>
+        <th width="14%" class="stable-bg stable-border txtcenter">Dia</th>
+        <th width="14%" class="stable-bg stable-border txtcenter"><strong>Campaña</strong></th>
+        <th width="14%" class="stable-bg stable-border txtcenter">Dia</th>
+        <th width="14%" class="stable-bg stable-border txtcenter"><strong>Campaña</strong></th>
+        <th width="14%" class="stable-bg stable-border txtcenter">Dia</th>
+        <th width="14%" class="stable-bg stable-border txtcenter"><strong>Campaña</strong></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th class="stable-bg stable-border"><strong>Totales</strong></th>
+        <th class="txtright stable-bg stable-border">{{getTotalCultivo() + getTotalRecolecc() + getTotalEncarg() | currency}}</th>
+        <th class="txtright stable-bg stable-border"><strong>{{getEjercCultivo()+getEjercRecol()+getEjercEncarg() | currency}}</strong></th>
+        <th class="txtright stable-bg stable-border">{{(nRec + nEnc + nCult) | number}}</th>
+        <th class="txtright stable-bg stable-border"><strong>{{nEjercCult() + nEjercRecol() + nEjercEncarg() | number}}</strong></th>
+        <th class="txtright stable-bg stable-border">{{(getTotalCultivo() + getTotalRecolecc() + getTotalEncarg())/(nRec + nEnc + nCult) | currency}}</th>
+        <th class="txtright stable-bg stable-border"><strong>{{(getEjercCultivo()+getEjercRecol()+getEjercEncarg())/(nEjercCult() + nEjercRecol() + nEjercEncarg()) | currency}}</strong></th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr>
+        <td>Cultivo</td>
+        <td class="txtright">{{getTotalCultivo() | currency}}</td>
+        <th class="txtright">{{getEjercCultivo() | currency}}</th>
+        <td class="txtright">{{nCult | number}}</td>
+        <th class="txtright">{{nEjercCult() | number}}</th>
+        <td class="txtright">{{(getTotalCultivo()/nCult) | currency}}</td>
+        <th class="txtright">{{(getEjercCultivo()/nEjercCult()) | currency}}</th>
+      </tr>
+      <tr>
+        <td>Recoleccion</td>
+        <td class="txtright">{{getTotalRecolecc() | currency}}</td>
+        <th class="txtright">{{getEjercRecol() | currency}}</th>
+        <td class="txtright">{{nRec | number}}</td>
+        <th class="txtright">{{nEjercRecol() | number}}</th>
+        <td class="txtright">{{(getTotalRecolecc()/nRec) | currency}}</td>
+        <th class="txtright">{{(getEjercRecol()/nEjercRecol()) | currency}}</th>
+      </tr>
+      <tr>
+        <td>Encargado</td>
+        <td class="txtright">{{getTotalEncarg() | currency}}</td>
+        <th class="txtright">{{getEjercEncarg() | currency}}</th>
+        <td class="txtright">{{nEnc | number}}</td>
+        <th class="txtright">{{nEjercEncarg() | number}}</th>
+        <td class="txtright">{{(getTotalEncarg()/nEnc) | currency}}</td>
+        <th class="txtright">{{(getEjercEncarg()/nEjercEncarg()) | currency}}</th>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+<div class="item item-divider" ng-if="vGraf">
+  Evolucion Campaña
+</div>
+<div class="item" ng-if="vGraf">
+  <nvd3-multi-bar-chart
+  data="gResumen"
+  id ="ResMObra"
+  xAxisTickFormat="xAxisTickFormat()"
+  yAxisTickFormat="yAxisTickFormat()"
+  margin="{left:50,top:25,bottom:80,right:25}"
+  height=600
+  rotateLabels="60"
+  staggerLabels="true"
+  showXAxis="true"
+  showYAxis="true"
+  tooltips="true"
+  showLegend="true"
+  showControls="false"
+  useInteractiveGuideLine="false"
+  tooltips="true"
+  tooltipcontent="toolTipContentFunction()"
+  interactive="true"
+  interpolate="linear">
+  <svg></svg>
+</nvd3-multi-bar-chart>
+</div>
+
+<!-- <div class="item item-divider" ng-if="vGraf">
+  Reparto Campaña
+</div>
+<div class="item" ng-if="vGraf">
+  <div class="row responsive-lg">
+    <div class="col">
+      <h2 class="center"><strong>Total Costes</strong></h2>
+      <nvd3-pie-chart
+      data="pEjerc"
+      id="totalEjerc"
+      margin="{left:10,top:10,bottom:10,right:10}"
+      height=600
+      x="xFunction()"
+      y="yFunction()"
+      showLabels="true"
+      pieLabelsOutside="false"
+      labelType="percent"
+      showLegend="true"
+      tooltips="true"
+      tooltipcontent="toolTipPie()">
+      <svg></svg>
+    </nvd3-pie-chart>
+  </div>
+
+  <div class="col">
+    <h2 class="center"><strong>Total Jornales</strong></h2>
+    <nvd3-pie-chart
+    data="pJorn"
+    id="totalJorn"
+    margin="{left:10,top:10,bottom:10,right:10}"
+    height=600
+    x="xFunction()"
+    y="yFunction()"
+    showLabels="true"
+    pieLabelsOutside="false"
+    labelType="percent"
+    showLegend="true"
+    tooltips="true"
+    tooltipcontent="toolTipPieJorn()">
+    <svg></svg>
+  </nvd3-pie-chart>
+</div>
+
+</div>
+</div> -->

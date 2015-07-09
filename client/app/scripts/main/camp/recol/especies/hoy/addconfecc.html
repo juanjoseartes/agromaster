@@ -1,0 +1,26 @@
+<div class="button-bar">
+  <a class="button button-light" ng-click="back()">
+    <span class="positive">
+      <i class="icon left ion-ios7-close-outline"></i> Cerrar
+    </span>
+  </a>
+  <a class="button button-light" ng-click="create()">
+    <span class="positive">
+      Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+    </span>
+  </a>
+</div>
+
+<ul class="list">
+  <li ng-repeat="confecc in confecciones" class="item item-checkbox">
+    <label class="checkbox">
+      <input type="checkbox" checklist-model="diario.confecciones" checklist-value="confecc.id">
+    </label>
+    {{confecc.name}}
+    <span ng-if="confecc.categ == 'e'" class="badge badge-assertive">Especial</span>
+    <span ng-if="confecc.categ == '1'" class="badge badge-energized">1ª Categoria</span>
+    <span ng-if="confecc.categ == '2'" class="badge badge-balanced">2ª Categoria</span>
+    <span ng-if="confecc.categ == 'i'" class="badge badge-calm">Industria</span>
+    <span ng-if="confecc.categ == 'd'" class="badge badge-dark">Destrio</span>
+  </li>
+</ul>

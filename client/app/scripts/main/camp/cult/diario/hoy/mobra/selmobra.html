@@ -1,0 +1,13 @@
+<div class="button-bar">
+<a class="button  button-light" ng-click="back()">
+  <span class="positive">
+    <i class="icon left ion-ios7-close-outline"></i> Cerrar
+  </span>
+</a>
+<a class="button  button-light" ng-click="save(detalle)">
+  <span class="positive">
+    Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+  </span>
+</a>
+</div>
+<ion-checkbox ng-repeat="emplead in empleados track by $index" ng-model="empleados">{{emplead.name}}</ion-checkbox>

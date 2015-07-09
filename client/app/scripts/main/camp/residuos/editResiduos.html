@@ -1,0 +1,17 @@
+<div class="button-bar">
+  <a class="button button-outline button-positive icon-left ion-ios7-arrow-left" ng-click="back()"> Volver</a>
+  <a class="button button-outline button-positive icon-right ion-ios7-cloud-upload-outline" ng-click="save()"> Guardar</a>
+</div>
+
+<label class="item item-input">
+  <span class="input-label">Nº Albaran:</span>
+  <input type="text" ng-model="residuo.nalbaran" placeholder="Introduzca nº albaran de la retirada...">
+</label>
+<label class="item item-input">
+  <span class="input-label">Tipo:</span>
+  <input type="text" ng-model="residuo.tipo" placeholder="Introduzca tipo de residuo retirado...">
+</label>
+<label class="item item-input">
+  <span class="input-label">Observaciones:</span>
+  <textarea ng-model="residuo.obs" placeholder="Observaciones...">{{residuo.obs}}</textarea>
+</label>

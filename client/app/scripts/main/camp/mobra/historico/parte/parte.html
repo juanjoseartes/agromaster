@@ -1,0 +1,26 @@
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr class="stable-bg">
+      <th>Fecha</th>
+      <th>Empleado</th>
+      <th>Jornales</th>
+      <th>H. Extra</th>
+      <th>Portes</th>
+      <th>Otros</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <tr ng-repeat="p in parte | orderBy: 'empleado.name' ">
+      <td>{{p.fecha | date}}</td>
+      <td>{{p.empleado.name}} {{p.empleado.apellidos}}</td>
+      <td class="text-right">{{p.njornal}} x {{p.precjornal}}</td>
+      <td class="text-right">{{p.nhextra}} x {{p.prechextra}}</td>
+      <td class="text-right">{{p.nportes}} x {{p.precporte}}</td>
+      <td class="text-right">{{p.otros}}</td>
+      <td class="text-right">{{p.njornal*p.precjornal + p.nhextra*p.prechextra + p.nportes*p.precporte + p.otros | currency}}</td>
+      </tr>
+    </tbody>
+  </table>

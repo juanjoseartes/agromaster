@@ -1,0 +1,28 @@
+<div class="button-bar">
+  <a class="button  button-light" ng-click="back()">
+    <span class="positive">
+      <i class="icon left ion-ios7-close-outline"></i> Cerrar
+    </span>
+  </a>
+  <a class="button  button-light" ng-click="save()">
+    <span class="positive">
+      Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+    </span>
+  </a>
+</div>
+<div class="list">
+  <div class="item item-divider">
+    <p>Material Utilizado:</p>
+  </div>
+  <label class="item item-input">
+    <span class="input-label">Cantidad:</span>
+    <input type="text" ng-model="material.cantidad" placeholder="Introduzca cantidad utilizada...">
+  </label>
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Unidad Aplicacion:
+    </div>
+    <select ng-model="material.unidad" ng-options="a.id as a.name group by a.tipo for a in unidades"></select>
+  </label>
+
+</div>

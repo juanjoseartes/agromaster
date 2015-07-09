@@ -1,0 +1,57 @@
+<div class="item item-input-inset" style="margin-top:0px">
+  <label class="item-input-wrapper">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="Buscar...." ng-model="query.$" autofocus>
+  </label>
+  <a class="item-note button button-small button-clear button-positive icon-left ion-ios7-plus-outline"
+  ui-sref="main.camp.maq.add.alq1"> Añadir
+</a>
+</div>
+<div class="row responsive-lg">
+  <div class="col col-50">
+    <div class="list card">
+      <div class="list" ng-repeat="(key, value) in maquinaria | groupBy: 'proveedor.name' | orderBy: 'proveedor.name'" ng-if="$even">
+        <div class="item item-divider">
+          {{key}}
+        </div>
+        <div ng-repeat="(key1, value1) in value | groupBy: 'tipomaq.name' | orderBy: 'tipomaq.name'">
+          <div class="item item-divider">
+            <span class="positive">{{value1[0].grupomaq.name}} -></span> <br/> {{key1}}
+          </div>
+          <div ng-repeat="maq in value1 | filter:query">
+            <a class="item item-avatar" ui-sref="main.camp.maq.alq.edit({ maqId: maq.id })">
+              <img ng-src="{{urlImg}}/images/{{maq.images[0].name}}">
+              <h2>{{maq.marca}} {{maq.modelo}} </h2>
+              <span class="badge badge-stable">{{maq.valor}}€/dia</span>
+              <p>{{maq.potencia}}cv / Cap.Combust.: {{maq.capfuel}}</p>
+            </a>
+            <div ui-view ng-if="$stateParams.maqId === maq.id"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col col-50">
+    <div class="list card">
+      <div class="list" ng-repeat="(key, value) in maquinaria | groupBy: 'proveedor.name' | orderBy: 'proveedor.name'" ng-if="$odd">
+        <div class="item item-divider">
+          {{key}}
+        </div>
+        <div ng-repeat="(key1, value1) in value | groupBy: 'tipomaq.name' | orderBy: 'tipomaq.name'">
+          <div class="item item-divider">
+            <span class="positive">{{value1[0].grupomaq.name}} -></span> <br/> {{key1}}
+          </div>
+          <div ng-repeat="maq in value1 | filter:query">
+            <a class="item item-avatar" ui-sref="main.camp.maq.alq.edit({ maqId: maq.id })">
+              <img ng-src="{{urlImg}}/images/{{maq.images[0].name}}">
+              <h2>{{maq.marca}} {{maq.modelo}} </h2>
+              <span class="badge badge-stable">{{maq.valor}}€/dia</span>
+              <p>{{maq.potencia}}cv / Cap.Combust.: {{maq.capfuel}}</p>
+            </a>
+            <div ui-view ng-if="$stateParams.maqId === maq.id"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

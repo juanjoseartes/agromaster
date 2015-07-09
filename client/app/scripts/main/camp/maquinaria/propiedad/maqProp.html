@@ -1,0 +1,58 @@
+<div class="item item-input-inset" style="margin-top: 0px">
+  <label class="item-input-wrapper">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="Buscar...." ng-model="query.$" autofocus>
+  </label>
+  <a class="item-note button button-small button-clear button-positive icon-left ion-ios7-plus-outline"
+  ui-sref="main.camp.maq.add.prop"> Añadir
+  </a>
+</div>
+
+  <div class="row responsive-lg">
+    <div class="col col-50">
+
+      <div class="list card">
+          <div class="list" ng-repeat="(key, value) in maquinaria | groupBy: 'tipomaq.name' | orderBy: 'tipomaq.name'" ng-if="$even">
+            <div class="item item-divider">
+              <span class="positive">{{value[0].grupomaq.name}} -></span> <br/> {{key}}
+            </div>
+            <div ng-repeat="maq in value | filter:query">
+            <a class="item item-avatar" ui-sref="main.camp.maq.prop.edit({ maqId: maq.id })">
+              <img ng-src="{{urlImg}}/images/{{maq.images[0].name}}">
+              <h2>{{maq.marca}} {{maq.modelo}} </h2>
+              <span class="badge badge-stable">{{maq.matricula}}</span>
+              <p>Pot.: {{maq.potencia}}cv / Cap.Combust.: {{maq.capfuel}}<br/>
+                Imp. Compra: {{maq.valor | currency}} / Vida Util: {{maq.vida}} años<br/>
+                Amort.Anual: {{maq.amort | currency}}<br/>
+                Años Actividad: {{maq.year | number}} - {{maq.finamort | number}}</p>
+            </a>
+              <div ui-view ng-if="$stateParams.maqId === maq.id"></div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  <div class="col col-50">
+    <div class="list card">
+      <div class="list" ng-repeat="(key, value) in maquinaria | groupBy: 'tipomaq.name' | orderBy: 'tipomaq.name'" ng-if="$odd">
+        <div class="item item-divider">
+          <span class="positive">{{value[0].grupomaq.name}} -></span> <br/> {{key}}
+        </div>
+        <div ng-repeat="maq in value | filter:query">
+
+          <a class="item item-avatar" ui-sref="main.camp.maq.prop.edit({ maqId: maq.id })">
+            <img ng-src="{{urlImg}}/images/{{maq.images[0].name}}">
+            <h2>{{maq.marca}} {{maq.modelo}} </h2>
+            <span class="badge badge-stable">{{maq.matricula}}</span>
+            <p>Pot.: {{maq.potencia}}cv / Cap.Combust.: {{maq.capfuel}}<br/>
+              Imp. Compra: {{maq.valor | currency}} / Vida Util: {{maq.vida}} años<br/>
+              Amort.Anual: {{maq.amort | currency}}<br/>
+              Años Actividad: {{maq.year | number}} - {{maq.finamort | number}}</p>
+          </a>
+          <div ui-view ng-if="$stateParams.maqId === maq.id"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

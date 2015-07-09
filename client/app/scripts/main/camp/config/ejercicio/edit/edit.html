@@ -1,0 +1,70 @@
+<div class="button-bar">
+  <a class="button  button-light" ng-click="back()">
+    <span class="positive">
+      <i class="icon left ion-ios7-close-outline"></i> Cerrar
+    </span>
+  </a>
+  <a class="button  button-light" ng-click="update(ejercicio)">
+    <span class="positive">
+      Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+    </span>
+  </a>
+</div>
+
+<div class="item item-divider item-positive">
+  <h2 class="light">Datos Ejercicio:</h2>
+</div>
+<label class="item item-input item-stacked-label">
+  <span class="input-label">Nombre:</span>
+  <input type="text" ng-model="ejercicio.name" required placeholder="Introduzca nombre identificativo del ejercicio... ">
+</label>
+
+<ion-toggle ng-model="ejercicio.active" toggle-class="toggle-positive">Activo</ion-toggle>
+
+<label class="item item-input item-stacked-label">
+  <span class="input-label">Fecha Inicio:</span>
+  <div class="row">
+    <div class="col col-80">
+      {{ejercicio.fchinic | amDateFormat:'DD/MM/YYYY'}}
+    </div>
+    <div class="col col-20">
+      <button class="button button-clear button-positive icon-right ion-ios7-search" style="min-height:32px;margin-top:-20px;padding-top:10px" ui-sref="main.camp.config.home.ejerc.edit.fchini"></button>
+    </div>
+  </div>
+</label>
+<div ng-if="$state.includes('main.camp.config.home.ejerc.edit.fchini')" ui-view></div>
+<label class="item item-input item-stacked-label">
+  <span class="input-label">Fecha Fin:</span>
+  <div class="row">
+    <div class="col col-80">
+      {{ejercicio.fchfin | amDateFormat:'DD/MM/YYYY'}}
+    </div>
+    <div class="col col-20">
+      <button class="button button-clear button-positive icon-right ion-ios7-search" style="min-height:32px;margin-top:-20px;padding-top:10px" ui-sref="main.camp.config.home.ejerc.edit.fchfin"></button>
+    </div>
+  </div>
+</label>
+<div ng-if="$state.includes('main.camp.config.home.ejerc.edit.fchfin')" ui-view></div>
+
+<div class="item item-divider item-positive">
+  <h2 class="light">Cultivos: {{ejercicio.name}}
+    <!-- <span class="item-note">
+      <a class="button button-clear button-light icon icon-left ion-ios7-plus-outline"
+        style="min-height:32px;margin-top:-21px;padding-top:9px"
+        ui-sref="main.camp.config.home.ejerc.edit.cult">Cultivo
+      </a>
+    </span> -->
+  </h2>
+
+</div>
+<div ui-view ng-if="$state.includes('main.camp.config.home.ejerc.edit.cult')"></div>
+<div class="list">
+  <div ng-repeat="espec in ejercicio.especies">
+    <div class="item item-button-right">
+      {{espec.name}}
+      <!-- <button class="button button-clear button-assertive" ng-click="deleteEspec(espec.id)">
+        <i class="icon ion-ios7-close-outline"></i>
+      </button> -->
+    </div>
+  </div>
+</div>

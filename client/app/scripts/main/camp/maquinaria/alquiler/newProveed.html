@@ -1,0 +1,39 @@
+
+<div class="list">
+  <div class="item item-divider">
+    <span class="positive">Datos Nuevo Proveedor:</span>
+  </div>
+  <div class="button-bar">
+    <a class="button  button-light" ng-click="back()">
+      <span class="positive">
+        <i class="icon left ion-ios7-close-outline"></i> Cerrar
+      </span>
+    </a>
+    <a class="button  button-light" ng-click="save(detalle)">
+      <span class="positive">
+        Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+      </span>
+    </a>
+  </div>
+  
+  <label class="item item-input">
+    <span class="input-label">Nombre:</span>
+    <input type="text" ng-model="proveedor.name" placeholder="Introduzca nombre del Proveedor...">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Direccion:</span>
+    <input type="text" ng-model="proveedor.direccion" placeholder="Introduzca direccion del Proveedor...">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Telefono:</span>
+    <input type="text" ng-model="proveedor.telef" placeholder="Introduzca telefono del Proveedor...">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">e-mail:</span>
+    <input type="email" ng-model="proveedor.email" placeholder="Introduzca e-mail del Proveedor...">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">N.I.F:</span>
+    <input type="text" ng-model="proveedor.nif" placeholder="Introduzca N.I.F. del Proveedor...">
+  </label>
+</div>

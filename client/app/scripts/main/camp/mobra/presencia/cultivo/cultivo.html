@@ -1,0 +1,91 @@
+<div style="margin-top: 12px" class="item item-divider">
+  Detalle Cultivo: <span class="right energized">Total: {{getTotal() | currency}}</span>
+</div>
+<div class="bar bar-header item item-input-inset" ng-if="$state.is('main.camp.mobra.presencia.cultivo')">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios7-search placeholder-icon"></i>
+    <input placeholder="Buscar empleado..." type="search" ng-model="searchText"/>
+  </label>
+  <a class="button button-clear button-positive icon ion-ios7-plus-outline" ui-sref="main.camp.mobra.presencia.cultivo.add">
+    Añadir
+  </a>
+</div>
+<div ui-view ng-if="$state.is('main.camp.mobra.presencia.cultivo.add')"></div>
+<div class="row responsive-lg">
+  <div class="col col-50">
+    <div class="card list" ng-repeat="pres in presCult | filter:searchText | orderBy:sortType:sortReverse" ng-if="$even">
+      <div class="item item-avatar item-button-right">
+
+        <img src="../images/user.png" ng-if="presCult">
+        {{$index+1}}.- {{pres.empleado.name}} {{pres.empleado.apellidos}}
+        <div class="button-bar">
+          <a ng-if="$state.is('main.camp.mobra.presencia.cultivo') && (pres.coefcult==0)" class="button button-clear button-assertive icon ion-ios-trash-outline"
+          ng-click="delete(pres.id)"></a>
+          <a ng-if="$state.is('main.camp.mobra.presencia.cultivo')" class="button button-clear button-positive icon ion-arrow-swap"
+          ui-sref="main.camp.mobra.presencia.cultivo.change({moId: pres.id})"></a>
+        </div>
+
+        <a ng-if="$state.is('main.camp.mobra.presencia.cultivo.change')" class="button button-clear button-positive icon ion-close"
+        ng-click="back()"></a>
+        <p>
+          <span class="energized-bg energized-border">{{(pres.njornal * pres.precjornal) + (pres.nportes * pres.precporte) + (pres.nhextra * pres.prechextra) | currency}}</span>
+        </p>
+      </div>
+      <div class="item tabs tabs-stable tabs-secondary tabs-icon-top" ng-if="$stateParams.moId !== pres.id">
+        <a class="tab-item" ng-class="{'energized active': pres.njornal}" ui-sref="main.camp.mobra.presencia.cultivo.edit({moId: pres.id, costId: 1})">
+          <i class="icon ion-ios-gear-outline"></i>
+          <span ng-if="pres.njornal" class="energized-bg energized-border">Jornal: {{pres.njornal * pres.precjornal | currency}}</span>
+          <span ng-if="!pres.njornal">Jornal: </span>
+        </a>
+        <a class="tab-item" ng-class="{'energized active': pres.nportes}" ui-sref="main.camp.mobra.presencia.cultivo.edit({moId: pres.id, costId: 2})">
+          <i class="icon ion-android-car"></i>
+          <span ng-if="pres.nportes" class="energized-bg energized-border">Porte: {{pres.nportes * pres.precporte | currency}}</span>
+          <span ng-if="!pres.nportes">Porte:</span>
+        </a>
+        <a class="tab-item" ng-class="{'energized active': pres.nhextra}" ui-sref="main.camp.mobra.presencia.cultivo.edit({moId: pres.id, costId: 3})">
+          <i class="icon ion-ios7-stopwatch-outline"></i>
+          <span ng-if="pres.nhextra" class="energized-bg energized-border">H.Extra: {{pres.nhextra * pres.prechextra | currency}}</span>
+          <span ng-if="!pres.nhextra">H.Extra:</span>
+        </a>
+      </div>
+      <div ui-view ng-if="$stateParams.moId === pres.id"></div>
+    </div>
+  </div>
+  <div class="col col-50">
+    <div class="card list" ng-repeat="pres in presCult | filter:searchText | orderBy:sortType:sortReverse" ng-if="$odd">
+      <div class="item item-avatar item-button-right">
+        <img src="../images/user.png" ng-if="presCult">
+        {{$index+1}}.- {{pres.empleado.name}} {{pres.empleado.apellidos}}
+        <div class="button-bar">
+          <a ng-if="$state.is('main.camp.mobra.presencia.cultivo') && (pres.coefcult==0)" class="button button-clear button-assertive icon ion-ios-trash-outline"
+          ng-click="delete(pres.id)"></a>
+          <a ng-if="$state.is('main.camp.mobra.presencia.cultivo')" class="button button-clear button-positive icon ion-arrow-swap"
+          ui-sref="main.camp.mobra.presencia.cultivo.change({moId: pres.id})"></a>
+        </div>
+        <a ng-if="$state.is('main.camp.mobra.presencia.cultivo.change')" class="button button-clear button-positive icon ion-close"
+        ng-click="back()"></a>
+        <p>
+          <span class="energized-bg energized-border">{{(pres.njornal * pres.precjornal) + (pres.nportes * pres.precporte) + (pres.nhextra * pres.prechextra) | currency}}</span>
+        </p>
+      </div>
+      <div class="item tabs tabs-stable tabs-secondary tabs-icon-top" ng-if="$stateParams.moId !== pres.id">
+        <a class="tab-item" ng-class="{'energized active': pres.njornal}" ui-sref="main.camp.mobra.presencia.cultivo.edit({moId: pres.id, costId: 1})">
+          <i class="icon ion-ios-gear-outline"></i>
+          <span ng-if="pres.njornal" class="energized-bg energized-border">Jornal: {{pres.njornal * pres.precjornal | currency}}</span>
+          <span ng-if="!pres.njornal">Jornal: </span>
+        </a>
+        <a class="tab-item" ng-class="{'energized active': pres.nportes}" ui-sref="main.camp.mobra.presencia.cultivo.edit({moId: pres.id, costId: 2})">
+          <i class="icon ion-android-car"></i>
+          <span ng-if="pres.nportes" class="energized-bg energized-border">Porte: {{pres.nportes * pres.precporte | currency}}</span>
+          <span ng-if="!pres.nportes">Porte:</span>
+        </a>
+        <a class="tab-item" ng-class="{'energized active': pres.nhextra}" ui-sref="main.camp.mobra.presencia.cultivo.edit({moId: pres.id, costId: 3})">
+          <i class="icon ion-ios7-stopwatch-outline"></i>
+          <span ng-if="pres.nhextra" class="energized-bg energized-border">H.Extra: {{pres.nhextra * pres.prechextra | currency}}</span>
+          <span ng-if="!pres.nhextra">H.Extra:</span>
+        </a>
+      </div>
+      <div ui-view ng-if="$stateParams.moId === pres.id"></div>
+    </div>
+  </div>
+</div>

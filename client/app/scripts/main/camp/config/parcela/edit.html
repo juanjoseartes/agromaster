@@ -1,0 +1,31 @@
+<div class="button-bar">
+  <a class="button  button-light" ng-click="back()">
+    <span class="positive">
+      <i class="icon left ion-ios7-close-outline"></i> Cerrar
+    </span>
+  </a>
+  <a class="button  button-light" ng-click="update(parcela)">
+    <span class="positive">
+      Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+    </span>
+  </a>
+</div>
+
+
+<div class="item item-divider item-light">
+  <p>Detalle Parcela:</p>
+</div>
+
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Nombre:</span>
+    <input type="text" ng-model="parcela.name" required placeholder="Introduzca nombre identificativo de la parcela... ">
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Superf. Total (has):</span>
+    <input type="text" ng-model="parcela.suptotal" placeholder="Introduzca nº total de hectareas de la parcela... ">
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Superf. Cultivada (has):</span>
+    <input type="text" ng-model="parcela.supcult" required placeholder="Introduzca nº de hectareas cultivadas de la parcela... ">
+  </label>
+  <ion-toggle ng-model="parcela.active" toggle-class="toggle-positive">En produccion</ion-toggle>

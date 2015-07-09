@@ -1,0 +1,22 @@
+<div class="list">
+  <div class="button-bar">
+    <a ui-sref="main.camp.cmi.espec.total({especId: ''})" ng-class="{active: $stateParams.especId == ''}" class="button button-outline button-positive icon-left ion-cube">{{fincaName}}</a>
+    <a ng-repeat="espec in ejercCurso.especies" ui-sref="main.camp.cmi.espec.total({especId: espec.id})" ng-class="{active: $stateParams.especId == espec.id}" class="button button-outline button-positive icon-left ion-leaf">{{espec.name}}</a>
+  </div>
+</div>
+
+<!-- <div class="button-bar" style="margin-top: -24px">
+  <a ui-sref="main.camp.cmi.espec.total" ng-class="{active: $state.includes('main.camp.cmi.espec.total')}" class="button positive icon icon-left ion-ios7-calendar-outline"><small> € Totales</small></a>
+  <a ui-sref="main.camp.cmi.espec.ha" ng-class="{active: $state.includes('main.camp.cmi.espec.ha')}" class="button positive icon icon-left ion-ios7-albums-outline"><small> €/Ha</small></a>
+  <a ui-sref="main.camp.cmi.espec.kg" ng-class="{active: $state.includes('main.camp.cmi.espec.kg')}" class="button positive icon icon-left ion-ios7-albums-outline"><small> €/Kg</small></a>
+</div> -->
+<h4 class="title" style="margin-top: 12px;padding-left:12px">
+  Resumen:  <span ng-if="!$stateParams.especId">{{fincaName}}</span>
+            <span ng-if="$stateParams.especId">{{especCursoName[0].name}}</span>
+             -
+             <span ng-if="$state.includes('main.camp.cmi.espec.total')">€ Totales</span>
+             <span ng-if="$state.includes('main.camp.cmi.espec.ha')">€/Ha</span>
+             <span ng-if="$state.includes('main.camp.cmi.espec.kg')">€/Kg</span>
+</h4>
+
+  <div ui-view></div>

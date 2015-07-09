@@ -1,0 +1,33 @@
+<a class="button icon-left ion-ios7-close-outline button-clear button-positive" ng-click="back()"> Cerrar</a>
+
+<div class="table-responsive">
+  <table st-table="laboratorios" class="table table-bordered table-condensed table-striped">
+    <thead>
+      <tr>
+        <th colspan="3">
+          <div class="bar bar-header item item-input-inset">
+          <label class="item-input-wrapper">
+            <i class="icon ion-ios7-search placeholder-icon"></i>
+            <input st-search placeholder="Buscar laboratorio..." class="item item-input" type="search"/>
+          </label>
+        </div>
+        </th>
+      </tr>
+      <tr>
+        <th width=25>Nº Registro</th>
+        <th width=50>Nombre</th>
+        <th width=25></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="lab in laboratorios">
+        <td>{{lab.nreg}}</td>
+        <td>{{lab.name}}</td>
+        <td>
+          <a class="button button-outline button-block button-positive icon icon-right ion-ios7-arrow-forward"
+          ng-click="selLab(lab)"> Selecc.</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

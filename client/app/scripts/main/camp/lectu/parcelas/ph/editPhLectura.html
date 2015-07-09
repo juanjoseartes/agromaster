@@ -1,0 +1,21 @@
+<div class="row">
+
+  <div class="col">
+    <div class="range range-energized" ng-if="lectura.tipo == 'ph'">
+      <input type="range" ng-model="lectura.valor" min="0" max="14" step=".1" ng-value="lectura.valor">{{lectura.valor}}
+    </div>
+    <div class="range range-royal" ng-if="lectura.tipo == 'ec'">
+      <input type="range" ng-model="lectura.valor" min="0" max="100" step=".1" ng-value="lectura.valor">{{lectura.valor}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+    <div class="button-bar">
+    <a class="button button-light" style="line-height:46px" ng-click="delete()"><i class="assertive icon ion-trash-a"></i> Eliminar</a>
+    <a class="button button-light" style="line-height:46px" ng-click="back()"><i class="icon ion-backspace-outline"></i> Volver</a>
+    <a class="button button-light" style="line-height:46px" ng-click="save()">Guardar <i class="positive icon ion-checkmark-circled"></i></a>
+  </div>
+
+</div>

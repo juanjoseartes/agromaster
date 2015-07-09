@@ -1,0 +1,34 @@
+  <div class="table-responsive">
+    <table st-table="facturas" class="table table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th colspan="3">
+            <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input st-search placeholder="Palabra a buscar..." class="item item-input" type="search"/>
+          </label>
+          </th>
+          <th>
+            <a class="button button-clear button-positive" ui-sref="main.camp.almac.searchabono">
+              <i class="icon ion-ios7-plus-outline"></i>
+              Factura
+            </a>
+          </th>
+        </tr>
+        <tr>
+          <th st-sort="nfact">Fact.</th>
+          <th st-sort="fch">Fecha</th>
+          <th st-sort="proveedor.name">Proveedor</th>
+          <th st-sort="total">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="fact in facturas">
+          <td><a class="button button-small button-clear button-positive" href="">{{fact.nfact}}</a></td>
+          <td>{{fact.fch | date}}</td>
+          <td>{{fact.proveedor.name}}</td>
+          <td>{{fact.total | currency}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

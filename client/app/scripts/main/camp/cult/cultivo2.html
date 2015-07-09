@@ -1,0 +1,39 @@
+<div class="list card" id="inicCompras">
+  <div class="item item-icon-left item-divider">
+    <i class="icon ion-ios7-bookmarks-outline"></i>
+    <h2>{{title}}</h2>
+    <p>{{fincaName}}: {{date}}</p>
+  </div>
+  <div class="list">
+
+    <div class="button-bar">
+      <a
+      ui-sref="main.camp.cult.home.hoy"
+      ng-class="{active: $state.includes('main.camp.cult.home.hoy')}"
+      class="button button-outline button-positive"><i class="icon left ion-stats-bars"></i> Hoy</a>
+
+      <a ng-repeat="dia in diarios" ng-if="$even"
+       ui-sref="main.camp.cult.home.diario.inic({nameDia: dia.pathname})"
+       ng-class="{active: $stateParams.nameDia == dia.pathname}"
+       class="button button-outline button-positive">
+       <i ng-if="(dia.partes[0].nparc + dia.partes[0].nmobra + dia.partes[0].nmaq + dia.partes[0].nmat + dia.partes[0].notros)>0" class="icon-left energized ion-flame"></i>
+       {{dia.name}}</a>
+    </div>
+    <div class="button-bar" style="margin-top:-1px;">
+      <a ui-sref="main.camp.cult.home.ejerc"
+      ng-class="{active: $state.includes('main.camp.cult.home.ejerc')}"
+      class="button button-outline button-positive"><i class="icon left ion-stats-bars"></i> Campaña</a>
+      
+      <a ng-repeat="dia in diarios" ng-if="$odd"
+       ui-sref="main.camp.cult.home.diario.inic({nameDia: dia.pathname})"
+       ng-class="{active: $stateParams.nameDia == dia.pathname}"
+       class="button button-outline button-positive">
+       <i ng-if="(dia.partes[0].nparc + dia.partes[0].nmobra + dia.partes[0].nmaq + dia.partes[0].nmat + dia.partes[0].notros)>0" class="icon-left energized ion-flame"></i>
+       {{dia.name}}</a>
+    </div>
+
+    <div ui-view></div>
+
+  </div>
+
+</div>

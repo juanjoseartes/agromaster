@@ -1,0 +1,98 @@
+<h4 class="title" style="margin-top: 12px">
+  Diario Cultivo : effeewff<strong class="positive">{{date}}</strong>
+</h4>
+
+<div class="row responsive-lg">
+  <div class="col">
+    <div class="card">
+      <div class="item item-divider">
+        Resumen del Dia
+      </div>
+      <div class="list">
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.inic({nameDia: 'abonado'})" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Abonado: <span ng-if="getHoyAbon()" class="badge badge-energized">{{getHoyAbon() | currency}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.inic({nameDia: 'entutorado'})" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Entutorado: <span ng-if="getHoyMant()" class="badge badge-energized">{{getHoyMant() | currency}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.inic({nameDia: 'plantacion'})" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Plantacion: <span ng-if="getHoyPlant()" class="badge badge-energized">{{getHoyPlant() | currency}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.inic({nameDia: 'poda'})" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Poda: <span ng-if="getHoyPoda()" class="badge badge-energized">{{getHoyPoda() | currency}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.inic({nameDia: 'riego'})" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Riego: <span ng-if="getHoyRiego()" class="badge badge-energized">{{getHoyRiego() | currency}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.inic({nameDia: 'suelo'})" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Suelo: <span ng-if="getHoySuelo()" class="badge badge-energized">{{getHoySuelo() | currency}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.inic({nameDia: 'tratamientos'})" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Tratamientos: <span ng-if="getHoyTrat()" class="badge badge-energized">{{getHoyTrat() | currency}}</span>
+        </div>
+        <div class="item item-button-left">
+          <a ui-sref="main.camp.cult.home.diario.inic({nameDia: 'tuneles'})" class="button button-clear button-positive">
+            <i class="icon ion-ios7-search-strong"></i>
+          </a>
+          Tuneles: <span ng-if="getHoyLimp()" class="badge badge-energized">{{getHoyLimp() | currency}}</span>
+        </div>
+        <div class="item item-divider">
+          <div class="row responsive-md">
+            <div class="col">
+              Total:
+            </div>
+            <div class="col center">
+
+            </div>
+            <div class="col center">
+              <span class="energized">{{(getHoyAbon() + getHoyLimp() + getHoyMant() + getHoyPlant() + getHoyPoda() + getHoyRiego() + getHoySuelo() + getHoyTrat()) | currency}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+<div class="col">
+  <div class="card">
+    <div class="item item-divider">
+      Reparto:
+    </div>
+    <div class="item" ng-if="(getHoyAbon() + getHoyLimp() + getHoyMant() + getHoyPlant() + getHoyPoda() + getHoyRiego() + getHoySuelo() + getHoyTrat())">
+      <nvd3-pie-chart
+      data="pHoy"
+      id="cultHoy"
+      height="320"
+      x="xFunction()"
+      y="yFunction()"
+      xAxisRotateLabels="-45"
+      showLabels="true"
+      tooltips="true"
+      tooltipcontent="toolTipPie()">
+      <svg></svg>
+    </nvd3-pie-chart>
+  </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,32 @@
+<div class="button-bar">
+<a class="button  button-light" ng-click="back()">
+  <span class="positive">
+    <i class="icon left ion-ios7-close-outline"></i> Cerrar
+  </span>
+</a>
+<a class="button  button-light" ng-click="create(ot)">
+  <span class="positive">
+    Guardar <i class="icon right ion-ios7-checkmark-outline"></i>
+  </span>
+</a>
+</div>
+
+<div class="item item-divider item-light">
+  <p>Detalle Otros:</p>
+</div>
+
+<label class="item item-input">
+  <span class="input-label positive">Concepto:</span>
+  <input type="text" ng-model="ot.concepto" placeholder="Introduzca Capacidad del Envase...">
+</label>
+<label class="item item-input">
+  <span class="input-label positive">Cantidad:</span>
+  <input type="text" ng-model="ot.cantidad" placeholder="Introduzca Capacidad del Envase...">
+</label>
+<label class="item item-input">
+  <span class="input-label positive">Precio:</span>
+  <input type="text" ng-model="ot.precio" placeholder="Introduzca Capacidad del Envase...">
+</label>
+<div class="item item-divider item-light">
+  <p>Total: <span class="badge badge-positive">{{ot.cantidad * ot.precio | number}} &euro;</span></p>
+</div>

@@ -1,0 +1,22 @@
+
+<div class="list card">
+  <div class="item item-avatar item-divider">
+    <i class="icon ion-ios7-search"></i>
+    <h2>{{title}}: {{alb.fch | amDateFormat:'DD/MM/YYYY'}}</h2>
+    <p>{{fincaName}}</p>
+  </div>
+
+    <a class="button icon-left ion-ios7-arrow-left button-clear button-positive" ng-click="back()"> Volver</a>
+
+
+  <div class="item" style="text-align: center;">
+  <div style="display:inline-block; min-height:290px; vertical-align:top;">
+    <span class="item-note"><button class="button button-clear button-positive icon-right ion-ios7-checkmark-outline" ng-click="selFch(fch)">{{fch | amDateFormat:'DD/MM/YYYY'}}</button></span>
+      <datepicker
+        ng-model="fch"
+        show-weeks="true"
+        starting-day="1">
+      </datepicker>
+  </div>
+  </div>
+</div>

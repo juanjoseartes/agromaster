@@ -1,0 +1,35 @@
+
+
+<div class="list card">
+  <div class="item item-avatar item-divider">
+    <i class="icon ion-ios7-plus-outline"></i>
+    <h2>{{title}}</h2>
+    <p>{{fincaName}}</p>
+  </div>
+
+    <a class="button icon-left ion-ios7-arrow-left button-clear button-positive" ng-click="back()"> Volver</a>
+      <label class="item item-input">
+        <span class="input-label">Nombre:</span>
+        <input type="text" ng-model="proveedor.name" placeholder="Introduzca nombre proveedor...">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Direccion</span>
+        <input type="text" ng-model="proveedor.direccion" placeholder="Introduzca direccion proveedor...">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">NIF:</span>
+        <input type="text" ng-model="proveedor.nif" placeholder="Introduzca NIF proveedor...">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Telefono:</span>
+        <input type="text" ng-model="proveedor.telef" placeholder="Introduzca telefono proveedor...">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Email:</span>
+        <input type="email" ng-model="proveedor.email" placeholder="Introduzca e-mail proveedor...">
+      </label>
+    </div>
+    <div class="button-bar">
+    <a class="button button-positive button-clear icon-left ion-ios7-arrow-left" ng-click="back()"> Volver</a>
+    <a class="button button-positive icon-right ion-ios7-cloud-upload-outline" ng-click="saveProv()">Guardar </a>
+  </div>

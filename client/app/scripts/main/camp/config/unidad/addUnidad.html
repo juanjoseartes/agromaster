@@ -1,0 +1,32 @@
+<a class="button icon-left ion-ios7-arrow-left button-clear button-positive" ng-click="back()"> Volver</a>
+
+<div class="card" id="diarioCard">
+  <form name="addUnidad" role="form">
+    <div class="item item-avatar item-divider">
+      <i class="icon ion-ios7-plus-outline"></i>
+      <h2>{{unidad.name}} &nbsp;</h2>
+      <p>{{title}}</p>
+    </div>
+    <div class="item">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Nombre:</span>
+          <input type="text" ng-model="unidad.name" required placeholder="Introduzca nombre identificativo de la unidad de medida... ">
+        </label>
+
+        <ion-radio ng-model="unidad.tipo" ng-value="'Volumen'">Volumen</ion-radio>
+        <ion-radio ng-model="unidad.tipo" ng-value="'Peso'">Peso</ion-radio>
+
+        <label class="item item-input">
+          <span class="input-label">Coeficiente Conversion:</span>
+          <input type="number" ng-model="unidad.coefconvert" placeholder="Introduzca coeficiente conversion... ">
+        </label>
+      </div>
+    </div>
+
+    <div class="button-bar">
+      <a class="button button-positive button-clear icon-left ion-ios7-arrow-left" ng-click="back()"> Volver</a>
+      <a class="button button-positive icon-right ion-ios7-cloud-upload-outline" ng-click="save()">Guardar </a>
+    </div>
+  </form>
+</div>

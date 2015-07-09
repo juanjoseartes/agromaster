@@ -1,0 +1,53 @@
+<a class="button icon-left ion-ios7-arrow-left button-clear button-positive" ng-click="back()"> Volver</a>
+<a class="button right icon-left ion-ios7-checkmark-outline button-clear button-positive icon icon-right" ng-click="save(detalle)"> Guardar</a>
+<div class="row responsive-lg">
+  <div class="col">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Nº Registro:</span>
+          {{detalle.articulo.nreg}}
+          <!-- <button class="button button-clear button-positive icon-right ion-ios7-search" ui-sref="main.camp.compras.sel.prov"></button> -->
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Fertilizante:</span>
+        {{detalle.articulo.name}}
+          <!-- <button class="button button-clear button-positive icon-right ion-ios7-search" ui-sref="main.camp.compras.sel.fch"></button> -->
+      </label>
+    </div>
+  </div>
+  <div class="col">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label positive">Cantidad:</span>
+        <input type="text" ng-model="detalle.cant" placeholder="Introduzca cantidad Albaran...">
+      </label>
+      <label class="item item-input">
+        <span class="input-label positive">Precio:</span>
+        <input type="text" ng-model="detalle.precunit" placeholder="Introduzca precio Albaran...">
+      </label>
+    </div>
+  </div>
+</div>
+
+
+<div class="item item-divider item-light">
+  <p>Detalle del Envase:</p>
+</div>
+<div class="row">
+
+  <div class="col col-50">
+    <label class="item item-input">
+      <span class="input-label positive">Capac. Envase:</span>
+      <input type="text" ng-model="detalle.capenvase" placeholder="Introduzca Capacidad del Envase...">
+    </label>
+  </div>
+  <div class="col col-50">
+    <label class="item item-input item-select">
+    <div class="input-label positive">
+      Unidad Envase:
+    </div>
+      <select ng-model="detalle.udenvase" ng-options="a.id as a.name group by a.tipo for a in unidades"></select>
+  </label>
+  </div>
+
+</div>

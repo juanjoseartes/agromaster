@@ -1,0 +1,68 @@
+<div class="card">
+
+  <div class="table-responsive" st-table="partes">
+    <div class="bar bar-header item item-input-inset" ng-if="!$stateParams.parteId">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="date" placeholder="Search" ng-model="parte.fchinic">
+      </label>&nbsp;&nbsp;
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="date" placeholder="Search" ng-model="parte.fchfin">
+      </label>
+      <button class="button button-clear" ng-click="searchPartes(parte)">
+        Buscar
+      </button>
+    </div>
+    <div class="bar bar-header item item-input-inset" ng-if="$stateParams.parteId">
+      <button class="button button-clear button-positive" ng-click="back()">
+        <i class="icon ion-ios-arrow-back"></i> Volver
+      </button>
+    </div>
+    <div ui-view ng-if="$stateParams.parteId"></div>
+    <table class="table table-striped table-bordered" ng-if="!$stateParams.parteId">
+      <thead>
+        <tr class="stable-bg">
+          <th st-sort="fecha">Fecha</th>
+          <th>Cultivo</th>
+          <th>Recoleccion</th>
+          <th>Encargados</th>
+          <th><strong>Total</strong></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr class="stable-bg">
+          <th class="text-right"><strong>Totales</strong></th>
+          <th class="text-right"><strong>{{nEjercCult()}} <sup>( {{getEjercCultivo() | currency}} )</sup></strong></th>
+          <th class="text-right"><strong>{{nEjercRecol()}} <sup>( {{getEjercRecol() | currency}} )</sup></strong></th>
+          <th class="text-right"><strong>{{nEjercEncarg()}} <sup>( {{getEjercEncarg() | currency}} )</sup></strong></th>
+          <th class="text-right"><strong>{{nEjercCult()+nEjercRecol()+nEjercEncarg()}} <sup>( {{getEjercCultivo()+getEjercRecol()+getEjercEncarg() | currency}} )</sup></strong></th>
+        </tr>
+      </tfoot>
+
+      <tbody>
+        <tr ng-repeat="(key, value) in partes | groupBy: 'fecha' ">
+          <td><a class="button button-clear button-positive button-small" ui-sref="main.camp.mobra.historico.parte({parteId: value[0].id })">{{key | date}}</a></td>
+          <td class="text-right">
+            {{value[0].ncult+value[1].ncult+value[2].ncult}}
+            <sup>( {{value[0].totalcult+value[1].totalcult+value[2].totalcult | currency}} )</sup>
+          </td>
+          <td class="text-right">
+            {{value[0].nrecol+value[1].nrecol+value[2].nrecol}}
+            <sup>( {{value[0].totalrecol+value[1].totalrecol+value[2].totalrecol | currency}} )</sup>
+          </td>
+          <td class="text-right">
+            {{value[0].nencarg+value[1].nencarg+value[2].nencarg}}
+            <sup>( {{value[0].totalencarg+value[1].totalencarg+value[2].totalencarg | currency}} )</sup>
+          </td>
+          <td class="text-right"><strong>
+            {{value[0].ncult+value[1].ncult+value[2].ncult+value[0].nrecol+value[1].nrecol+value[2].nrecol+value[0].nencarg+value[1].nencarg+value[2].nencarg}}
+            <sup>(
+              {{value[0].totalcult+value[1].totalcult+value[2].totalcult+value[0].totalrecol+value[1].totalrecol+value[2].totalrecol+value[0].totalencarg+value[1].totalencarg+value[2].totalencarg | currency}} )</sup>
+            </strong></td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

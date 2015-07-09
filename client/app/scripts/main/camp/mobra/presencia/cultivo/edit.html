@@ -1,0 +1,38 @@
+<form name="editEmpleado" role="form">
+  <div class="list">
+    <div ng-if="$stateParams.costId == 1">
+      <label class="item item-input">
+        <span class="input-label">Nº Jornales:</span>
+        <input type="text" ng-model="empleado.njornal" required placeholder="Introduzca nº jornales del Empleado... ">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Coste Jornal:</span>
+        <input type="text" ng-model="empleado.precjornal" placeholder="Introduzca coste por jornal... ">
+      </label>
+    </div>
+    <div ng-if="$stateParams.costId == 3">
+      <label class="item item-input">
+        <span class="input-label">Nº Horas Extra:</span>
+        <input type="text" ng-model="empleado.nhextra" placeholder="Introduzca nº horas extra del Empleado... ">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Coste Hora Extra:</span>
+        <input type="text" ng-model="empleado.prechextra" placeholder="Introduzca coste por hora extra... ">
+      </label>
+    </div>
+    <div ng-if="$stateParams.costId == 2">
+      <label class="item item-input">
+        <span class="input-label">Nº Portes:</span>
+        <input type="text" ng-model="empleado.nportes" placeholder="Introduzca nº portes del Empleado... ">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Coste Porte:</span>
+        <input type="text" ng-model="empleado.precporte" placeholder="Introduzca coste por porte... ">
+      </label>
+    </div>
+  </div>
+</form>
+<div class="button-bar">
+  <a class="button button-positive button-outline icon-left ion-ios7-close-outline" ng-click="back()"> Cancelar</a>
+  <a class="button button-positive button-outline icon-right ion-ios7-cloud-upload-outline" ng-click="save(empleado)">Guardar </a>
+</div>

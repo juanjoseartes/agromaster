@@ -1,0 +1,31 @@
+<a class="button icon-left ion-ios7-close-outline button-clear button-positive" ng-click="back()"> Cerrar</a>
+
+<div class="table-responsive">
+  <table st-table="gestores" class="table table-bordered table-condensed table-striped">
+    <thead>
+      <tr>
+        <th colspan="2">
+          <div class="bar bar-header item item-input-inset">
+            <label class="item-input-wrapper">
+              <i class="icon ion-ios7-search placeholder-icon"></i>
+              <input st-search placeholder="Buscar gestor..." class="item item-input" type="search"/>
+            </label>
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th width=75>Nombre</th>
+        <th width=25></th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="finca in gestores">
+      <tr ng-repeat="gest in finca.proveedores">
+        <td>{{gest.name}}</td>
+        <td>
+          <a class="button button-outline button-block button-positive icon icon-right ion-ios7-arrow-forward"
+          ng-click="selGest(gest)"> Selecc.</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

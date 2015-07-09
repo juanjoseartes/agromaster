@@ -1,0 +1,104 @@
+<div class="row responsive-lg">
+  <div class="col">
+    <div ng-repeat="parc in parcelas | filter:filterEvenStartFrom(1)">
+      <div class="list card">
+
+        <div class="item item-avatar item-divider">
+          <i class="icon ion-ios7-bookmarks-outline"></i>
+          <h2>{{parc.name}}</h2>
+          <p>{{title}} - {{date}}</p>
+        </div>
+
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Tareas</th>
+                <th>Est</th>
+                <th>M.O.</th>
+                <th>Mat.</th>
+                <th>Maq.</th>
+                <th>Otros</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="dia in diarios.tipodiarios  | filter:{active:true}">
+                <td>
+                  <a href="#/inicio/{{curfinca.ejercCurso.id}}/cultivo/{{dia.id}}/parc/{{parc.id}}" class="button icon-right ion-ios7-compose-outline button-block button-clear button-positive button-small">{{dia.name}}</a>
+                </td>
+                <td class="center">
+                  <i ng-if="dia.hinic && !dia.hfin" class="icon ion-ios7-reloading positive"></i>
+                  <i ng-if="dia.hinic && dia.hfin" class="icon ion-checkmark balanced"></i>
+                </td>
+                <td class="center"></td>
+                <td class="center"></td>
+                <td class="center"></td>
+                <td class="center"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <div class="row" ng-if="vgCult" class="animate-if">
+          <div class="col col-dash">
+            <p>Evolucion Campaña</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div ng-repeat="parc in parcelas | filter:filterEvenStartFrom(0)">
+      <div class="list card">
+
+        <div class="item item-avatar item-divider">
+          <i class="icon ion-ios7-bookmarks-outline"></i>
+          <h2>{{parc.name}}</h2>
+          <p>{{title}} - {{date}}</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Tareas</th>
+                <th>Est</th>
+                <th>M.O.</th>
+                <th>Mat.</th>
+                <th>Maq.</th>
+                <th>Otros</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="dia in diarios.tipodiarios | filter:{active:true}">
+                <td>
+                  <a href="#/inicio/{{curfinca.ejercCurso.id}}/cultivo/{{dia.id}}/parc/{{parc.id}}" class="button icon-right ion-ios7-compose-outline button-block button-clear button-positive button-small">{{dia.name}}</a>
+                </td>
+                <td class="center">
+                  <i ng-if="dia.hinic && !dia.hfin" class="icon ion-ios7-reloading positive"></i>
+                  <i ng-if="dia.hinic && dia.hfin" class="icon ion-checkmark balanced"></i>
+                </td>
+                <td class="center"></td>
+                <td class="center"></td>
+                <td class="center"></td>
+                <td class="center"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <div class="row" ng-if="vgCult" class="animate-if">
+          <div class="col col-dash">
+            <p>Evolucion Campaña</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
